@@ -1,3 +1,8 @@
+/**
+ * This class writes results to an output stream after using the Google Gson library to write a result as a json
+ * formatted string.
+ */
+
 package uk.ac.ebi.lipidhome.service.result;
 
 import java.io.IOException;

@@ -1,3 +1,15 @@
+/*
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ * This is the starting point for the web application, all Panes are added into this one.
+ * The two main panes are currently the BrowserPane and the ToolsPane.
+ * @TODO This is where history management will be completed in the future.
+*/
+
+
 // Needed if you want to handle history for multiple components in the same page.
 // Should be something that won't be in component ids.
 var tokenDelimiter = '|';

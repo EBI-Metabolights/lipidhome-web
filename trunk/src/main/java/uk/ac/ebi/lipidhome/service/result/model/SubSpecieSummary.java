@@ -1,3 +1,6 @@
+/**
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model a sub specie summary
+ */
 package uk.ac.ebi.lipidhome.service.result.model;
 
 import java.util.ArrayList;

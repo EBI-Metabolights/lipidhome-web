@@ -1,3 +1,11 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Defines a model of the fatty_acid_species and sub species mapping table database tables.
+ */
+
 package uk.ac.ebi.lipidhome.core.model;
 
 public class SubSpecieChain {

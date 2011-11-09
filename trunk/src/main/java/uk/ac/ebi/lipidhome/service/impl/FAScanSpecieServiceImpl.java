@@ -1,3 +1,11 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The FAScanSpecieServiceImpl contains all the logic for  fulfilling the methods defined in the FAScanSpecieServiceService Interface
+ */
+
 package uk.ac.ebi.lipidhome.service.impl;
 
 import java.util.List;
@@ -14,6 +22,13 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleSubSpecie;
 
 public class FAScanSpecieServiceImpl extends LipidService implements FAScanSpecieService{
 
+     /**
+     *
+     * @param id The database id of the FAScanSpecie of interest
+     * A FAScanSpecie Object is built and from it a FAScanSpecieSummary is built. This object is transformed to
+     * json via the result2Response method in LipidService and returned as a response object.
+     * @return A response object containing a json formatted FAScanSpecieSummary.
+     */
 	@Override
 	public Response getFAScanSpecieSummary(Long id) {
 		Result result;
@@ -37,6 +52,14 @@ public class FAScanSpecieServiceImpl extends LipidService implements FAScanSpeci
 		return result2Response(result);
 	}
 
+
+    /**
+     *
+     * A List of SimpleSubSpecie Objects is built on request by the FAScanSpecieDao. Once converted into a Result object
+     * by the ListConverter it can be transformed into a Response object that contains the SimpleSubSpecie list encoded
+     * as a json string.
+     * @return A response object containing a json formatted List of SimpleSubSpecie.
+     */
 	@Override
 	public Response getSubSpecieSimpleList(Long id) {
 		Result result;

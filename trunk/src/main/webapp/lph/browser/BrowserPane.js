@@ -1,3 +1,17 @@
+/*
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ * This Panel is the BrowserTab it main function is to dived the Pane into the Navigation Pane and the ContentPane
+ * This Pane also represents the last point at which the ContentPane and the NavigationPane are  linked and contains
+ * the bindcontentActions function. This lets the contentPane listen to any addNode events in the navigator hierarchy
+ * pane.
+ *
+*/
+
 Ext.define('lph.browser.BrowserPane', {
 	/* Begin Definitions */
     extend	: 'Ext.Panel',

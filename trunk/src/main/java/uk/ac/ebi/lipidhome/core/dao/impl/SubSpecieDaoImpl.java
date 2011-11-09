@@ -1,3 +1,14 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The subSpecieDaoImpl contains all the methods to access sub specie related information from the DataSource.
+ */
+
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import java.util.ArrayList;
@@ -24,6 +35,11 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleIsomer;
 @Repository
 public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpecieDao<SubSpecie>{
 
+    /**
+     *
+     * @param id The database id of the  sub specie
+     * @return A sub specie object that is a faithful representation of the species table
+     */
 	@Override
 	public SubSpecie getSubSpecie(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -33,7 +49,14 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				"WHERE sc.sub_class_id = s.l_sub_class_id and s.l_composition_id = c.composition_id and f.l_species_id = s.species_id and h.l_FA_scan_species_id = f.FA_scan_species_id and h.l_sub_species_id = ss.sub_species_id and ss.sub_species_id = ?;",
 				new Object[] { id }, new SubSpecieMapper());
 	}
-	
+
+    /**
+     *
+     * @param name The name or partial name of the sub specie to be searched for.
+     * @param start The starting index of the result to return, this is used for paging of the data.
+     * @param limit The number of records to return
+     * @return A list search results
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getSubSpeciesByNameLike(String name, Long start, Long limit) {
@@ -45,7 +68,12 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				"WHERE name LIKE ? ORDER BY identified DESC, name LIMIT ?, ?;",
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
-	
+
+    /**
+     *
+     * @param id The database id of the  sub specie
+     * @return A list of the parents of this specie (FA scn species)
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getSubSpecieParents(Long id) {
@@ -56,9 +84,14 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				"WHERE h.l_FA_scan_species_id = f.FA_scan_species_id AND h.l_sub_species_id = ?;",
 				new Object[]{ id }, new BaseSearchItemMapper());
 	}
-	
-	
+
+    /**
+     *
+     * @param name
+     * @return
+     */
 	@Override
+    //@todo this seems wrong its not like the others!!!
 	public long getSubSpeciesCountByNameLike(String name){
 		name = "%%" + name + "%%";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -69,6 +102,11 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				new Object[]{name});
 	}
 
+    /**
+     *
+     * @param id The database id of the  sub specie
+     * @return  The number of distinct isomers within this sub specie that are cross referenced to another resource.
+     */
 	@Override
 	public int getIsomerCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -79,6 +117,11 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id The database id of the  sub specie
+     * @return A string of fatty acid chain names concatenated by  " + "
+     */
 	@Override
 	public String getChainById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -96,6 +139,11 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 		return StringUtils.collectionToDelimitedString(result, "/");
 	}
 
+    /**
+     *
+     * @param id The database id of the  sub specie
+     * @return A list of cross reference object each one a link to an external resource which has this sub specie in it.
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CrossReference> getCrossReferencesList(Long id) {
@@ -107,6 +155,11 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				new Object[] { id }, new CrossReferenceMapper());
 	}
 
+    /**
+     *
+     * @param id The database id of the  sub specie
+     * @return A list of paper objects each one representing a single paper with pmid, abstract and other information
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Paper> getPapersList(Long id) {
@@ -118,6 +171,11 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				new Object[] { id }, new PaperMapper());
 	}
 
+    /**
+     *
+     * @param id The database id of the  sub specie
+     * @return A list of simple isomer objects
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SimpleIsomer> getSimpleIsomerList(Long id) {

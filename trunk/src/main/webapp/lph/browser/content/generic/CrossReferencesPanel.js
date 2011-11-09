@@ -1,3 +1,14 @@
+
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ * A Panel to hold information on cross references to various items in other resources.
+ */
 Ext.define('lph.browser.content.generic.CrossReferencesPanel', {
 	/* Begin Definitions */
     extend		: 'Ext.form.Panel',

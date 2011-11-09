@@ -1,3 +1,14 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The categoryDaoImpl contains all the methods to access category related information from the DataSource.
+ */
+
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import java.util.List;
@@ -21,7 +32,12 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 	public CategoryDaoImpl() {
 		super();
 	}
-	
+
+    /**
+     *
+     * @param id The database id of the category
+     * @return A Category object.
+     */
 	@Override
 	public Category getCategory(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -29,7 +45,14 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 				"SELECT * FROM category WHERE category_id = ?",
 				new Object[] { id }, new CategoryMapper());
 	}
-	
+
+    /**
+     *
+     * @param name The name or partial name of the category to be searched for.
+     * @param start The starting index of the result to return, this is used for paging of the data.
+     * @param limit The number of records to return
+     * @return A list search results necessary for populating the search box
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getCategoryByNameLike(String name, Long start,
@@ -43,6 +66,11 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
 
+    /**
+     *
+     * @param id The database id of the category
+     * @return The number of distinct isomers within this category that are cross reference to another resource.
+     */
 	@Override
 	public int getIsomerCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -53,6 +81,12 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 				new Object[]{id});
 	}
 
+
+    /**
+     *
+     * @param id The database id of the category
+     * @return The number of distinct sub species within this category
+     */
 	@Override
 	public int getSubSpeciesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -63,6 +97,11 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id The database id of the category
+     * @return The number of distinct main classes within this category
+     */
 	@Override
 	public int getMainClassesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -71,6 +110,12 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 				new Object[]{id});
 	}
 
+
+    /**
+     *
+     * @param id The database id of the category
+     * @return The number of distinct species within this category
+     */
 	@Override
 	public int getSpeciesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -81,14 +126,24 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 				new Object[]{id});
 	}
 
-	@SuppressWarnings("unchecked")
+    /**
+     *
+     * @return A list of all categories in the DataSource
+     */
+    @SuppressWarnings("unchecked")
 	@Override
 	public List<SimpleCategory> getSimpleCategoryList(){
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return jdbcTemplate.query(
 				"SELECT category_id, name FROM category ORDER BY name;",new SimpleCategoryMapper());
 	}
-	
+
+
+    /**
+     *
+     * @param id The database id of the category
+     * @return A list of all Main classes belonging to the category
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SimpleMainClass> getSimpleMainClasseslist(Long id){

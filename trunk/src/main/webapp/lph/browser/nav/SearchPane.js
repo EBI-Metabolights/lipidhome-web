@@ -1,3 +1,17 @@
+/*
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *   The SearchPane contains a google style live search of the database with suggestions. When 4 or more characters are
+ *   typed into the search box a search is done and results return. Results are ordered by whether or not they have
+ *   been identified. The search can also be configured to look at a particular hierarchy level of the database if
+ *   for instance the user was only interested in sub species, via the combo box.
+ *   @TODO This search must be linked to the other main elements : hierarchyPane and ContentPane via listeners like before.
+ *
+*/
+
 Ext.define('lph.browser.nav.SearchPane', {
 	/* Begin Definitions */
     extend	: 'Ext.form.Panel',
@@ -72,7 +86,7 @@ Ext.define('lph.browser.nav.SearchPane', {
         
         this.container.add(this.search);
                 
-        // The data store containing the list of states
+        // The data store containing the list of structure hierarchy levels
 		this.comboStore = Ext.create('Ext.data.Store', {
 		    fields: ['level', 'name'],
 		    data : [

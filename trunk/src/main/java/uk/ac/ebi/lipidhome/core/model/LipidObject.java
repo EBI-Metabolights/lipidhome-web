@@ -1,12 +1,15 @@
-package uk.ac.ebi.lipidhome.core.model;
-
 /**
- * Defines the common properties for each one of the entities in LipidHome
- * 
+ *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  * @author Joe Foster <jfoster@ebi.ac.uk>
- * 
+ *
+ * Defines the common properties for each one of the entities in LipidHome, all lipid records regardless of stuctural
+ * hierarchy contain a name and a database if.
  */
+
+package uk.ac.ebi.lipidhome.core.model;
+
+
 public abstract class LipidObject {
 	/**
 	 * Contains the entity identifier

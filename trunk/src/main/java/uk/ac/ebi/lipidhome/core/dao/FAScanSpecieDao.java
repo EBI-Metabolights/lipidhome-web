@@ -1,3 +1,13 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The FAScanSpecieDao defines all the necessary functions to retrieve information pertaining to a FAScanSpecie.
+ */
 package uk.ac.ebi.lipidhome.core.dao;
 
 import java.util.List;

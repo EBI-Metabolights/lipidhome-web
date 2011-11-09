@@ -1,3 +1,14 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The subClassDaoImpl contains all the methods to access sub class related information from the DataSource.
+ */
+
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import java.util.List;
@@ -16,6 +27,11 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleSpecie;
 @Repository
 public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDao<SubClass> {
 
+    /**
+     *
+     * @param id The database id of the sub class
+     * @return A sub class object that is a faithful representation of the sub_class table
+     */
 	@Override
 	public SubClass getSubClass(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -23,7 +39,14 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 				"SELECT * FROM sub_class WHERE sub_class_id = ?",
 				new Object[] { id }, new SubClassMapper());
 	}
-	
+
+    /**
+     *
+     * @param name The name or partial name of the sub class to be searched for.
+     * @param start The starting index of the result to return, this is used for paging of the data.
+     * @param limit The number of records to return
+     * @return A list search results
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getSubClassByNameLike(String name, Long start, Long limit){
@@ -35,7 +58,12 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 				"WHERE name LIKE ? ORDER BY identified DESC, name LIMIT ?, ?;",
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
-	
+
+    /**
+     *
+     * @param id The database id of the sub class
+     * @return  A list of the parents of this specie (main classes)
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getSubClassParents(Long id){
@@ -47,6 +75,11 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 				new Object[]{ id }, new BaseSearchItemMapper());
 	}
 
+    /**
+     *
+     * @param id The database id of the sub class
+     * @return The number of distinct isomers within this specie that are cross referenced to another resource.
+     */
 	@Override
 	public int getIsomerCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -57,6 +90,11 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id The database id of the sub class
+     * @return  The number of distinct sub species within this sub class.
+     */
 	@Override
 	public int getSubSpeciesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -67,6 +105,11 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id  The database id of the sub class
+     * @return  The number of distinct species within this sub class.
+     */
 	@Override
 	public int getSpeciesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -75,6 +118,11 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id The database id of the sub class
+     * @return A list of simple specie objects
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SimpleSpecie> getSimpleSpeciesList(Long id) {

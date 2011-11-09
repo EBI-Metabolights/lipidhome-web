@@ -1,3 +1,7 @@
+/**
+ * Implements the Spring RowMapper, capable of returning an appropriate object model from a result set.
+ * This mapper is specifically for the results of a search via the search service.
+ */
 package uk.ac.ebi.lipidhome.service.mapper;
 
 import java.sql.ResultSet;

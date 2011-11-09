@@ -1,3 +1,13 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The implementation of the BaseDao which is to be extended by all other DAOs gives acccess to the DataSource.
+ */
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import javax.sql.DataSource;

@@ -1,3 +1,7 @@
+/**
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model a simple specie
+ * used for specie lists.
+ */
 package uk.ac.ebi.lipidhome.service.result.model;
 
 public class SimpleSpecie extends ResultObject{

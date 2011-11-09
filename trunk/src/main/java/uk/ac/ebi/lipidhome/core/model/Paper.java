@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Defines a model of the paper database table and it auxiliarry tables such as author and meshterms.
+ */
+
+
 package uk.ac.ebi.lipidhome.core.model;
 
 import java.util.Date;

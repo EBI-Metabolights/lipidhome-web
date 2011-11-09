@@ -1,3 +1,11 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The CategoryServiceImpl contains all the logic for  fulfilling the methods defined in the CategoryService Interface
+ */
+
 package uk.ac.ebi.lipidhome.service.impl;
 
 import java.util.List;
@@ -20,9 +28,15 @@ public class CategoryServiceImpl extends LipidService implements CategoryService
 	public CategoryServiceImpl(){
 		
 	}
-	
 
 
+    /**
+     *
+     * @param id The database id of the category of interest
+     * A Category Object is built and from it a CategorySummary is built. This object is transformed to json via the
+     * result2Response method in LipidService and returned as a response object.
+     * @return A response object containing a json formatted CategorySummary.
+     */
 	@Override
 	public Response getCategorySummary(Long id) {
 		Result result;
@@ -44,7 +58,15 @@ public class CategoryServiceImpl extends LipidService implements CategoryService
 		}
 		return result2Response(result);
 	}
-	
+
+
+    /**
+     *
+     * A List of Category Objects is built on request by the CategoryDao. This is transformed into something that
+     * inherits LipidObject and can then be transfromed into a Response. This si used to intially populate the
+     * Hierarchy Panel.
+     * @return A response object containing a json formatted List of Categories.
+     */
 	@Override
 	public Response getCategoryList( ){
 		Result result;
@@ -60,6 +82,13 @@ public class CategoryServiceImpl extends LipidService implements CategoryService
 		return result2Response(result);
 	}
 
+     /**
+     *
+     * A List of SimpleMainClass Objects is built on request by the CategoryDao. Once converted into a Result object
+     * by the ListConverter it can be transformed into a Response object that contains the simpleMainClass list encoded
+     * as a json string.
+     * @return A response object containing a json formatted List of SimpleMainClasses.
+     */
 	@Override
 	public Response getMainClassSimpleList(Long id) {
 		Result result;

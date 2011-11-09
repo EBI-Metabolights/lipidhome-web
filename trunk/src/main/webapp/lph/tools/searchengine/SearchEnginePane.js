@@ -1,3 +1,6 @@
+/**
+ * This is the Search engine tab and contains the two major Panels for its use, input and output.
+ */
 Ext.define('lph.tools.searchengine.SearchEnginePane', {
 	/* Begin Definitions */
     extend	: 'Ext.Panel',

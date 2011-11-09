@@ -1,3 +1,7 @@
+/**
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model BasicSearch Results
+ */
+
 package uk.ac.ebi.lipidhome.service.result.model;
 
 public class BaseSearchItem extends ResultObject {

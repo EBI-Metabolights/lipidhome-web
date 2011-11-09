@@ -1,3 +1,7 @@
+/**
+ * This class is a generic holder of lots of different result types fro the different services
+ */
+
 package uk.ac.ebi.lipidhome.service.result;
 
 import uk.ac.ebi.lipidhome.service.result.model.ResultObject;

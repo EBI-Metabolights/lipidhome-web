@@ -1,3 +1,14 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The FAScanSpecieDaoImpl contains all the methods to access FAScanSpecie related information from the DataSource.
+ */
+
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import java.util.ArrayList;
@@ -24,6 +35,11 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleSubSpecie;
 @Repository
 public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FAScanSpecieDao<FAScanSpecie>{
 
+    /**
+     *
+     * @param id The database id of the FAScanSpecie
+     * @return a FAScanSpecie object that is a faithful representation fo the FA_scan_species_table
+     */
 	@Override
 	public FAScanSpecie getSpecie(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -33,7 +49,14 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				"WHERE s.l_sub_class_id = sc.sub_class_id and f.FA_scan_species_id = ? and f.l_species_id = s.species_id and s.l_composition_id = c.composition_id;;",
 				new Object[] { id }, new FAScanSpecieMapper());
 	}
-	
+
+    /**
+     *
+     * @param name The name or partial name of the category to be searched for.
+     * @param start The starting index of the result to return, this is used for paging of the data.
+     * @param limit The number of records to return
+     * @return A list search results
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getFAScanSpecieByNameLike(String name, Long start, Long limit){
@@ -45,7 +68,12 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				"WHERE name LIKE ? ORDER BY identified DESC, name LIMIT ?, ?;",
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
-	
+
+    /**
+     *
+     * @param id  The database id of the FA scan specie
+     * @return  A list of the parents of this FA scan specie (species)
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getFAScanSpecieParents(Long id){
@@ -57,6 +85,11 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				new Object[]{ id }, new BaseSearchItemMapper());
 	}
 
+    /**
+     *
+     * @param id  The database id of the FA scan specie
+     * @return The number of distinct sub species within this FA scan specie.
+     */
 	@Override
 	public int getSubSpeciesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -67,6 +100,12 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id  The database id of the FA scan specie
+     * @return  The number of distinct isomers within this FA scan specie that are cross reference to another resource.
+     */
+
 	@Override
 	public int getIsomerCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -76,7 +115,12 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				"WHERE h.l_FA_scan_species_id = ? and h.l_sub_species_id = ss.sub_species_id and i.l_sub_species_id = ss.sub_species_id;",
 				new Object[]{id});
 	}
-	
+
+    /**
+     *
+     * @param id The database id of the FA scan specie
+     * @return A string of fatty acid chain names concatenated by  " + "
+     */
 	@Override
 	public String getChainById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -96,6 +140,12 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 		return StringUtils.collectionToDelimitedString(result, " + ");
 	}
 
+
+    /**
+     *
+     * @param id  The database id of the FA scan specie
+     * @return A list of cross reference object each one a link to an external resource which has this FA scan specie in it.
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CrossReference> getCrossReferencesList(Long id) {
@@ -107,6 +157,11 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				new Object[] { id }, new CrossReferenceMapper());
 	}
 
+    /**
+     *
+     * @param id  The database id of the FA scan specie
+     * @return  A list of paper objects each one representing a single paper with pmid, abstract and other information
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Paper> getPapersList(Long id) {
@@ -118,6 +173,11 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				new Object[] { id }, new PaperMapper());
 	}
 
+    /**
+     *
+     * @param id  The database id of the FA scan specie
+     * @return A list of simple sub specie objects
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SimpleSubSpecie> getSimpleSubSpeciesList(Long id) {

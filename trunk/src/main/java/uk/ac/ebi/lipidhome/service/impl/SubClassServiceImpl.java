@@ -1,3 +1,10 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The SubClassServiceImpl contains all the logic for  fulfilling the methods defined in the SubclasService Interface
+ */
 package uk.ac.ebi.lipidhome.service.impl;
 
 import java.util.List;
@@ -14,6 +21,13 @@ import uk.ac.ebi.lipidhome.service.result.model.SubClassSummary;
 
 public class SubClassServiceImpl extends LipidService implements SubClassService {
 
+     /**
+     *
+     * @param id The database id of the SubClass of interest
+     * A  SubClass Object is built and from it a  SubClassSummary is built. This object is transformed to
+     * json via the result2Response method in LipidService and returned as a response object.
+     * @return A response object containing a json formatted  SubClass Summary.
+     */
 	@Override
 	public Response getSubClassSummary(Long id) {
 		Result result;
@@ -35,6 +49,13 @@ public class SubClassServiceImpl extends LipidService implements SubClassService
 		return result2Response(result);
 	}
 
+    /**
+     *
+     * A List of SimpleSpecie Objects is built on request by the SubClassDao. Once converted into a Result object
+     * by the ListConverter it can be transformed into a Response object that contains the SimpleSpecie list encoded
+     * as a json string.
+     * @return A response object containing a json formatted List of SimpleSubClass.
+     */
 	@Override
 	public Response getSpecieSimpleList(Long id) {
 		Result result;

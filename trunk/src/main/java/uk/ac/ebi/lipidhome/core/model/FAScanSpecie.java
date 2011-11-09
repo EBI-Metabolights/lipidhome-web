@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Defines a model of the FA_scan_species database table.
+ */
+
+
 package uk.ac.ebi.lipidhome.core.model;
 
 public class FAScanSpecie extends LipidObject {

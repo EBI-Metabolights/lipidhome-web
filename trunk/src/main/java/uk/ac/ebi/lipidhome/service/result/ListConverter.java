@@ -1,3 +1,7 @@
+/**
+ * This class converts a list of objects into a single ResultObjectList object
+ */
+
 package uk.ac.ebi.lipidhome.service.result;
 
 import java.util.List;

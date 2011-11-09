@@ -1,3 +1,11 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The SpecieServiceImpl contains all the logic for  fulfilling the methods defined in the SpecieService Interface
+ */
+
 package uk.ac.ebi.lipidhome.service.impl;
 
 import java.util.List;
@@ -14,6 +22,13 @@ import uk.ac.ebi.lipidhome.service.result.model.SpecieSummary;
 
 public class SpecieServiceImpl extends LipidService implements SpecieService{
 
+     /**
+     *
+     * @param id The database id of the Specie of interest
+     * A Specie Object is built and from it a SpecieSummary is built. This object is transformed to
+     * json via the result2Response method in LipidService and returned as a response object.
+     * @return A response object containing a json formatted Specie Summary.
+     */
 	@Override
 	public Response getSpecieSummary(Long id) {
 		Result result;
@@ -37,6 +52,15 @@ public class SpecieServiceImpl extends LipidService implements SpecieService{
 		return result2Response(result);
 	}
 
+
+     /**
+     *
+     * A List of SimpleFAScanSpecie Objects is built on request by the SpecieDao. Once converted into a Result object
+     * by the ListConverter it can be transformed into a Response object that contains the SimpleFAScanSpecie list encoded
+     * as a json string.
+     * @return A response object containing a json formatted List of SimpleFAScanSpecies.
+     */
+    //@todo this fucntion is anmed incorrectly!!! It shoul be getFAScanSimpleList!!
 	@Override
 	public Response getSpecieSimpleList(Long id) {
 		Result result;

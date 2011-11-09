@@ -1,3 +1,10 @@
+/**
+ * Content pane is the container pane for the two main information panes. Theis pane containes many tabs, all of which
+ * are invisible apart from the active tab. Inactive tabs ratehr than beign overwritten are simply set to invisible
+ * this way if a user loads a tab, then want to view it again at a alter date, the data does not need to be fetched
+ * twice just set to active and visible.
+ */
+
 Ext.define('lph.browser.content.ContentPane', {
 	/* Begin Definitions */
     extend	: 'Ext.tab.Panel',
