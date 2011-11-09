@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Defines a model of the sub_specie database table.
+ */
+
+
 package uk.ac.ebi.lipidhome.core.model;
 
 public class SubSpecie extends LipidObject {

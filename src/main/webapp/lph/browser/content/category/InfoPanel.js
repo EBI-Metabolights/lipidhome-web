@@ -1,3 +1,15 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ * This Panel contains the summary information about a category, it also displays  an image of the molecule using
+ * a modified ChemdoodleWeb library that supports the rendering of R chains (by adding them to the ELEMENT array.)
+ */
+
 Ext.define('lph.browser.content.category.InfoPanel', {
 	/* Begin Definitions */
     extend	: 'lph.browser.content.generic.InfoPanel',

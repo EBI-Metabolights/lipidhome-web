@@ -1,3 +1,13 @@
+/**
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ * The CategoryPane displays all the information relevant to categories. It comprises two parts, the InfoPanel which
+ * gives some statistics on lower hierarchy members of this category, and the MainClassList which is a list of its
+ * direct children in the hierarchy.
+ */
 Ext.define('lph.browser.content.category.CategoryPane', {
 	/* Begin Definitions */
     extend		: 'Ext.Panel',
@@ -41,6 +51,9 @@ Ext.define('lph.browser.content.category.CategoryPane', {
     }
 });
 
+/**
+ * This is the Category model it is the information that will be displayed in the InfoPanel
+ */
 Ext.define('CategorySummaryModel', {
     extend: 'Ext.data.Model',
     url : '',
@@ -64,6 +77,9 @@ Ext.define('CategorySummaryModel', {
     }
 });
 
+/**
+ * This model will be used to populate the mainClassList panel
+ */
 Ext.define('SimpleMainClass', {
     extend: 'Ext.data.Model',
     fields: [

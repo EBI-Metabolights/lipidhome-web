@@ -1,3 +1,11 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Defines a model of the Fatty Acid species database table.
+ */
+
 package uk.ac.ebi.lipidhome.core.model;
 
 public class FAScanChain {

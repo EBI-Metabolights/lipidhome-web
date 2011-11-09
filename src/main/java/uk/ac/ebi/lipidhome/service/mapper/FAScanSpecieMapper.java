@@ -1,3 +1,8 @@
+/**
+ * Implements the Spring RowMapper, capable of returning an appropriate object model from a result set.
+ * This mapper returns objects that can be cast to a FAScanSpecie Object.
+ */
+
 package uk.ac.ebi.lipidhome.service.mapper;
 
 import java.sql.ResultSet;

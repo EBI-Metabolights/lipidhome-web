@@ -1,3 +1,17 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ * This class creates  CehemDoodle molecule View and applies the appropriate graphical parameters to it so the image
+ * is in keeping with the standardised way of representing molecules (in our case a cross between CHEBI's style and the
+ * nomenclature described by the LIPID MAPS consortium)
+ */
+
+ //@todo The H atoms on sn2 glycerol carbon must be rendered in black not white, so they are not confused with methyl.
 Ext.define('lph.browser.content.generic.MoleculeViewer', {
 	/* Begin Definitions */
     extend	: 'Ext.Panel',

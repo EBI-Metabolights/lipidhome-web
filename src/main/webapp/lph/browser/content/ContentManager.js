@@ -1,3 +1,6 @@
+/**
+ * The content manager is responsible for creating or returning existing tabs from the provided values.
+ */
 Ext.define('lph.browser.content.ContentManager', {
 	/* Begin Definitions */
     extend	: 'Ext.util.Observable',

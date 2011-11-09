@@ -1,3 +1,16 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The DaoFactory is the standardised way of getting a DAO in order to retrieve data from the DataSource.
+ *  There is currently a DAO fr each level of the structure Hierarchy. All the methods to get and set DAO factories are
+ *  available here.
+ */
+
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;

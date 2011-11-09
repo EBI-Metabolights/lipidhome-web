@@ -1,3 +1,11 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The MainClassServiceImpl contains all the logic for  fulfilling the methods defined in the MainClassService Interface
+ */
+
 package uk.ac.ebi.lipidhome.service.impl;
 
 import java.util.List;
@@ -17,7 +25,14 @@ public class MainClassServiceImpl extends LipidService implements MainClassServi
 	public MainClassServiceImpl(){
 		
 	}
-	
+
+     /**
+     *
+     * @param id The database id of the FAScanSpecie of interest
+     * A MainClass Object is built and from it a MainClassSummary is built. This object is transformed to
+     * json via the result2Response method in LipidService and returned as a response object.
+     * @return A response object containing a json formatted MainClassSummary.
+     */
 	@Override
 	public Response getMainClassSummary(Long id) {
 		Result result;
@@ -40,6 +55,13 @@ public class MainClassServiceImpl extends LipidService implements MainClassServi
 		return result2Response(result);
 	}
 
+     /**
+     *
+     * A List of SimpleSubClass Objects is built on request by the MainClassDao. Once converted into a Result object
+     * by the ListConverter it can be transformed into a Response object that contains the SimpleSubClass list encoded
+     * as a json string.
+     * @return A response object containing a json formatted List of SimpleSubClass.
+     */
 	@Override
 	public Response getSubClassSimpleList(Long id) {
 		Result result;

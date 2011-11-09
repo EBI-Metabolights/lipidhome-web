@@ -1,3 +1,13 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The mainDaoImpl contains all the methods to access main class related information from the DataSource.
+ */
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import java.util.List;
@@ -19,7 +29,12 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 	public MainClassDaoImpl(){
 		super();
 	}
-	
+
+    /**
+     *
+     * @param id The database id of the main class
+     * @return A main class object that is a true representation of the database table main_class
+     */
 	@Override
 	public MainClass getMainClass(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -27,7 +42,14 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				"SELECT * FROM main_class WHERE main_class_id = ?",
 				new Object[] { id }, new MainClassMapper());
 	}
-	
+
+    /**
+     *
+     * @param name The name or partial name of the main class to be searched for.
+     * @param start The starting index of the result to return, this is used for paging of the data.
+     * @param limit The number of records to return
+     * @return A list search results necessary for populating the search box
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getMainClassByNameLike(String name, Long start,
@@ -41,6 +63,11 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
 
+    /**
+     *
+     * @param id The database id of the main class
+     * @return A list of the parents of this main class
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BaseSearchItem> getMainClassParents(Long id) {
@@ -52,6 +79,11 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				new Object[]{ id }, new BaseSearchItemMapper());
 	}
 
+    /**
+     *
+     * @param id The database id of the main class
+     * @return The distinct number if isomer belonging to this main class fro which there are cross references in other resources
+     */
 	@Override
 	public int getIsomerCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -62,6 +94,11 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id The database id of the main class
+     * @return The distinct number of sub species belonging to this main class
+     */
 	@Override
 	public int getSubSpeciesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -72,6 +109,11 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id The database id of the main class
+     * @return The distinct number of sub classes belonging to this main class
+     */
 	@Override
 	public int getSubClassesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -80,6 +122,11 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id The database id of the main class
+     * @return The distinct number of species belonging to this main class
+     */
 	@Override
 	public int getSpeciesCountById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
@@ -90,6 +137,11 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				new Object[]{id});
 	}
 
+    /**
+     *
+     * @param id The database id of the main class
+     * @return A list of simple sub class objects
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SimpleSubClass> getSimpleSubClassesList(Long id){

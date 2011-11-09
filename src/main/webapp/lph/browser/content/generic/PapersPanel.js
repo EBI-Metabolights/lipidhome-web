@@ -1,3 +1,17 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ * This Panel describes the Papers Grid that appears in the papers tab. It also describes the formatting of the
+ * information contained when a row is expanded.
+ */
+
+//@todo  This must always be scrollable to fix some rendering bugs, this may be automatically fixed in future ext releases
+
 Ext.define('lph.browser.content.generic.PapersPanel', {
 	/* Begin Definitions */
     extend		: 'Ext.grid.Panel',

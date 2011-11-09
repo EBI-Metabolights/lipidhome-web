@@ -1,3 +1,7 @@
+/*
+    This is a simple Container for the two elements of the NavPane; HierarchyPane and the SearchPane.
+*/
+
 Ext.define('lph.browser.nav.NavPane', {
 	/* Begin Definitions */
     extend		: 'Ext.Panel',
@@ -39,7 +43,10 @@ Ext.define('lph.browser.nav.NavPane', {
   
         return this;
     },
-    
+
+    /*
+        This function retrieves the initial information to be shown in the hierarchyPane
+    */
     loadTree: function(){
     	Ext.Ajax.request({
         	url : 'service/category/list',
@@ -47,7 +54,10 @@ Ext.define('lph.browser.nav.NavPane', {
         	scope : this
         })
     },
-    
+
+    /*
+        This function processes and appends the initial information to be shown in the HierarchyPane
+    */
     processResponse: function(response){
     	var node = this.hierarchy.getStore().getRootNode( )
     	var res = Ext.decode(response.responseText);

@@ -1,3 +1,11 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The CategoryService interface defines the avilable category related services and the paths that they map to.
+ */
+
 package uk.ac.ebi.lipidhome.service;
 
 import javax.ws.rs.GET;

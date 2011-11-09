@@ -1,3 +1,6 @@
+/**
+ * This panel holds the tabs of the various tools associated with the database.
+ */
 Ext.define('lph.tools.ToolsPane', {
 	/* Begin Definitions */
     extend		: 'Ext.tab.Panel',

@@ -1,3 +1,12 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *  This class contians the implementations of all the emthods defined in UtilitiesService. These services are not
+ *  related to a single hierarchy structure level and so have been lumped tog ether in this class.
+ *  @todo The inner classes are ugly and should be abstracted and organised
+ */
 package uk.ac.ebi.lipidhome.service.impl;
 
 import java.util.ArrayList;
@@ -31,6 +40,17 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
 		
 	}
 
+
+    /**
+     *
+     * @param query An SQL query string with the appropriate place holders.
+     * @param type The structure hierarchy level to be searched
+     * @param start The starting record number  (used for paging the data)
+     * @param limit The limit defining how many results to show per page.
+     * @param page ??
+     * @param callback ??
+     * @return A Resposne object of json formatted BaseSearchItem results.
+     */
 	@Override
 	public Response doSearch(String query, Integer type, Long start, Long limit, Long page, String callback) {
 		Result result;
@@ -50,6 +70,17 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
 		return result2Response(result, callback);
 	}
 
+    /**
+     * When a path is obtained for a particular type all the paretn nodes of that record are retreieved and built into
+     * the hierarchy tree in a cascading sort  of effect due to the case/switch that does not break until the highest
+     * level type (category) is retrieved and the full parent tree of the item created.
+     *
+     * @param itemId The database ID of the record of interest
+     * @param name The name of the record of interest
+     * @param identified The identified status of the record
+     * @param type The structure hierarchy level of the record.
+     * @return
+     */
 	@Override
 	public Response getPathsTo(Long itemId, String name, Boolean identified, String type) {
 		BaseSearchItem bsi = new BaseSearchItem(itemId, name, identified, type); 
@@ -101,6 +132,10 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
 }
 
 
+/**
+ * A hierarchy node is a simple class holding the minmal information required to display it in the tree
+ *  and a list of its children which are also hierarchy nodes.
+ */
 class HierarchyNode {
 	private Long itemId;
 	private String name;
@@ -114,7 +149,11 @@ class HierarchyNode {
 		this.identified = identified;
 		this.type = type;
 	}
-	
+
+    /**
+     *
+     * @param bsi Also constructable from a base search item.
+     */
 	public HierarchyNode(BaseSearchItem bsi){
 		this.itemId = bsi.getItemId();
 		this.name = bsi.getName();
@@ -172,7 +211,8 @@ class HierarchyNode {
 		}
 		return children;
 	}
-	
+
+
 	public ResultObjectListOfLists toFlatLists(){
 		ResultObjectListOfLists result = new ResultObjectListOfLists();
 		
@@ -197,9 +237,10 @@ class HierarchyNode {
 }
 
 
-
-
-
+/**
+ *
+ * @param <T>
+ */
 
 class ResultNode <T extends ResultObject> {
 	

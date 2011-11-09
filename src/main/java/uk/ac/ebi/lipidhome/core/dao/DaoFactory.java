@@ -1,3 +1,15 @@
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ *  The DaoFactory is the standardised way of getting a DAO in order to retrieve data from the DataSource.
+ *  There is currently a DAO fr each level of the structure Hierarchy. This interface described the mehtods to get
+ *  those DAOs.
+ */
 package uk.ac.ebi.lipidhome.core.dao;
 
 import uk.ac.ebi.lipidhome.core.model.Category;

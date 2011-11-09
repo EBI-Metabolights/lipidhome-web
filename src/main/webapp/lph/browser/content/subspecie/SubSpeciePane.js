@@ -1,3 +1,14 @@
+/**
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ * The SubSpeciePane displays all the information relevant to categories. It comprises two parts, the InfoPanel which
+ * gives some statistics on lower hierarchy members of this category, and the MainClassList which is a list of its
+ * direct children in the hierarchy.
+ */
+
 Ext.define('lph.browser.content.subspecie.SubSpeciePane', {
 	/* Begin Definitions */
     extend		: 'Ext.Panel',
