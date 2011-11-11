@@ -6,6 +6,7 @@ Ext.define('lph.browser.content.generic.DetailsPane', {
     split	: true,
     height	: 300,
     layout	: 'border',
+    frame   : false,
     border	: false,
     
     constructor: function(config){

@@ -41,9 +41,7 @@ Ext.define('lph.browser.nav.HierarchyPane', {
 			this._sortChildren(selected);
 		}
 
-		//The new node (or existing one) has to be selected, so an event
-		//will be thrown and the event manager will execute the proper action
-    	sm.select(node,false);
+        this.selectNode({"node":node});
 	},
 	
 	/**
@@ -63,6 +61,13 @@ Ext.define('lph.browser.nav.HierarchyPane', {
 		}
 		return node;
 	},
+
+    selectNode: function(e){
+        var sm = this.getSelectionModel();
+		//The new node (or existing one) has to be selected, so an event
+		//will be thrown and the event manager will execute the proper action
+    	sm.select(e.node,false);
+    },
 	
 	_sortChildren: function(node){
 		node.sort(function(n1, n2){
@@ -84,5 +89,32 @@ Ext.define('lph.browser.nav.HierarchyPane', {
     		expanded: true,
     		type	: type
 		}
-	}
+    },
+
+    createPathsToNode: function(e){
+        var auxChild;
+        Ext.each(e.paths, function(path){
+            var node = this.getRootNode();
+            Ext.each(path, function(elem){
+                node = this._addNode(node, elem);
+            }, this);
+            if(Ext.isEmpty(auxChild)) auxChild = node;
+        },this);
+
+        this.selectNode({"node":auxChild});
+    },
+
+    _addNode: function(parent, elem){
+        var nodeAux;
+        parent.eachChild(function(node){
+            if(node.get("itemId")==elem.itemId){
+                nodeAux = node;
+            }
+        }, this);
+
+        if(Ext.isEmpty(nodeAux)){
+            nodeAux = parent.appendChild(this._createNode(elem.itemId, elem.name, elem.type));
+        }
+        return nodeAux;
+    }
 });

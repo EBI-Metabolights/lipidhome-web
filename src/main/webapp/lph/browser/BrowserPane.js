@@ -36,13 +36,16 @@ Ext.define('lph.browser.BrowserPane', {
     },
     
     /**
-     * Everytime a new tab is added to the content, a 'newContent' event is thrown and this method is
+     * Every time a new tab is added to the content, a 'newContent' event is thrown and this method is
      * executed in order to listen to different events in the new tab
      * 
      * @param {} content contains the content tab elements to listen to
      */
     bindContentActions: function(content){
-    	content.list.addListener('itemclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content.type, content.itemId], true));
+        //Binds a clicked item of a list to the hierarchy tree
+        content.list.addListener('itemclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content.type, content.itemId], true));
+        //Binds a clicked item of the path (button) to the hierarchy tree
+        content.path.addListener('itemclick', this.navigator.hierarchy.selectNode, this.navigator.hierarchy);
     }
 });
 
