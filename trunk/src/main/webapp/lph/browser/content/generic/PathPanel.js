@@ -12,34 +12,54 @@
 
 Ext.define('lph.browser.content.generic.PathPanel', {
 	/* Begin Definitions */
-    extend	: 'Ext.Panel',
+    extend	: 'Ext.toolbar.Toolbar',
    
     region	: 'north',
-	height	: 25,
-	frame	: true,
+	height	: 23,
+	frame	: false,
 	border	: false,
 	
 	constructor: function(config){
 		this.callParent(arguments);
         this.initConfig(config);
+
+        this.addEvents({
+        	"itemclick"	: true
+        });
         
         elem = config.elem;
         node = config.node;
 
-        this.update(this.getPath(elem));
-        
+        this.createPath(elem);
+
         return this;
 	},
-	
-	getPath: function(node){
-		if(node.isRoot()){
-			return "";
-		}else{
-			var path = this.getPath(node.parentNode);
-			var sep =  Ext.isEmpty(path)?"":" >> ";
-			return path + sep + node.get("text");
-		}
-	}
-	
-	
+
+	createPath: function(selectedNode){
+         Ext.each(this._getParentPath(selectedNode), function(node){
+            var btn = Ext.create('Ext.Button', {
+                text    : node.get("text"),
+                pressed : (node==selectedNode),
+                node    : node,
+                handler : this.buttonClicked,
+                scope   : this
+            });
+            this.add(btn);
+         },this);
+    },
+
+    buttonClicked: function(btn){
+        this.fireEvent("itemclick", {"node" : btn.node});
+    },
+
+    _getParentPath: function(node){
+        if(node.isRoot()){
+            return [];
+        }else{
+            var aux = this._getParentPath(node.parentNode);
+            aux.push(node);
+            return aux;
+        }
+
+    }
 });

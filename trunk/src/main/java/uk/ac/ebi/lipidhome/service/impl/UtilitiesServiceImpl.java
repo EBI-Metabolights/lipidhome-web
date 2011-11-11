@@ -49,13 +49,13 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
      * @param limit The limit defining how many results to show per page.
      * @param page ??
      * @param callback ??
-     * @return A Resposne object of json formatted BaseSearchItem results.
+     * @return A Response object of json formatted BaseSearchItem results.
      */
 	@Override
 	public Response doSearch(String query, Integer type, Long start, Long limit, Long page, String callback) {
 		Result result;
 		SubSpecieDao<SubSpecie> subSpecieDao = getDaoFactory().getSubSpecieDao();
-		
+
 		try {
 			List<BaseSearchItem> list = subSpecieDao.getSubSpeciesByNameLike(query, start, limit);
 			System.out.println(list.size());

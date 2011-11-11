@@ -27,7 +27,11 @@ Ext.define('lph.browser.nav.SearchPane', {
     constructor: function(config) {
     	this.callParent(arguments);
         this.initConfig(config);
-        
+
+        this.addEvents({
+        	pathsFound	: true
+        });
+
         this.container = Ext.create('Ext.form.FieldContainer',{
         	layout	: 'hbox',
         	border	: false,
@@ -124,10 +128,20 @@ Ext.define('lph.browser.nav.SearchPane', {
     },
     
     itemSelected: function(combo, records, eOpts){
-    	//console.info(combo, records, eOpts);
-    	
-    	console.info(records);
-    	
+        var record = records[0];
+        Ext.Ajax.request({
+            url     : '/service/utils/pathto',
+            method  : 'GET',
+            params  : {
+                itemId      : record.get("itemId"),
+                name        : record.get("name"),
+                identified  : record.get("identified"),
+                type        : record.get("type")
+            },
+            success : this.setPathToItems,
+            scope   : this
+        });
+
     	//Query the path from the tree root to the selected item
     	
     	//Set the path elements in the tree structure
@@ -137,6 +151,11 @@ Ext.define('lph.browser.nav.SearchPane', {
     	//Scroll to the 'selected by the user in the search box'
     	
     	//Select the item (let the manager do its work)
+    },
+
+    setPathToItems: function(response){
+        var resp = Ext.decode(response.responseText);
+        this.fireEvent('pathsFound', {'paths' : resp.paths});
     }
 });
 

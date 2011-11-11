@@ -38,10 +38,16 @@ Ext.define('lph.browser.nav.NavPane', {
         	store : store
         });
         this.add(this.hierarchy);
-        
+
+        this.bind();
+
 		this.loadTree();
   
         return this;
+    },
+
+    bind: function(){
+        this.search.addListener("pathsFound", Ext.bind(this.hierarchy.createPathsToNode, this.hierarchy));
     },
 
     /*
