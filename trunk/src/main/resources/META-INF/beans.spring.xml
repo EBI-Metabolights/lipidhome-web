@@ -14,8 +14,8 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://mysql-lnet.ebi.ac.uk:4265/lipidhomeTest" />
-		<property name="username" value="admin" />
-		<property name="password" value="johnny5" />
+		<property name="username" value="" />
+		<property name="password" value="" />
 	</bean>
 
 </beans>
