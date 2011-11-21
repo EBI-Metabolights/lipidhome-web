@@ -5,33 +5,21 @@
  *
  *  This class contians the implementations of all the emthods defined in UtilitiesService. These services are not
  *  related to a single hierarchy structure level and so have been lumped tog ether in this class.
- *  @todo The inner classes are ugly and should be abstracted and organised
  */
 package uk.ac.ebi.lipidhome.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ws.rs.core.Response;
-
-import uk.ac.ebi.lipidhome.core.dao.FAScanSpecieDao;
-import uk.ac.ebi.lipidhome.core.dao.MainClassDao;
-import uk.ac.ebi.lipidhome.core.dao.SpecieDao;
-import uk.ac.ebi.lipidhome.core.dao.SubClassDao;
-import uk.ac.ebi.lipidhome.core.dao.SubSpecieDao;
-import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
-import uk.ac.ebi.lipidhome.core.model.LipidType;
-import uk.ac.ebi.lipidhome.core.model.MainClass;
-import uk.ac.ebi.lipidhome.core.model.Specie;
-import uk.ac.ebi.lipidhome.core.model.SubClass;
-import uk.ac.ebi.lipidhome.core.model.SubSpecie;
+import uk.ac.ebi.lipidhome.core.dao.*;
+import uk.ac.ebi.lipidhome.core.model.*;
 import uk.ac.ebi.lipidhome.service.UtilitiesService;
 import uk.ac.ebi.lipidhome.service.result.ListConverter;
 import uk.ac.ebi.lipidhome.service.result.Result;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
-import uk.ac.ebi.lipidhome.service.result.model.ResultObject;
-import uk.ac.ebi.lipidhome.service.result.model.ResultObjectList;
-import uk.ac.ebi.lipidhome.service.result.model.ResultObjectListOfLists;
+import uk.ac.ebi.lipidhome.service.util.HierarchyNode;
+
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class UtilitiesServiceImpl extends LipidService implements UtilitiesService{
@@ -39,7 +27,6 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
 	public UtilitiesServiceImpl(){
 		
 	}
-
 
     /**
      *
@@ -52,26 +39,99 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
      * @return A Response object of json formatted BaseSearchItem results.
      */
 	@Override
-	public Response doSearch(String query, Integer type, Long start, Long limit, Long page, String callback) {
-		Result result;
-		SubSpecieDao<SubSpecie> subSpecieDao = getDaoFactory().getSubSpecieDao();
+	public Response doSearch(String query, String type, Long start, Long limit, Long page, String callback) {
 
-		try {
-			List<BaseSearchItem> list = subSpecieDao.getSubSpeciesByNameLike(query, start, limit);
-			System.out.println(list.size());
-			ListConverter<BaseSearchItem> converter = new ListConverter<BaseSearchItem>();
-			result = new Result(converter.getLipidObjectList(list));
-			result.setTotalCount(subSpecieDao.getSubSpeciesCountByNameLike(query));
-		} catch (RuntimeException e) {
-			String errorMessage = "It was impossible to search by '" + query + "'.";
-			result = new Result(errorMessage);
-		}
-		
+        List<BaseSearchItem> list = new ArrayList<BaseSearchItem>();
+        long totalCount = 0;
+
+        switch (LipidType.getType(type)){
+            case CATEGORY:
+                CategoryDao<Category> categoryDao = getDaoFactory().getCategoryDao();
+                try{
+                    list = categoryDao.getCategoryByNameLike(query, start, limit);
+                    totalCount = categoryDao.getCategoryCountByNameLike(query);
+                } catch (RuntimeException e) {}
+                break;
+            case MAIN_CLASS:
+                MainClassDao<MainClass> mainClassDao = getDaoFactory().getMainClassDao();
+                try{
+                    list = mainClassDao.getMainClassByNameLike(query, start, limit);
+                    totalCount = mainClassDao.getMainClassCountByNameLike(query);
+                } catch (RuntimeException e) {}
+                break;
+            case SUB_CLASS:
+                SubClassDao<SubClass> subClassDao = getDaoFactory().getSubClassDao();
+                try{
+                    list = subClassDao.getSubClassByNameLike(query, start, limit);
+                    totalCount = subClassDao.getSubClassCountByNameLike(query);
+                } catch (RuntimeException e) {}
+                break;
+            case SPECIE:
+                SpecieDao<Specie> specieDao = getDaoFactory().getSpecieDao();
+                try{
+                    list = specieDao.getSpecieByNameLike(query, start, limit);
+                    totalCount = specieDao.getSpecieCountByNameLike(query);
+                } catch (RuntimeException e) {}
+                break;
+            case FA_SCAN_SPECIE:
+                FAScanSpecieDao<FAScanSpecie> faScanSpecieDao = getDaoFactory().getFAScanSpecieDao();
+                try{
+                    list = faScanSpecieDao.getFAScanSpecieByNameLike(query, start, limit);
+                    totalCount = faScanSpecieDao.getFAScanSpecieCountByNameLike(query);
+                } catch (RuntimeException e) {}
+                break;
+            case SUB_SPECIE:
+                SubSpecieDao<SubSpecie> subSpecieDao = getDaoFactory().getSubSpecieDao();
+                try {
+                    list = subSpecieDao.getSubSpeciesByNameLike(query, start, limit);
+                    totalCount =  subSpecieDao.getSubSpeciesCountByNameLike(query);
+                } catch (RuntimeException e) {}
+                break;
+            case ISOMER:
+                IsomerDao<Isomer> isomerDao = getDaoFactory().getIsomerDao();
+                try {
+                    list = isomerDao.getIsomerByNameLike(query, start, limit);
+                    totalCount =  isomerDao.getIsomerCountByNameLike(query);
+                } catch (RuntimeException e) {
+                    System.out.println("ISOMER: " + e.getMessage());
+                }
+                break;
+
+            default:    // SEARCH FOR ALL :)
+                list.addAll(getDaoFactory().getCategoryDao().getCategoryByNameLike(query));
+                list.addAll(getDaoFactory().getMainClassDao().getMainClassByNameLike(query));
+                list.addAll(getDaoFactory().getSubClassDao().getSubClassByNameLike(query));
+                list.addAll(getDaoFactory().getSpecieDao().getSpecieByNameLike(query));
+                list.addAll(getDaoFactory().getFAScanSpecieDao().getFAScanSpecieByNameLike(query));
+                list.addAll(getDaoFactory().getSubSpecieDao().getSubSpeciesByNameLike(query));
+                list.addAll(getDaoFactory().getIsomerDao().getIsomerByNameLike(query));
+
+                totalCount = list.size();
+                if(totalCount>0){
+                    Long end = start + limit;
+                    end = (end < totalCount) ? end : totalCount-1;
+
+                    Collections.sort(list);
+                    list = list.subList(safeLongToInt(start), safeLongToInt(end));
+                }
+        }
+
+        ListConverter<BaseSearchItem> converter = new ListConverter<BaseSearchItem>();
+        Result result = new Result(converter.getLipidObjectList(list));
+        result.setTotalCount(totalCount);
+
 		return result2Response(result, callback);
 	}
 
+    private static int safeLongToInt(long l) {
+        if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException (l + " cannot be cast to int without changing its value.");
+        }
+        return (int) l;
+    }
+
     /**
-     * When a path is obtained for a particular type all the paretn nodes of that record are retreieved and built into
+     * When a path is obtained for a particular type all the parent nodes of that record are retrieved and built into
      * the hierarchy tree in a cascading sort  of effect due to the case/switch that does not break until the highest
      * level type (category) is retrieved and the full parent tree of the item created.
      *
@@ -89,16 +149,15 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
 		switch(LipidType.getType(type)){
 		case ISOMER:
 			for(HierarchyNode isomer : tree.getChildren(LipidType.ISOMER)){
-				
+				IsomerDao<Isomer> isomerDao = getDaoFactory().getIsomerDao();
+                isomer.addChildren(isomerDao.getIsomerParents(isomer.getItemId()));
 			}
 		case SUB_SPECIE:
-			System.out.println("subSpecie");
 			for(HierarchyNode subSpecie : tree.getChildren(LipidType.SUB_SPECIE)){
 				SubSpecieDao<SubSpecie> subSpecieDao = getDaoFactory().getSubSpecieDao();
 				subSpecie.addChildren(subSpecieDao.getSubSpecieParents(subSpecie.getItemId()));
 			}
 		case FA_SCAN_SPECIE:
-			System.out.println("faScanSpecie");
 			for(HierarchyNode faScanSpecie : tree.getChildren(LipidType.FA_SCAN_SPECIE)){
 				System.out.println(faScanSpecie.getItemId());
 				FAScanSpecieDao<FAScanSpecie> fassDao = getDaoFactory().getFAScanSpecieDao();
@@ -121,178 +180,12 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
 			}
 			break;
 			
-		case NONE:
+		default:
 			//throw exception JOE
 		}
 		
 		Result result = new Result(tree.toFlatLists());
 		return result2Response(result);
-	}
-	
-}
-
-
-/**
- * A hierarchy node is a simple class holding the minmal information required to display it in the tree
- *  and a list of its children which are also hierarchy nodes.
- */
-class HierarchyNode {
-	private Long itemId;
-	private String name;
-	private String type;
-	private boolean identified;
-	private List<HierarchyNode> children = new ArrayList<HierarchyNode>();
-	
-	public HierarchyNode(Long itemId, String name, boolean identified, String type){
-		this.itemId = itemId;
-		this.name = name;
-		this.identified = identified;
-		this.type = type;
-	}
-
-    /**
-     *
-     * @param bsi Also constructable from a base search item.
-     */
-	public HierarchyNode(BaseSearchItem bsi){
-		this.itemId = bsi.getItemId();
-		this.name = bsi.getName();
-		this.identified = bsi.getIdentified();
-		this.type = bsi.getType();
-	}
-
-	public Long getItemId() {
-		return itemId;
-	}
-	
-	public String getName(){
-		return name;
-	}
-
-	public String getType() {
-		return type;
-	}
-	
-	public boolean getIdentified(){
-		return identified;
-	}
-
-	public void addChild(HierarchyNode node){
-		children.add(node);
-	}
-	
-	public void addChild(BaseSearchItem bsi){
-		children.add(new HierarchyNode(bsi));
-	}
-	
-	public void addChildren(List<BaseSearchItem> children){
-		for(BaseSearchItem item : children){
-			this.children.add(new HierarchyNode(item));
-		}
-	}
-	
-	public List<HierarchyNode> getChildren(){
-		return children;
-	}
-	
-	/**
-	 * 
-	 * @param type
-	 * @return
-	 */
-	public List<HierarchyNode> getChildren(LipidType type){
-		List<HierarchyNode> children = new ArrayList<HierarchyNode>();
-		if(type.isType(this.type)){
-			children.add(this);
-		}else{
-			for(HierarchyNode child : this.children){
-				children.addAll(child.getChildren(type));
-			}
-		}
-		return children;
-	}
-
-
-	public ResultObjectListOfLists toFlatLists(){
-		ResultObjectListOfLists result = new ResultObjectListOfLists();
-		
-		BaseSearchItem bsi = new BaseSearchItem(itemId, name, identified, type);
-		
-		if(children.isEmpty()){
-			ResultObjectList path = new ResultObjectList(); 
-			path.add(bsi);
-			result.add(path);
-		}else{
-			for(HierarchyNode child : children){
-				ResultObjectListOfLists paths = child.toFlatLists();
-				for(ResultObjectList auxPath : paths){
-					auxPath.add(bsi);
-					result.add(auxPath);
-				}
-			}
-		}
-		
-		return result;
-	}
-}
-
-
-/**
- *
- * @param <T>
- */
-
-class ResultNode <T extends ResultObject> {
-	
-	private T node;
-	
-	private List<ResultNode<T>> children = new ArrayList<ResultNode<T>>();
-	
-	public ResultNode(T node){
-		this.node = node;
-	}
-	
-	public T getNode(){
-		return node;
-	}
-	
-	public void addChild(ResultNode<T> node){
-		children.add(node);
-	}
-	
-	public List<ResultNode<T>> getChildren(){
-		return children;
-	}
-	
-	public boolean isLeaf(){
-		return children.isEmpty();
-	}
-	
-	public ResultObjectListOfLists toFlatLists(){
-		ResultObjectListOfLists result = new ResultObjectListOfLists();
-		
-		if(this.isLeaf()){
-			ResultObjectList path = new ResultObjectList(); 
-			path.add(node);
-			result.add(path);
-		}else{
-			for(ResultNode<T> child : children){
-				ResultObjectListOfLists paths = child.toFlatLists();
-				for(ResultObjectList auxPath : paths){
-					auxPath.add(node);
-					result.add(auxPath);
-				}
-			}
-		}
-		
-		return result;
-	}
-}
-
-class ResultTree <T extends ResultObject> extends ResultNode<T>{
-
-	public ResultTree(T node) {
-		super(node);
 	}
 
 }

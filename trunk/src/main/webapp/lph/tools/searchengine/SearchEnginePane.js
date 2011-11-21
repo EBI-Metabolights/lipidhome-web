@@ -6,18 +6,30 @@ Ext.define('lph.tools.searchengine.SearchEnginePane', {
     extend	: 'Ext.Panel',
     
     title	: 'Search engine',
-    layout	: 'accordion',
+    layout  : 'border',
     
     constructor : function(config){
     	this.callParent(arguments);
     	this.initConfig(config);
-    	       
+
+        var accordion = Ext.create('Ext.panel.Panel',{
+            layout	: 'accordion',
+            region  : 'center'
+        })
+
         this.input = Ext.create('lph.tools.searchengine.input.InputPane');
-        this.add(this.input);
+        accordion.add(this.input);
         
         
         this.output = Ext.create('lph.tools.searchengine.output.OutputPane');
-	    this.add(this.output);
+	    accordion.add(this.output);
+
+        this.add(accordion);
+
+        this.description = Ext.create('lph.tools.searchengine.input.DescriptionPanel',{
+			collapsed	: true
+        });
+        this.add(this.description);
 	    
         return this;
     }

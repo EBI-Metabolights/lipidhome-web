@@ -19,7 +19,7 @@ public abstract interface UtilitiesService {
 
 	@GET
     @Path( "/search" )
-    Response doSearch( @QueryParam("query") String query,  @QueryParam("type") Integer type, @QueryParam("start") Long start, @QueryParam("limit") Long limit, @QueryParam("page") Long page, @QueryParam("callback") String callback);
+    Response doSearch( @QueryParam("query") String query,  @QueryParam("type") String type, @QueryParam("start") Long start, @QueryParam("limit") Long limit, @QueryParam("page") Long page, @QueryParam("callback") String callback);
 	
 	@GET
     @Path( "/pathto" )

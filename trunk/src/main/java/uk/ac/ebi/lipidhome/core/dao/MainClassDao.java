@@ -10,17 +10,21 @@
  */
 package uk.ac.ebi.lipidhome.core.dao;
 
-import java.util.List;
-
 import uk.ac.ebi.lipidhome.core.model.MainClass;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSubClass;
+
+import java.util.List;
 
 public interface MainClassDao<T> extends BaseDao<MainClass>{
 
 	MainClass getMainClass(Long id);
 	
 	List<BaseSearchItem> getMainClassByNameLike(String name, Long start, Long limit);
+
+    List<BaseSearchItem> getMainClassByNameLike(String name);
+
+    long getMainClassCountByNameLike(String name);
 	
 	List<BaseSearchItem> getMainClassParents(Long id);
 	

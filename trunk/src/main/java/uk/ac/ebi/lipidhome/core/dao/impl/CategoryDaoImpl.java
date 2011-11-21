@@ -11,11 +11,8 @@
 
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
-import java.util.List;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import uk.ac.ebi.lipidhome.core.dao.CategoryDao;
 import uk.ac.ebi.lipidhome.core.model.Category;
 import uk.ac.ebi.lipidhome.service.mapper.BaseSearchItemMapper;
@@ -25,6 +22,8 @@ import uk.ac.ebi.lipidhome.service.mapper.SimpleMainClassMapper;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleCategory;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleMainClass;
+
+import java.util.List;
 
 @Repository
 public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDao<Category> {
@@ -65,6 +64,28 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 				"WHERE name LIKE ? ORDER BY identified DESC, name LIMIT ?, ?;",
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
+
+    @Override
+    public List<BaseSearchItem> getCategoryByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.query(
+				"SELECT category_id AS item_id, name, TRUE AS identified, 'category' as type " +
+				"FROM category " +
+				"WHERE name LIKE ? ORDER BY identified DESC, name;",
+				new Object[]{ name }, new BaseSearchItemMapper());
+    }
+
+    @Override
+    public long getCategoryCountByNameLike(String name){
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.queryForLong(
+				"SELECT COUNT(category_id) " +
+						"FROM category " +
+						"WHERE name LIKE ?;",
+				new Object[]{name});
+    }
 
     /**
      *

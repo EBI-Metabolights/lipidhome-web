@@ -11,17 +11,21 @@
 
 package uk.ac.ebi.lipidhome.core.dao;
 
-import java.util.List;
-
 import uk.ac.ebi.lipidhome.core.model.SubClass;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSpecie;
+
+import java.util.List;
 
 public interface SubClassDao<T> extends BaseDao<SubClass>{
 
 	SubClass getSubClass(Long id);
 	
 	List<BaseSearchItem> getSubClassByNameLike(String name, Long start, Long limit);
+
+    List<BaseSearchItem> getSubClassByNameLike(String name);
+
+    long getSubClassCountByNameLike(String name);
 	
 	List<BaseSearchItem> getSubClassParents(Long id);
 	

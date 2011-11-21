@@ -10,22 +10,17 @@
  */
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
-import java.util.List;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import uk.ac.ebi.lipidhome.core.dao.SpecieDao;
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.Specie;
-import uk.ac.ebi.lipidhome.service.mapper.BaseSearchItemMapper;
-import uk.ac.ebi.lipidhome.service.mapper.CrossReferenceMapper;
-import uk.ac.ebi.lipidhome.service.mapper.PaperMapper;
-import uk.ac.ebi.lipidhome.service.mapper.SimpleFAScanSpecieMapper;
-import uk.ac.ebi.lipidhome.service.mapper.SpecieMapper;
+import uk.ac.ebi.lipidhome.service.mapper.*;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleFAScanSpecie;
+
+import java.util.List;
 
 @Repository
 public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Specie>{
@@ -63,6 +58,28 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 				"WHERE name LIKE ? ORDER BY identified DESC, name LIMIT ?, ?;",
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
+
+    @Override
+    public List<BaseSearchItem> getSpecieByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.query(
+				"SELECT species_id AS item_id, name, identified, 'specie' as type " +
+				"FROM species " +
+				"WHERE name LIKE ? ORDER BY identified DESC, name;",
+				new Object[]{ name }, new BaseSearchItemMapper());
+    }
+
+    @Override
+    public long getSpecieCountByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.queryForLong(
+				"SELECT COUNT(species_id) " +
+						"FROM species " +
+						"WHERE name LIKE ?;",
+				new Object[]{name});
+    }
 
     /**
      *

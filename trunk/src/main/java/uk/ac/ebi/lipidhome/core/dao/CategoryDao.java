@@ -11,18 +11,22 @@
  */
 package uk.ac.ebi.lipidhome.core.dao;
 
-import java.util.List;
-
 import uk.ac.ebi.lipidhome.core.model.Category;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleCategory;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleMainClass;
+
+import java.util.List;
 
 public interface CategoryDao<T> extends BaseDao<Category>{
 
 	Category getCategory(Long id);
 	
 	List<BaseSearchItem> getCategoryByNameLike(String name, Long start, Long limit);
+
+    List<BaseSearchItem> getCategoryByNameLike(String name);
+
+    long getCategoryCountByNameLike(String name);
 	
 	int getIsomerCountById(Long id);
 	

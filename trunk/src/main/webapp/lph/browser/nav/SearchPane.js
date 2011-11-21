@@ -8,7 +8,6 @@
  *   typed into the search box a search is done and results return. Results are ordered by whether or not they have
  *   been identified. The search can also be configured to look at a particular hierarchy level of the database if
  *   for instance the user was only interested in sub species, via the combo box.
- *   @TODO This search must be linked to the other main elements : hierarchyPane and ContentPane via listeners like before.
  *
 */
 
@@ -94,14 +93,14 @@ Ext.define('lph.browser.nav.SearchPane', {
 		this.comboStore = Ext.create('Ext.data.Store', {
 		    fields: ['level', 'name'],
 		    data : [
-		        {"level": 0, "name":"All"},
-		        {"level": 1, "name":"Category"},
-		        {"level": 2, "name":"Main Class"},
-		        {"level": 3, "name":"Sub Class"},
-		        {"level": 4, "name":"Species"},
-		        {"level": 5, "name":"FA Scan Species"},
-		        {"level": 6, "name":"Sub Species"},
-		        {"level": 7, "name":"Isomer"}
+		        {"level": "all", "name":"All"},
+		        {"level": "category", "name":"Category"},
+		        {"level": "mainClass", "name":"Main Class"},
+		        {"level": "subClass", "name":"Sub Class"},
+		        {"level": "specie", "name":"Species"},
+		        {"level": "faScanSpecie", "name":"FA Scan Species"},
+		        {"level": "subSpecie", "name":"Sub Species"},
+		        {"level": "isomer", "name":"Isomer"}
 		    ]
 		});
 
@@ -142,15 +141,6 @@ Ext.define('lph.browser.nav.SearchPane', {
             scope   : this
         });
 
-    	//Query the path from the tree root to the selected item
-    	
-    	//Set the path elements in the tree structure
-    	
-    	//Expand all of them
-    	
-    	//Scroll to the 'selected by the user in the search box'
-    	
-    	//Select the item (let the manager do its work)
     },
 
     setPathToItems: function(response){

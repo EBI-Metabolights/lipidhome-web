@@ -16,7 +16,7 @@
 package uk.ac.ebi.lipidhome.core.model;
 
 public enum LipidType {
-	NONE("none"),
+    NONE("none"),
 	CATEGORY("category"),
 	MAIN_CLASS("mainClass"),
 	SUB_CLASS("subClass"),
@@ -39,6 +39,6 @@ public enum LipidType {
 		for(LipidType ltype : LipidType.values()){
 			if(ltype.isType(type)) return ltype;
 		}
-		return LipidType.NONE;
+		return NONE;
 	}
 }
