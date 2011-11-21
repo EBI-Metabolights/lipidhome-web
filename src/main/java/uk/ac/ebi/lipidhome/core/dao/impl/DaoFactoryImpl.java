@@ -15,20 +15,8 @@ package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import uk.ac.ebi.lipidhome.core.dao.CategoryDao;
-import uk.ac.ebi.lipidhome.core.dao.DaoFactory;
-import uk.ac.ebi.lipidhome.core.dao.FAScanSpecieDao;
-import uk.ac.ebi.lipidhome.core.dao.MainClassDao;
-import uk.ac.ebi.lipidhome.core.dao.SpecieDao;
-import uk.ac.ebi.lipidhome.core.dao.SubClassDao;
-import uk.ac.ebi.lipidhome.core.dao.SubSpecieDao;
-import uk.ac.ebi.lipidhome.core.model.Category;
-import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
-import uk.ac.ebi.lipidhome.core.model.MainClass;
-import uk.ac.ebi.lipidhome.core.model.Specie;
-import uk.ac.ebi.lipidhome.core.model.SubClass;
-import uk.ac.ebi.lipidhome.core.model.SubSpecie;
+import uk.ac.ebi.lipidhome.core.dao.*;
+import uk.ac.ebi.lipidhome.core.model.*;
 
 @Component
 public class DaoFactoryImpl implements DaoFactory {
@@ -50,6 +38,9 @@ public class DaoFactoryImpl implements DaoFactory {
 	
 	@Autowired
 	private SubSpecieDao<SubSpecie> subSpecieDao;
+
+    @Autowired
+    private IsomerDao<Isomer> isomerDao;
 	
 	public DaoFactoryImpl(){
 		
@@ -104,8 +95,17 @@ public class DaoFactoryImpl implements DaoFactory {
 	public SubSpecieDao<SubSpecie> getSubSpecieDao() {
 		return subSpecieDao;
 	}
-	
-	public void setSubSpecieDao(SubSpecieDao<SubSpecie> subSpecieDao){
+
+    public void setSubSpecieDao(SubSpecieDao<SubSpecie> subSpecieDao){
 		this.subSpecieDao = subSpecieDao;
 	}
+
+    @Override
+    public IsomerDao<Isomer> getIsomerDao() {
+        return isomerDao;
+    }
+
+    public  void setIsomerDao(IsomerDao<Isomer> isomerDao){
+        this.isomerDao = isomerDao;
+    }
 }

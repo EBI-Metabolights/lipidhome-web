@@ -22,5 +22,5 @@ public abstract interface SpecieService {
 	
 	@GET
     @Path( "/fascanspecies" )
-    Response getSpecieSimpleList( @QueryParam("id") Long id);
+    Response getFAScanSpecieSimpleList(@QueryParam("id") Long id);
 }

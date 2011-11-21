@@ -98,7 +98,7 @@ Ext.define('lph.browser.content.ContentManager', {
     _addPanel: function(type, id, panel){
     	var hash = this._getOrCreate(type);
     	if(hash.containsKey(id)){
-    		console.warn("The panel already exists");
+    		//console.warn("The panel already exists");
     		//TODO: Thrown an exception
     	}else{
     		hash.add(id, panel);

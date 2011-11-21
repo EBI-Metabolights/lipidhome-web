@@ -11,26 +11,20 @@
 
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
-
 import uk.ac.ebi.lipidhome.core.dao.SubSpecieDao;
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.SubSpecie;
 import uk.ac.ebi.lipidhome.core.model.SubSpecieChain;
-import uk.ac.ebi.lipidhome.service.mapper.BaseSearchItemMapper;
-import uk.ac.ebi.lipidhome.service.mapper.CrossReferenceMapper;
-import uk.ac.ebi.lipidhome.service.mapper.PaperMapper;
-import uk.ac.ebi.lipidhome.service.mapper.SimpleIsomerMapper;
-import uk.ac.ebi.lipidhome.service.mapper.SubSpecieChainMapper;
-import uk.ac.ebi.lipidhome.service.mapper.SubSpecieMapper;
+import uk.ac.ebi.lipidhome.service.mapper.*;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleIsomer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpecieDao<SubSpecie>{
@@ -69,6 +63,17 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
 
+    @Override
+    public List<BaseSearchItem> getSubSpeciesByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.query(
+				"SELECT sub_species_id AS item_id, name, identified, 'subSpecie' as type " +
+				"FROM sub_species " +
+				"WHERE name LIKE ? ORDER BY identified DESC, name;",
+				new Object[]{ name }, new BaseSearchItemMapper());
+    }
+
     /**
      *
      * @param id The database id of the  sub specie
@@ -91,7 +96,6 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
      * @return
      */
 	@Override
-    //@todo this seems wrong its not like the others!!!
 	public long getSubSpeciesCountByNameLike(String name){
 		name = "%%" + name + "%%";
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());

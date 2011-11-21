@@ -15,11 +15,6 @@ Ext.define('lph.tools.searchengine.input.InputPane', {
         this.massInput = Ext.create('lph.tools.searchengine.input.MassInputPanel');
         this.add(this.massInput);
         
-        this.description = Ext.create('lph.tools.searchengine.input.DescriptionPanel',{
-			collapsed	: true
-        });
-        this.add(this.description);
-        
         return this;
     }
 });

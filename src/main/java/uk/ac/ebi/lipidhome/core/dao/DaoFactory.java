@@ -12,12 +12,7 @@
  */
 package uk.ac.ebi.lipidhome.core.dao;
 
-import uk.ac.ebi.lipidhome.core.model.Category;
-import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
-import uk.ac.ebi.lipidhome.core.model.MainClass;
-import uk.ac.ebi.lipidhome.core.model.Specie;
-import uk.ac.ebi.lipidhome.core.model.SubClass;
-import uk.ac.ebi.lipidhome.core.model.SubSpecie;
+import uk.ac.ebi.lipidhome.core.model.*;
 
 public interface DaoFactory {
 	
@@ -27,4 +22,5 @@ public interface DaoFactory {
 	SpecieDao<Specie> getSpecieDao();
 	FAScanSpecieDao<FAScanSpecie> getFAScanSpecieDao();
 	SubSpecieDao<SubSpecie> getSubSpecieDao();
+    IsomerDao<Isomer> getIsomerDao();
 }

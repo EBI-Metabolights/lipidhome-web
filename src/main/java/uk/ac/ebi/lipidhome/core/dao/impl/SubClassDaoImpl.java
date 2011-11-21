@@ -11,11 +11,8 @@
 
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
-import java.util.List;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import uk.ac.ebi.lipidhome.core.dao.SubClassDao;
 import uk.ac.ebi.lipidhome.core.model.SubClass;
 import uk.ac.ebi.lipidhome.service.mapper.BaseSearchItemMapper;
@@ -23,6 +20,8 @@ import uk.ac.ebi.lipidhome.service.mapper.SimpleSpecieMapper;
 import uk.ac.ebi.lipidhome.service.mapper.SubClassMapper;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSpecie;
+
+import java.util.List;
 
 @Repository
 public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDao<SubClass> {
@@ -58,6 +57,28 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 				"WHERE name LIKE ? ORDER BY identified DESC, name LIMIT ?, ?;",
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
+
+    @Override
+    public List<BaseSearchItem> getSubClassByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.query(
+				"SELECT sub_class_id AS item_id, name, TRUE AS identified, 'subClass' as type " +
+				"FROM sub_class " +
+				"WHERE name LIKE ? ORDER BY identified DESC, name;",
+				new Object[]{ name }, new BaseSearchItemMapper());
+    }
+
+    @Override
+    public long getSubClassCountByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.queryForLong(
+				"SELECT COUNT(sub_class_id) " +
+						"FROM sub_class " +
+						"WHERE name LIKE ?;",
+				new Object[]{name});
+    }
 
     /**
      *

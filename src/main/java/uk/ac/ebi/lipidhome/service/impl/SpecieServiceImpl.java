@@ -8,10 +8,6 @@
 
 package uk.ac.ebi.lipidhome.service.impl;
 
-import java.util.List;
-
-import javax.ws.rs.core.Response;
-
 import uk.ac.ebi.lipidhome.core.dao.SpecieDao;
 import uk.ac.ebi.lipidhome.core.model.Specie;
 import uk.ac.ebi.lipidhome.service.SpecieService;
@@ -19,6 +15,9 @@ import uk.ac.ebi.lipidhome.service.result.ListConverter;
 import uk.ac.ebi.lipidhome.service.result.Result;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleFAScanSpecie;
 import uk.ac.ebi.lipidhome.service.result.model.SpecieSummary;
+
+import javax.ws.rs.core.Response;
+import java.util.List;
 
 public class SpecieServiceImpl extends LipidService implements SpecieService{
 
@@ -60,9 +59,8 @@ public class SpecieServiceImpl extends LipidService implements SpecieService{
      * as a json string.
      * @return A response object containing a json formatted List of SimpleFAScanSpecies.
      */
-    //@todo this fucntion is anmed incorrectly!!! It shoul be getFAScanSimpleList!!
 	@Override
-	public Response getSpecieSimpleList(Long id) {
+	public Response getFAScanSpecieSimpleList(Long id) {
 		Result result;
 		SpecieDao<Specie> specieDao = getDaoFactory().getSpecieDao();
 		

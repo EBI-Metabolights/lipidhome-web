@@ -10,11 +10,8 @@
  */
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
-import java.util.List;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import uk.ac.ebi.lipidhome.core.dao.MainClassDao;
 import uk.ac.ebi.lipidhome.core.model.MainClass;
 import uk.ac.ebi.lipidhome.service.mapper.BaseSearchItemMapper;
@@ -22,6 +19,8 @@ import uk.ac.ebi.lipidhome.service.mapper.MainClassMapper;
 import uk.ac.ebi.lipidhome.service.mapper.SimpleSubClassMapper;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSubClass;
+
+import java.util.List;
 
 @Repository
 public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClassDao<MainClass>{
@@ -62,6 +61,28 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				"WHERE name LIKE ? ORDER BY identified DESC, name LIMIT ?, ?;",
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
+
+    @Override
+    public List<BaseSearchItem> getMainClassByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.query(
+				"SELECT main_class_id AS item_id, name, TRUE AS identified, 'mainClass' as type " +
+				"FROM main_class " +
+				"WHERE name LIKE ? ORDER BY identified DESC, name;",
+				new Object[]{ name }, new BaseSearchItemMapper());
+    }
+
+    @Override
+    public long getMainClassCountByNameLike(String name){
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.queryForLong(
+				"SELECT COUNT(main_class_id) " +
+						"FROM main_class " +
+						"WHERE name LIKE ?;",
+				new Object[]{name});
+    }
 
     /**
      *

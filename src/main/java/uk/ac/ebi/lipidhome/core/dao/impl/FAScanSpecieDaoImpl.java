@@ -11,26 +11,20 @@
 
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
-
 import uk.ac.ebi.lipidhome.core.dao.FAScanSpecieDao;
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.FAScanChain;
 import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
 import uk.ac.ebi.lipidhome.core.model.Paper;
-import uk.ac.ebi.lipidhome.service.mapper.BaseSearchItemMapper;
-import uk.ac.ebi.lipidhome.service.mapper.CrossReferenceMapper;
-import uk.ac.ebi.lipidhome.service.mapper.FAScanChainMapper;
-import uk.ac.ebi.lipidhome.service.mapper.FAScanSpecieMapper;
-import uk.ac.ebi.lipidhome.service.mapper.PaperMapper;
-import uk.ac.ebi.lipidhome.service.mapper.SimpleSubSpecieMapper;
+import uk.ac.ebi.lipidhome.service.mapper.*;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSubSpecie;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FAScanSpecieDao<FAScanSpecie>{
@@ -68,6 +62,28 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				"WHERE name LIKE ? ORDER BY identified DESC, name LIMIT ?, ?;",
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
+
+    @Override
+    public List<BaseSearchItem> getFAScanSpecieByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.query(
+				"SELECT FA_scan_species_id AS item_id, name, identified, 'faScanSpecie' as type " +
+				"FROM FA_scan_species " +
+				"WHERE name LIKE ? ORDER BY identified DESC, name;",
+				new Object[]{ name }, new BaseSearchItemMapper());
+    }
+
+    @Override
+    public long getFAScanSpecieCountByNameLike(String name) {
+        name = "%%" + name + "%%";
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.queryForLong(
+				"SELECT COUNT(FA_scan_species_id) " +
+						"FROM FA_scan_species " +
+						"WHERE name LIKE ?;",
+				new Object[]{name});
+    }
 
     /**
      *
