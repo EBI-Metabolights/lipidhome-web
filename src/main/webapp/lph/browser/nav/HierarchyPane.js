@@ -18,26 +18,29 @@ Ext.define('lph.browser.nav.HierarchyPane', {
     rootVisible	: false,
 	useArrows	: true,
 
-	addNode: function(view, record, item, index, event, options, type, id){
+	addNode: function(view, record, item, index, event, options, id, type){
 		var sm = this.getSelectionModel();
 		var selection = sm.getSelection();
 		var selected = selection.pop();
-		
+
 		//First is necessary to check if the node already exists
 		var itemId;
 		var name;
+        var identified;
 		try{
 			itemId= record.get("itemId");
 			name = record.get("name");
+            identified = record.get("identified");
 		}catch(e){
 			itemId = record.itemId;
 			name = record.name;
+            identified = record.identified;
 		}
 		
 		var node = selected.findChild("itemId", itemId);
 		//If the node does not exist, a new one is created and added
 		if(Ext.isEmpty(node)){
-			node = selected.appendChild(this._createNode(itemId, name, type));
+			node = selected.appendChild(this._createNode(itemId, name, type, identified));
 			this._sortChildren(selected);
 		}
 
@@ -63,10 +66,23 @@ Ext.define('lph.browser.nav.HierarchyPane', {
 	},
 
     selectNode: function(e){
+        //By default, only nodes expanded to the "selected" node if they were collapsed
+        if(!e.node.isVisible()) e.node.collapse();
+        this._expandPathFromRoot(e.node);
+
         var sm = this.getSelectionModel();
 		//The new node (or existing one) has to be selected, so an event
 		//will be thrown and the event manager will execute the proper action
     	sm.select(e.node,false);
+    },
+
+    _expandPathFromRoot: function(node){
+        if(node!=this.getRootNode()){
+            node.parentNode.expand();
+            this._expandPathFromRoot(node.parentNode);
+        }else{
+            node.expand();
+        }
     },
 	
 	_sortChildren: function(node){
@@ -82,13 +98,21 @@ Ext.define('lph.browser.nav.HierarchyPane', {
 	 * @param {} type
 	 * @return {}
 	 */
-	_createNode: function(itemId, name, type){
+	_createNode: function(itemId, name, type, identified){
+        if(Ext.isEmpty(identified)){
+            identified = true;
+        }
 		return {
 			itemId	: itemId,
     		text	: name,
     		expanded: true,
-    		type	: type
+    		type	: type,
+            iconCls : type + this._identified2String(identified)
 		}
+    },
+
+    _identified2String: function(identified){
+        return identified ? "-identified" : "-unidentified";
     },
 
     createPathsToNode: function(e){
@@ -113,7 +137,7 @@ Ext.define('lph.browser.nav.HierarchyPane', {
         }, this);
 
         if(Ext.isEmpty(nodeAux)){
-            nodeAux = parent.appendChild(this._createNode(elem.itemId, elem.name, elem.type));
+            nodeAux = parent.appendChild(this._createNode(elem.itemId, elem.name, elem.type, elem.identified));
         }
         return nodeAux;
     }

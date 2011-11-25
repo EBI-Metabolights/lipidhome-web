@@ -17,7 +17,6 @@ Ext.define('lph.browser.nav.SearchPane', {
     
     region	: 'north',
     layout	: 'fit',
-    //title	: 'Search',
     height 	: 35,
     margins	: '5 5 5 5',
     frame	: true,
@@ -52,7 +51,7 @@ Ext.define('lph.browser.nav.SearchPane', {
 	    		type : this.combo.getValue()
 	    	};
 	    }, this);
-	    
+
         this.search = Ext.create('Ext.form.field.ComboBox', {
         	store		 : this.ds,
             border		 : false,
@@ -66,19 +65,13 @@ Ext.define('lph.browser.nav.SearchPane', {
             listConfig	 : {
                 loadingText: 'Searching...',
                 emptyText: 'No matching lipids found.',
-
                 // Custom rendering template for each item
-                getInnerTpl: function() {
-                	return '<span>' +
-                			'	<b>Name: {name}</b><br>' +
-                			'	Identified: {identified}' +
-                			'</span>';
-                    /*
-                    return '<a class="search-item" href="http://www.sencha.com/forum/showthread.php?t={topicId}&p={id}">' +
-                        '<h3><span>{[Ext.Date.format(values.lastPost, "M j, Y")]}<br />by {author}</span>{title}</h3>' +
-                        '{excerpt}' +
-                    '</a>';
-                    */
+                getInnerTpl: function(name) {
+                    return  '<div>' +
+                            '   <div class="{type}-{cls}" />' +
+                            '   <div class="list-title">Name: {name}</div>' +
+                            '   <div class="list-footer">Identified: {identified}</div>' +
+                            '</div>';
                 }
             },
             listeners: {
@@ -166,6 +159,7 @@ Ext.define("Post", {
         {name: 'itemId', mapping: 'itemId'},
         {name: 'name', mapping: 'name'},
         {name: 'identified', mapping: 'identified'},
+        {name: 'cls', mapping: 'identified', convert: function(identified){return identified?"identified-24":"unidentified-24";}},
         {name: 'type', mapping: 'type'}
     ]
 });

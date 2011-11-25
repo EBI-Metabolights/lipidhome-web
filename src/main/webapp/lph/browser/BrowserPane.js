@@ -43,7 +43,7 @@ Ext.define('lph.browser.BrowserPane', {
      */
     bindContentActions: function(content){
         //Binds a clicked item of a list to the hierarchy tree
-        content.list.addListener('itemclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content.type, content.itemId], true));
+        content.list.addListener('itemclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content.itemId, content.type, content.identified], true));
         //Binds a clicked item of the path (button) to the hierarchy tree
         content.path.addListener('itemclick', this.navigator.hierarchy.selectNode, this.navigator.hierarchy);
     }

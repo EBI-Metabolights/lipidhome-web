@@ -30,3 +30,202 @@
   text-align: center;
   height:     auto;
 }
+
+
+
+
+
+
+#search-dropdown .item, #search-dropdown .footer {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 5px 5px 5px 30px;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #BFBFBF;
+    color: #605F5F;
+}
+
+#search-dropdown .item.x-item-selected {
+    background-color: #FFA;
+}
+
+#search-dropdown .icon-class {
+    /*background: url(../images/icons.png) no-repeat 0 -40px;*/
+}
+
+.list-icon {
+    position: absolute;
+    float: left;
+}
+
+.list-title {
+    position: relative;
+    left: 33px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-footer {
+    position: relative;
+    left: 30px;
+    font-size: .85em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ###################### CATEGORY ###################### */
+.category-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.category-identified-24 {
+    background-image: url("../icons/lipid_icon_base_24_filled.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.x-grid-tree-node-expanded .category-identified{
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+/* ###################### MAIN CLASS ###################### */
+.mainClass-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.mainClass-identified-24 {
+    background-image: url("../icons/lipid_icon_base_24_filled.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.x-grid-tree-node-expanded .mainClass-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+/* ###################### SUB CLASS ###################### */
+.subClass-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.subClass-identified-24 {
+    background-image: url("../icons/lipid_icon_base_24_filled.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.x-grid-tree-node-expanded .subClass-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+/* ###################### SPECIE ###################### */
+.specie-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.specie-unidentified {
+    background-image: url("../icons/lipid_icon_base_16_closed.png") !important;
+}
+
+.specie-identified-24 {
+    background-image: url("../icons/lipid_icon_base_24_filled.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.specie-unidentified-24 {
+    background-image: url("../icons/lipid_icon_base_24.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.x-grid-tree-node-expanded .specie-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.x-grid-tree-node-expanded .specie-unidentified {
+    background-image: url("../icons/lipid_icon_base_16.png") !important;
+}
+
+/* ###################### FA SCAN SPECIE ###################### */
+.faScanSpecie-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.faScanSpecie-unidentified {
+    background-image: url("../icons/lipid_icon_base_16.png") !important;
+}
+
+.faScanSpecie-identified-24 {
+    background-image: url("../icons/lipid_icon_base_24_filled.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.faScanSpecie-unidentified-24 {
+    background-image: url("../icons/lipid_icon_base_24.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.x-grid-tree-node-expanded .faScanSpecie-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.x-grid-tree-node-expanded .faScanSpecie-unidentified {
+    background-image: url("../icons/lipid_icon_base_16.png") !important;
+}
+
+/* ###################### SUB SPECIE ###################### */
+.subSpecie-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.subSpecie-unidentified {
+    background-image: url("../icons/lipid_icon_base_16.png") !important;
+}
+
+.subSpecie-identified-24 {
+    background-image: url("../icons/lipid_icon_base_24_filled.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.subSpecie-unidentified-24 {
+    background-image: url("../icons/lipid_icon_base_24.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.x-grid-tree-node-expanded .subSpecie-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.x-grid-tree-node-expanded .subSpecie-unidentified {
+    background-image: url("../icons/lipid_icon_base_16.png") !important;
+}
+
+/* ###################### ISOMER ###################### */
+.isomer-identified {
+    background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+}
+
+.isomer-unidentified {
+    background-image: url("../icons/lipid_icon_base_16.png") !important;
+}
+
+.isomer-identified-24 {
+    background-image: url("../icons/lipid_icon_base_24_filled.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.isomer-unidentified-24 {
+    background-image: url("../icons/lipid_icon_base_24.png");
+    height: 24px;
+    background-repeat: no-repeat;
+}
