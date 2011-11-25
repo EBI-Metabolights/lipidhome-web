@@ -7,15 +7,11 @@
 
 Ext.define('lph.browser.content.ContentPane', {
 	/* Begin Definitions */
-    extend	: 'Ext.tab.Panel',
+    extend	: 'Ext.panel.Panel',
     
     region		: 'center',
 	layout		: 'fit',
-	id			: 'lsh',
-	tabBar		: {
-		hidden	: true
-	},
-	
+
 	listeners: {
 		'tabchange': function(tabPanel, tab){
 			//console.info(tabPanel, tab);
@@ -29,6 +25,7 @@ Ext.define('lph.browser.content.ContentPane', {
         this.initConfig(config);
         
         this.manager = Ext.create('lph.browser.content.ContentManager');
+        this.contained = null;
                 
         return this;
     },
@@ -39,14 +36,24 @@ Ext.define('lph.browser.content.ContentPane', {
     	if(elem!=undefined){
 	    	var type = elem.data.type;
 	    	var id = elem.data.itemId;
-	    	
+
 	    	var panel = this.manager.getPanel(type, id, {node: node, elem: elem});
-	    	
+
 	    	if(!Ext.isEmpty(panel)){
-	    		this.add(panel);
-		        this.setActiveTab(panel);
+                this.removeContent();
+                this.addContent(panel);
 		        //Ext.History.add(panel.type + tokenDelimiter + panel.itemId);
 	    	}
     	}
+    },
+
+    removeContent: function(){
+        if(this.contained!=null)
+            this.remove(this.contained, false);
+    },
+
+    addContent: function(panel){
+        this.add(panel);
+        this.contained = panel
     }
 });

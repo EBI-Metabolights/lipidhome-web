@@ -73,7 +73,8 @@ Ext.define('lph.browser.nav.NavPane', {
     			itemId	: item.itemId,
     			text	: item.name,
     			expanded: true,
-    			type	: item.type
+    			type	: item.type,
+                iconCls : "category-identified"
     		});
     	}, this);
     }
