@@ -31,24 +31,24 @@ Ext.define('lph.browser.content.mainclass.InfoPanel', {
         		anchor		: '100%',
         		labelWidth	: 130
     		},
-    		//store		: config.store,
     		defaultType	: 'textfield',
 		    items		: [{
-		        fieldLabel: '# Sub classes',
-		        name: 'subClasses',
-		        readOnly: true
+		        fieldLabel  : '# Sub classes',
+		        name        : 'subClasses',
+                tooltip     : 'The number of sub classes that belong to this main class.',
+		        readOnly    : true
 		    },{
-		        fieldLabel: '# Species',
-		        name: 'species',
-		        readOnly: true
+		        fieldLabel  : '# Species',
+		        name        : 'species',
+		        readOnly    : true
 		    },{
-		        fieldLabel: '# Sub species',
-		        name: 'subSpecies',
-		        readOnly: true
+		        fieldLabel  : '# Sub species',
+		        name        : 'subSpecies',
+		        readOnly    : true
 		    },{
-		        fieldLabel: '# Annotated isomers',
-		        name: 'annotatedIsomers',
-		        readOnly: true
+		        fieldLabel  : '# Annotated isomers',
+		        name        : 'annotatedIsomers',
+		        readOnly    : true
 		    }]
         });
         this.add(this.content);

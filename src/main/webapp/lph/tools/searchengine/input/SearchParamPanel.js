@@ -9,16 +9,6 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
         type    : 'vbox',
         align   : 'right'
     },
-    buttons: [{
-        text    : 'Reset',
-        handler : this.resetFn,
-        scope   : this
-    },{
-        text    : 'Submit',
-        formBind: true, //only enabled once the form is valid
-        disabled: true,
-        handler : this.submitFn,
-    }],
 
     constructor: function(config) {
     	this.callParent(arguments);
@@ -35,9 +25,9 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
         this.resolution = Ext.create('Ext.data.Store', {
 		    fields: ['id', 'name'],
 		    data : [
-		        {'id': 1, 'name':'Species'},
-		        {'id': 2, 'name':'FA Scan Species'},
-		        {'id': 3, 'name':'Sub Species'}
+		        {'id': 'specie', 'name':'Species'},
+		        {'id': 'faScanSpecie', 'name':'FA Scan Species'},
+		        {'id': 'subSpecie', 'name':'Sub Species'}
 			]
 		});
         
@@ -47,14 +37,25 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
 		    store		 : this.resolution,
 		    queryMode	 : 'local',
 		    displayField : 'name',
-		    valueField	 : 'id'
+		    valueField	 : 'id',
+            allowBlank   : false,
 		});
+        this.combo.select(this.combo.getStore().data.items[0]);
 		this.fieldset.add(this.combo);
-		
+
+        Ext.form.VTypes['toleranceVal'] = /^(\d+(\.\d+)?)$/;
+        Ext.form.VTypes['toleranceText'] = "Mass tolerance must be greater than or equal to zero.";
+        Ext.form.VTypes['tolerance'] = function(v) {
+            return Ext.form.VTypes['toleranceVal'].test(v);
+        };
+
 		this.tolerance = Ext.create('Ext.form.field.Number', {
 			fieldLabel	: 'Tolerance',
 			value		: 0.2,
-			step		: 0.1
+			step		: 0.1,
+            minValue    : 0,
+            allowBlank  : false,
+            vtype       : 'tolerance'
 		});
 		this.fieldset.add(this.tolerance);
 		
@@ -69,11 +70,15 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
         return this;
     },
 
-    resetFn: function(){
-        console.info("reset");
+    validate: function(){
+        return (this.combo.validate() && this.tolerance.validate());
     },
 
-    submitFn: function(){
-        console.info("submit");
+    getData: function(){
+        return {
+            'level'      : this.combo.getValue(),
+            'tolerance'  : this.tolerance.getValue(),
+            'identified' : this.identified.getValue()
+        };
     }
 });

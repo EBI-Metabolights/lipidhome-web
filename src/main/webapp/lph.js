@@ -60,7 +60,7 @@ Ext.application({
 
 Ext.onReady(function() {
 	Ext.QuickTips.init();
-	
+
 	var historyManagement = function(token){
 		/*
 		console.info("token",token);

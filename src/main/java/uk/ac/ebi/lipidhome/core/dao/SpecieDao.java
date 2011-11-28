@@ -14,6 +14,7 @@ import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.Specie;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
+import uk.ac.ebi.lipidhome.service.result.model.MS1SearchRowResult;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleFAScanSpecie;
 
 import java.util.List;
@@ -41,4 +42,6 @@ public interface SpecieDao<T> extends BaseDao<Specie>{
 	List<Paper> getPapersList(Long id);
 	
 	List<SimpleFAScanSpecie> getSimpleFAScanSpeciesList(Long id);
+
+    List<MS1SearchRowResult> getMS1SearchResult(float mass, float tolerance, boolean identified);
 }

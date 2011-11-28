@@ -78,4 +78,12 @@
             <ref bean="utilitiesService"/>
         </jaxrs:serviceBeans>
     </jaxrs:server>
+
+    <bean name="toolsService" class="uk.ac.ebi.lipidhome.service.impl.ToolsServiceImpl"/>
+    <jaxrs:server id="toolsServer" address="/tools">
+        <jaxrs:serviceBeans>
+            <ref bean="toolsService"/>
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
+
 </beans>

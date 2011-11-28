@@ -36,7 +36,6 @@ Ext.define('lph.browser.content.generic.PathPanel', {
 
 	createPath: function(selectedNode){
          Ext.each(this._getParentPath(selectedNode), function(node){
-            console.info(node);
             var btn = Ext.create('Ext.Button', {
                 text    : node.get("text"),
                 pressed : (node==selectedNode),
