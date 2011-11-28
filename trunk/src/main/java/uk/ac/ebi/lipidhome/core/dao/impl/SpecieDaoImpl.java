@@ -18,6 +18,7 @@ import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.Specie;
 import uk.ac.ebi.lipidhome.service.mapper.*;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
+import uk.ac.ebi.lipidhome.service.result.model.MS1SearchRowResult;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleFAScanSpecie;
 
 import java.util.List;
@@ -189,4 +190,18 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 				"WHERE f.l_species_id = ?;",
 				new Object[] { id }, new SimpleFAScanSpecieMapper());
 	}
+
+    @Override
+    public List<MS1SearchRowResult> getMS1SearchResult(float mass, float tolerance, boolean identified) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.query(
+				"SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass as res_mass, c.formula, sc.code, 'specie' as type " +
+                "FROM species as s, composition as c, sub_class as sc " +
+                "WHERE s.l_composition_id = c.composition_id " +
+                "AND s.l_sub_class_id = sc.sub_class_id " +
+                "AND s.identified = ? " +
+                "AND c.mass <= ? + ? " +
+                "AND c.mass >= ? - ?;",
+				new Object[] { mass, identified, mass, tolerance, mass, tolerance }, new MS1SearchRowResultMapper());
+    }
 }

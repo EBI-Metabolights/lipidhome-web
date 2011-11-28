@@ -13,5 +13,13 @@ Ext.define('lph.tools.searchengine.input.OptionsPane', {
         this.add(this.param);
         
         return this;
+    },
+
+    validate: function(){
+        return this.param.validate();
+    },
+
+    getData: function(){
+        return this.param.getData();
     }
 });

@@ -1,4 +1,4 @@
-Ext.define('lph.tools.searchengine.input.SelectionHierarchyPanel', {
+Ext.define('lph.tools.searchengine.output.SelectionHierarchyPanel', {
 	/* Begin Definitions */
     extend	: 'Ext.Panel',
    

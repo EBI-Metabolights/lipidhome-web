@@ -38,25 +38,29 @@ Ext.define('lph.browser.content.category.InfoPanel', {
     		//store		: config.store,
     		defaultType	: 'textfield',
 		    items		: [{
-		        fieldLabel: '# Main classes',
-		        name: 'mainClasses',
-		        readOnly: true
+		        fieldLabel  : '# Main classes',
+		        name        : 'mainClasses',
+                tooltip     : 'The number of main classes that belong to this category.',
+		        readOnly    : true
 		    },{
-		        fieldLabel: '# Species',
-		        name: 'species',
-		        readOnly: true
+		        fieldLabel  : '# Species',
+		        name        : 'species',
+		        tooltip     : 'The number of species that belong to this category.',
+                readOnly    : true
 		    },{
-		        fieldLabel: '# Sub species',
-		        name: 'subSpecies',
-		        readOnly: true
+		        fieldLabel  : '# Sub species',
+		        name        : 'subSpecies',
+                tooltip     : 'The number of sub species that belong to this category.',
+		        readOnly    : true
 		    },{
-		        fieldLabel: '# Annotated isomers',
-		        name: 'annotatedIsomers',
-		        readOnly: true
+		        fieldLabel  : '# Annotated isomers',
+		        name        : 'annotatedIsomers',
+                tooltip     : 'The number of isomers for which there is evidence in external resources that belong to this category.',
+		        readOnly    : true
 		    }]
         });
         this.add(this.content);
-        
+
         this.moleculeViewer = Ext.create('lph.browser.content.generic.MoleculeViewer',{
 			region	: 'center'
 		})

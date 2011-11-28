@@ -31,9 +31,10 @@
   height:     auto;
 }
 
-
-
-
+/* DESCRIPTION DIVS */
+.description {
+    padding: 10px
+}
 
 
 #search-dropdown .item, #search-dropdown .footer {
