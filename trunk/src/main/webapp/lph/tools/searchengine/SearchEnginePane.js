@@ -41,7 +41,8 @@ Ext.define('lph.tools.searchengine.SearchEnginePane', {
 
     bind: function(){
         this.input.addListener('query', this._executeQuery, this);
-        this.output.addListener('load', this.unmask, this);
+        this.output.addListener('beforeload', this.expandOutput, this);
+        this.output.addListener('beforeload', this.unmask, this);
         this.output.addListener('error', this.queryError, this);
     },
 
@@ -58,6 +59,10 @@ Ext.define('lph.tools.searchengine.SearchEnginePane', {
     unmask: function(){
         if(!Ext.isEmpty(this.searchMask))
             this.searchMask.hide();
+    },
+
+    expandOutput: function(){
+        this.output.expand();
     },
 
     queryError: function(error){

@@ -14,15 +14,20 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
            error: true
         });
 
-        this.hierarchy = Ext.create('lph.tools.searchengine.output.SelectionHierarchyPanel');
+        this.hierarchy = Ext.create('lph.tools.searchengine.output.SelectionHierarchyPanel',{
+            region	: 'west',
+            width	: 300,
+        });
         this.add(this.hierarchy);
 
-        this.resultGridStore = this._getStore();
-        this.result = Ext.create('lph.tools.searchengine.output.ResultGrid',{
-            region  : 'center',
-            store   : this.resultGridStore
+        this.resultGrid = Ext.create('lph.tools.searchengine.output.ResultGrid',{
+            region	: 'center',
+            store   : this._getStore()
         });
-        this.add(this.result);
+        this.add(this.resultGrid);
+
+        //This fixes a bug found on the column redimension (delete it as soon as EXTjs fixes it)
+        //this.resultGrid.getStore().addListener('datachanged', Ext.bind(this.resultGrid._refresh,this.resultGrid));
 
         return this;
     },
@@ -41,11 +46,14 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
     onSuccess: function(res, opts){
         var res = Ext.decode(res.responseText);
         Ext.each(res.list, function(item){
-            item.delta = item.mass - item.resMass;
+            item.delta = Ext.util.Format.round(item.mass - item.resMass, 5);
         })
-        this.resultGridStore.loadData(res.list);
-        this.fireEvent('load');
-        this.expand(true);
+        if(this.fireEvent('beforeload')!==false){
+            this.resultGrid._refresh();
+            this.resultGrid.getStore().loadRawData(res);
+            this.fireEvent('load');
+        }
+
     },
 
     onFailure: function(res, opts){
@@ -62,6 +70,7 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
 
 Ext.define('MS1SearchEngineResultModel', {
     extend: 'Ext.data.Model',
+    url : '',
     fields: [
         { name: 'itemId', type: 'int' },
         { name: 'name', type: 'string' },
@@ -73,5 +82,12 @@ Ext.define('MS1SearchEngineResultModel', {
         { name: 'delta', type: 'float'},
         { name: 'code', type: 'string' },
         { name: 'type', type: 'string' }
-    ]
+    ],
+    proxy: {
+        type: 'ajax',
+        reader: {
+            type: 'json',
+            root: 'list'
+        }
+    }
 });
