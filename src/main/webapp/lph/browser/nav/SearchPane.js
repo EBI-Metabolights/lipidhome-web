@@ -39,8 +39,8 @@ Ext.define('lph.browser.nav.SearchPane', {
         });
         
         this.ds = Ext.create('Ext.data.Store', {
-	        pageSize: 10,
-	        model: 'Post'
+	        pageSize : 10,
+	        model    : 'Post'
 	    });
 	    
 	    //This is adding the type parameter to the query taking into account
@@ -48,7 +48,7 @@ Ext.define('lph.browser.nav.SearchPane', {
 	    this.ds.addListener("beforeLoad", function(store, operation, opts){
 	    	store.getProxy().extraParams = {
 	    		query : this.search.getValue(),
-	    		type : this.combo.getValue()
+	    		type  : this.combo.getValue()
 	    	};
 	    }, this);
 
