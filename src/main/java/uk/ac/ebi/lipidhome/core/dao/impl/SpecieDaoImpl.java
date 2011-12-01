@@ -194,14 +194,24 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
     @Override
     public List<MS1SearchRowResult> getMS1SearchResult(float mass, float tolerance, boolean identified) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
-		return jdbcTemplate.query(
-				"SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass as res_mass, c.formula, sc.code, 'specie' as type " +
-                "FROM species as s, composition as c, sub_class as sc " +
-                "WHERE s.l_composition_id = c.composition_id " +
-                "AND s.l_sub_class_id = sc.sub_class_id " +
-                "AND s.identified = ? " +
-                "AND c.mass <= ? + ? " +
-                "AND c.mass >= ? - ?;",
-				new Object[] { mass, identified, mass, tolerance, mass, tolerance }, new MS1SearchRowResultMapper());
+        if(identified)
+            return jdbcTemplate.query(
+                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass as res_mass, c.formula, sc.code, 'specie' as type " +
+                    "FROM species as s, composition as c, sub_class as sc " +
+                    "WHERE s.l_composition_id = c.composition_id " +
+                    "AND s.l_sub_class_id = sc.sub_class_id " +
+                    "AND s.identified = TRUE " +
+                    "AND c.mass <= ? + ? " +
+                    "AND c.mass >= ? - ?;",
+                    new Object[] { mass, mass, tolerance, mass, tolerance }, new MS1SearchRowResultMapper());
+        else
+            return jdbcTemplate.query(
+                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass as res_mass, c.formula, sc.code, 'specie' as type " +
+                    "FROM species as s, composition as c, sub_class as sc " +
+                    "WHERE s.l_composition_id = c.composition_id " +
+                    "AND s.l_sub_class_id = sc.sub_class_id " +
+                    "AND c.mass <= ? + ? " +
+                    "AND c.mass >= ? - ?;",
+                    new Object[] { mass, mass, tolerance, mass, tolerance }, new MS1SearchRowResultMapper());
     }
 }

@@ -115,9 +115,9 @@ Ext.define('lph.browser.nav.HierarchyPane', {
         return identified ? "-identified" : "-unidentified";
     },
 
-    createPathsToNode: function(e){
+    createPathsToNode: function(paths){
         var auxChild;
-        Ext.each(e.paths, function(path){
+        Ext.each(paths, function(path){
             var node = this.getRootNode();
             Ext.each(path, function(elem){
                 node = this._addNode(node, elem);
@@ -140,5 +140,26 @@ Ext.define('lph.browser.nav.HierarchyPane', {
             nodeAux = parent.appendChild(this._createNode(elem.itemId, elem.name, elem.type, elem.identified));
         }
         return nodeAux;
+    },
+
+    findPathTo: function(record){
+        Ext.Ajax.request({
+            url     : '/service/utils/pathto',
+            method  : 'GET',
+            params  : {
+                itemId      : record.get("itemId"),
+                name        : record.get("name"),
+                identified  : record.get("identified"),
+                type        : record.get("type")
+            },
+            success : this.setPathToItems,
+            scope   : this
+        });
+
+    },
+
+    setPathToItems: function(response){
+        var resp = Ext.decode(response.responseText);
+        this.createPathsToNode(resp.paths);
     }
 });

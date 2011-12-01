@@ -18,6 +18,7 @@ public class SimpleCategoryMapper implements RowMapper {
 		SimpleCategory sc = new SimpleCategory();
 		sc.setItemId(rs.getLong("category_id"));
 		sc.setName(rs.getString("name"));
+        sc.setCode(rs.getString("code"));
 		return sc;
 	}
 

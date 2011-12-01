@@ -18,7 +18,7 @@ Ext.define('lph.browser.nav.NavPane', {
 	constructor: function(config) {
     	this.callParent(arguments);
         this.initConfig(config);
-        
+
         this.addEvents({
         	itemClicked	: true
         });
@@ -27,11 +27,11 @@ Ext.define('lph.browser.nav.NavPane', {
         this.add(this.search);
                
         var store = Ext.create('Ext.data.TreeStore', {
-        	fields : [
-        		{name: 'itemId',  type : 'int'},
-        		{name: 'name',  type : 'string'},
-        		{name: 'type',  type : 'string', defaultValue: 'category'}
-        	]
+            fields  : [
+                {name: 'itemId',  type : 'int'},
+                {name: 'name',  type : 'string'},
+                {name: 'type',  type : 'string', defaultValue: 'category'}
+            ]
 		});
 			
         this.hierarchy = Ext.create('lph.browser.nav.HierarchyPane',{
@@ -47,7 +47,7 @@ Ext.define('lph.browser.nav.NavPane', {
     },
 
     bind: function(){
-        this.search.addListener("pathsFound", Ext.bind(this.hierarchy.createPathsToNode, this.hierarchy));
+        this.search.addListener("itemSelected", Ext.bind(this.hierarchy.findPathTo, this.hierarchy));
     },
 
     /*

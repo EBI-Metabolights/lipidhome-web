@@ -11,7 +11,11 @@ Ext.define('lph.tools.ToolsPane', {
 	constructor: function(config) {
     	this.callParent(arguments);
         this.initConfig(config);
-        
+
+        this.addEvents({
+        	itemSelected : true
+        });
+
         this.searchEngine = Ext.create('lph.tools.searchengine.SearchEnginePane');
         this.add(this.searchEngine);
         
@@ -21,7 +25,17 @@ Ext.define('lph.tools.ToolsPane', {
         })
         
         this.setActiveTab(this.searchEngine);
-        
+
+        this.bind();
+
         return this;
-	}
+	},
+
+    bind: function(){
+        this.searchEngine.output.resultGrid.addListener('itemdblclick', this._ms1SearchItemSelected, this);
+    },
+
+    _ms1SearchItemSelected: function(grid, record, item, index, event, opts){
+        this.fireEvent('itemSelected', record);
+    }
 });
