@@ -6,7 +6,17 @@ package uk.ac.ebi.lipidhome.service.result.model;
 
 public class SimpleCategory extends ResultObject {
 
+    private String code;
+
 	public SimpleCategory(){
 		
 	}
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

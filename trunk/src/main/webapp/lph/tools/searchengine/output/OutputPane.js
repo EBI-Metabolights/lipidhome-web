@@ -10,24 +10,48 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
         this.initConfig(config);
 
         this.addEvents({
-           load : true,
-           error: true
+           load         : true,
+           error        : true,
+           itemSelected : true
         });
 
+
+        var store = Ext.create('Ext.data.TreeStore', {
+            fields  : [
+                {name: 'itemId',  type : 'int'},
+                {name: 'code',  type : 'string'},
+                {name: 'type',  type : 'string'}//, defaultValue: 'category'}
+            ]
+		});
         this.hierarchy = Ext.create('lph.tools.searchengine.output.SelectionHierarchyPanel',{
             region	: 'west',
             width	: 300,
+            store   : store
         });
+        //this.hierarchy.getChecked();
         this.add(this.hierarchy);
 
+        var groupingFeature = Ext.create('Ext.grid.feature.Grouping',{
+            enableGroupingMenu  : false,
+            groupHeaderTpl      : 'Mass: {name} ({rows.length} Item{[values.rows.length > 1 ? "s" : ""]})'
+        })
+        var sm = Ext.create('Ext.selection.CheckboxModel',{
+            checkOnly: true
+        });
+        sm.suspendEvents();
         this.resultGrid = Ext.create('lph.tools.searchengine.output.ResultGrid',{
-            region	: 'center',
-            store   : this._getStore()
+            region	    : 'center',
+            store       : this._getStore(),
+            selModel    : sm,
+            features	: [
+                groupingFeature,
+                {
+                    ftype : 'filters',
+                    local : true
+                }
+            ],
         });
         this.add(this.resultGrid);
-
-        //This fixes a bug found on the column redimension (delete it as soon as EXTjs fixes it)
-        //this.resultGrid.getStore().addListener('datachanged', Ext.bind(this.resultGrid._refresh,this.resultGrid));
 
         return this;
     },
@@ -35,7 +59,7 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
     executeQuery : function(params){
         Ext.Ajax.request({
             method  : 'POST',
-            url     : '/service/tools/ms1search',
+            url     : 'service/tools/ms1search',
             params  : params,
             success : this.onSuccess,
             failure : this.onFailure,
@@ -63,7 +87,8 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
 
     _getStore: function(id){
     	return Ext.create('Ext.data.Store', {
-		    model: 'MS1SearchEngineResultModel'
+		    model       : 'MS1SearchEngineResultModel',
+            groupField  : 'mass'
 		});
     }
 });

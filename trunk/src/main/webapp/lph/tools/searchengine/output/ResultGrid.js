@@ -2,22 +2,56 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
 	/* Begin Definitions */
     extend	: 'Ext.grid.Panel',
 
-    title       : 'Results',
     region      : 'center',
 
-    features	: [{
-		ftype : 'filters',
-		local : true
-	}],
+    bbar: [{
+        //xtype:'splitbutton',
+        text: 'Export results...',
+        //iconCls: 'add16',
+        menu: [{
+            text: 'CSV',
+            //iconCls: 'add16',
+            handler : function() {}
+        },{
+            text: 'Excel',
+            //iconCls: 'add16',
+            handler : function() {}
+        },/*{
+            text: 'MZ-Tab',
+            //iconCls: 'add16',
+            handler : function() {}
+        },*/{
+            text: 'XML',
+            //iconCls: 'add16',
+            handler : function() {}
+        },{
+            text: 'JSon',
+            //iconCls: 'add16',
+            handler : function() {}
+        }]
+    }],
 
     columns: [
-        { header: 'Code', dataIndex: 'code', filter: {type: 'string' }},
-        { header: 'Name', dataIndex: 'name', flex: 1, filter: {type: 'string' }},
-        { header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean' }},
-        { header: 'FA Carbons', dataIndex: 'faCarbons', filter: {type: 'int' }},
-        { header: 'FA Double Bonds', dataIndex: 'faDoubleBonds', filter: {type: 'int' }},
-        { header: 'Mass', dataIndex: 'resMass', filter: {type: 'float' }},
-        { header: 'Delta', dataIndex: 'delta', filter: {type: 'float' }}
+        {
+            xtype       : 'actioncolumn',
+            width       : 20,
+            resizable   : false,
+            hideable    : false,
+            items       : [{
+                getClass : function(v, metadata, record, rowIndex, colIndex, store) {
+                    var type = record.get("type");
+                    var identified = record.get("identified") ? "identified" : "unidentified" ;
+                    return type + "-" + identified;
+                }
+            }]
+        },
+        { header: 'Code', dataIndex: 'code', filter: {type: 'string' }, groupable: false},
+        { header: 'Name', dataIndex: 'name', flex: 1, filter: {type: 'string' }, groupable: false},
+        { header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean' }, groupable: false},
+        { header: 'FA Carbons', dataIndex: 'faCarbons', filter: {type: 'int' }, groupable: false},
+        { header: 'FA Double Bonds', dataIndex: 'faDoubleBonds', filter: {type: 'int' }, groupable: false},
+        { header: 'Mass', dataIndex: 'resMass', filter: {type: 'float' }, groupable: false},
+        { header: 'Delta', dataIndex: 'delta', filter: {type: 'float' }, groupable: false}
     ],
 
     /*
@@ -30,5 +64,6 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
             aux.getHeaderAtIndex(i).hide();
             aux.getHeaderAtIndex(i).show();
         }
-    }
+    },
+
 });

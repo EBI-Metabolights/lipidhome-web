@@ -23,7 +23,7 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
         });
 
         this.resolution = Ext.create('Ext.data.Store', {
-		    fields: ['id', 'name'],
+		    model: "ResolutionLevel",
 		    data : [
 		        {'id': 'specie', 'name':'Species'},
 		        {'id': 'faScanSpecie', 'name':'FA Scan Species'},
@@ -82,3 +82,8 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
         };
     }
 });
+
+Ext.define("ResolutionLevel",{
+    extend: 'Ext.data.Model',
+    fields: ['id', 'name'],
+})

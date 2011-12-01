@@ -27,7 +27,7 @@ Ext.define('lph.browser.nav.SearchPane', {
         this.initConfig(config);
 
         this.addEvents({
-        	pathsFound	: true
+        	itemSelected : true
         });
 
         this.container = Ext.create('Ext.form.FieldContainer',{
@@ -39,8 +39,8 @@ Ext.define('lph.browser.nav.SearchPane', {
         });
         
         this.ds = Ext.create('Ext.data.Store', {
-	        pageSize : 10,
-	        model    : 'Post'
+	        model    : 'SearchData',
+            pageSize : 10
 	    });
 	    
 	    //This is adding the type parameter to the query taking into account
@@ -84,8 +84,8 @@ Ext.define('lph.browser.nav.SearchPane', {
                 
         // The data store containing the list of structure hierarchy levels
 		this.comboStore = Ext.create('Ext.data.Store', {
-		    fields: ['level', 'name'],
-		    data : [
+            model   : "LipidLevels",
+		    data    : [
 		        {"level": "all", "name":"All"},
 		        {"level": "category", "name":"Category"},
 		        {"level": "mainClass", "name":"Main Class"},
@@ -121,29 +121,16 @@ Ext.define('lph.browser.nav.SearchPane', {
     
     itemSelected: function(combo, records, eOpts){
         var record = records[0];
-        Ext.Ajax.request({
-            url     : '/service/utils/pathto',
-            method  : 'GET',
-            params  : {
-                itemId      : record.get("itemId"),
-                name        : record.get("name"),
-                identified  : record.get("identified"),
-                type        : record.get("type")
-            },
-            success : this.setPathToItems,
-            scope   : this
-        });
-
-    },
-
-    setPathToItems: function(response){
-        var resp = Ext.decode(response.responseText);
-        this.fireEvent('pathsFound', {'paths' : resp.paths});
+        this.fireEvent('itemSelected', record);
     }
 });
 
+Ext.define("LipidLevels",{
+    extend: 'Ext.data.Model',
+    fields: ['level', 'name'],
+});
 
-Ext.define("Post", {
+Ext.define("SearchData", {
     extend: 'Ext.data.Model',
     proxy: {
         type: 'jsonp',

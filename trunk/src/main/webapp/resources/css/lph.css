@@ -81,6 +81,7 @@
 /* ###################### CATEGORY ###################### */
 .category-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .category-identified-24 {
@@ -91,11 +92,13 @@
 
 .x-grid-tree-node-expanded .category-identified{
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 /* ###################### MAIN CLASS ###################### */
 .mainClass-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .mainClass-identified-24 {
@@ -106,11 +109,13 @@
 
 .x-grid-tree-node-expanded .mainClass-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 /* ###################### SUB CLASS ###################### */
 .subClass-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .subClass-identified-24 {
@@ -121,15 +126,18 @@
 
 .x-grid-tree-node-expanded .subClass-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 /* ###################### SPECIE ###################### */
 .specie-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .specie-unidentified {
-    background-image: url("../icons/lipid_icon_base_16_closed.png") !important;
+    background-image: url("../icons/lipid_icon_base_16.png") !important;
+    height: 16px;
 }
 
 .specie-identified-24 {
@@ -146,19 +154,23 @@
 
 .x-grid-tree-node-expanded .specie-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .x-grid-tree-node-expanded .specie-unidentified {
     background-image: url("../icons/lipid_icon_base_16.png") !important;
+    height: 16px;
 }
 
 /* ###################### FA SCAN SPECIE ###################### */
 .faScanSpecie-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .faScanSpecie-unidentified {
     background-image: url("../icons/lipid_icon_base_16.png") !important;
+    height: 16px;
 }
 
 .faScanSpecie-identified-24 {
@@ -175,19 +187,23 @@
 
 .x-grid-tree-node-expanded .faScanSpecie-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .x-grid-tree-node-expanded .faScanSpecie-unidentified {
     background-image: url("../icons/lipid_icon_base_16.png") !important;
+    height: 16px;
 }
 
 /* ###################### SUB SPECIE ###################### */
 .subSpecie-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .subSpecie-unidentified {
     background-image: url("../icons/lipid_icon_base_16.png") !important;
+    height: 16px;
 }
 
 .subSpecie-identified-24 {
@@ -204,19 +220,23 @@
 
 .x-grid-tree-node-expanded .subSpecie-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .x-grid-tree-node-expanded .subSpecie-unidentified {
     background-image: url("../icons/lipid_icon_base_16.png") !important;
+    height: 16px;
 }
 
 /* ###################### ISOMER ###################### */
 .isomer-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
+    height: 16px;
 }
 
 .isomer-unidentified {
     background-image: url("../icons/lipid_icon_base_16.png") !important;
+    height: 16px;
 }
 
 .isomer-identified-24 {

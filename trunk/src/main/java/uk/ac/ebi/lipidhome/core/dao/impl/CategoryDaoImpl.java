@@ -156,7 +156,7 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 	public List<SimpleCategory> getSimpleCategoryList(){
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return jdbcTemplate.query(
-				"SELECT category_id, name FROM category ORDER BY name;",new SimpleCategoryMapper());
+				"SELECT category_id, code, name FROM category ORDER BY name;",new SimpleCategoryMapper());
 	}
 
 

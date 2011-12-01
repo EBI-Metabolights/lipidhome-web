@@ -54,7 +54,9 @@ Ext.application({
 					html	: 'Help'
 				} ]
 			}]
-		});	    
+		});
+
+        lph.tools.addListener('itemSelected', lph.browser.manageLocationItemSelected, lph.browser);
 	}
 });
 

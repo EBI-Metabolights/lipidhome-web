@@ -12,6 +12,10 @@ Ext.define('lph.tools.searchengine.SearchEnginePane', {
     	this.callParent(arguments);
     	this.initConfig(config);
 
+        this.addEvents({
+        	itemSelected : true
+        });
+
         var accordion = Ext.create('Ext.panel.Panel',{
             layout	: 'accordion',
             region  : 'center'
