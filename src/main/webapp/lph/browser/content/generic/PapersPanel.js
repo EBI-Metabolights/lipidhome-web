@@ -15,9 +15,9 @@
 Ext.define('lph.browser.content.generic.PapersPanel', {
 	/* Begin Definitions */
     extend		: 'Ext.grid.Panel',
-    
-    
+
     title		 : 'Papers',
+    iconCls      : 'papers-16',
     border		 : false,
     autoScroll	 : true,
 	collapsible	 : true,

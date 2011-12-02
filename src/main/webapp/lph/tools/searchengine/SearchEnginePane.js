@@ -6,6 +6,7 @@ Ext.define('lph.tools.searchengine.SearchEnginePane', {
     extend	: 'Ext.Panel',
     
     title	: 'Search engine',
+    iconCls : 'ms1-search-engine-16',
     layout  : 'border',
     
     constructor : function(config){

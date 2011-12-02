@@ -6,6 +6,7 @@ Ext.define('lph.tools.ToolsPane', {
     extend		: 'Ext.tab.Panel',
     
     title		: 'Tools',
+    iconCls     : 'tools-16',
 	tabPosition	: 'bottom',
 	
 	constructor: function(config) {

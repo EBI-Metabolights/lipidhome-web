@@ -16,9 +16,9 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
 
         this.fieldset = Ext.create('Ext.form.FieldSet',{
             title    : 'MS1 Search Options',
-            layout: 'anchor',
-            defaults: {
-                anchor: '100%'
+            layout   : 'anchor',
+            defaults : {
+                anchor : '100%'
             }
         });
 

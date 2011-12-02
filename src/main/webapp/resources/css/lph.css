@@ -78,6 +78,68 @@
     text-overflow: ellipsis;
 }
 
+/* ######################## ICONS ####################### */
+
+.data-input-16 {
+    background-image: url("../icons/data_input.png") !important;
+    height: 16px;
+}
+
+.data-output-16 {
+    background-image: url("../icons/data_output.png") !important;
+    height: 16px;
+}
+
+.export-16 {
+    background-image: url("../icons/export.png") !important;
+    height: 16px;
+}
+
+.filter-16 {
+    background-image: url("../icons/filter.png") !important;
+    height: 16px;
+}
+
+.help-16 {
+    background-image: url("../icons/help.png") !important;
+    height: 16px;
+}
+
+.hierarchy-16 {
+    background-image: url("../icons/hierarchy.png") !important;
+    height: 16px;
+}
+
+.information-16 {
+    background-image: url("../icons/information.png") !important;
+    height: 16px;
+}
+
+.ms1-search-engine-16 {
+    background-image: url("../icons/ms1_search_engine.png") !important;
+    height: 16px;
+}
+
+.papers-16 {
+    background-image: url("../icons/papers.png") !important;
+    height: 16px;
+}
+
+.tools-16 {
+    background-image: url("../icons/tools.png") !important;
+
+}
+
+.home-16 {
+    background-image: url("../icons/house.png") !important;
+    height: 16px;
+}
+
+.xref-16 {
+    background-image: url("../icons/xref.png") !important;
+    height: 16px;
+}
+
 /* ###################### CATEGORY ###################### */
 .category-identified {
     background-image: url("../icons/lipid_icon_base_16_filled.png") !important;
