@@ -4,6 +4,7 @@ Ext.define('lph.tools.searchengine.output.SelectionHierarchyPanel', {
    
     layout	    : 'fit',
     title	    : 'Filtering options',
+    iconCls     : 'filter-16',
     border	    : false,
     margins	    : '0 5 0 5',
     frame	    : true,

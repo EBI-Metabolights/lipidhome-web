@@ -40,6 +40,24 @@ public class ToolsServiceImpl extends LipidService implements ToolsService {
         return result2Response(result);
     }
 
+    @Override
+    public Response ms1Export(String data, String format) {
+        Response.ResponseBuilder response;
+
+        format = format.toLowerCase();
+
+        if(format.equals("xml")){
+            response = Response.ok(data);
+        }else{
+            response = Response.ok(data);
+        }
+
+        String fileName = "lipidHomeDataExport." + format;
+		response.header("Content-Disposition", "attachment; filename=" + fileName);
+		return response.build();
+    }
+
+
     private List<Float> getMassesList(String masses){
         Set<Float> set = new HashSet<Float>();
         for (String s : masses.split("\n"))

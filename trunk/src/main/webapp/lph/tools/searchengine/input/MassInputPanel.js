@@ -11,6 +11,7 @@ Ext.define('lph.tools.searchengine.input.MassInputPanel', {
     	this.callParent(arguments);
         this.initConfig(config);
 
+        //TODO: Rewrite the regexp (does NOT work on opera)
         Ext.form.VTypes['massesVal'] = /^(\d+\.\d+\n?)+$/;
         Ext.form.VTypes['massesText'] = "Input is not a list of new line separated decimal masses";
         Ext.form.VTypes['masses'] = function(v) {

@@ -1,6 +1,7 @@
 Ext.define('lph.browser.content.generic.InfoPanel', {
 	/* Begin Definitions */
     extend	: 'Ext.Panel',
+    iconCls : 'information-16',
     
     loadRecord: function(data){
     	if(!Ext.isEmpty(this.content))

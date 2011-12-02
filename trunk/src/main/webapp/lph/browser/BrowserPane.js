@@ -17,6 +17,7 @@ Ext.define('lph.browser.BrowserPane', {
     extend	: 'Ext.Panel',
     
     title	: 'Browser',
+    iconCls : 'home-16',
     layout	: 'border',
     
     constructor: function(config) {

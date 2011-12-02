@@ -3,6 +3,7 @@ Ext.define('lph.tools.generic.DescriptionPanel', {
     extend      : 'Ext.Panel',
    
 	title		: 'Description',
+    iconCls     : 'information-16',
 	collapsible	: true,
 	layout		: 'fit',
 

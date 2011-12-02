@@ -46,11 +46,19 @@ Ext.application({
 				title	: 'LipidHome v.01',
 				height	: 25
 			},{
-				region : 'center',
-				xtype : 'tabpanel',
-				activeTab : 0,
+				region      : 'center',
+				xtype       : 'tabpanel',
+                /*tabBar      : {
+                    height    : 40,
+                },*/
+                minTabWidth : 80,
+                tabWidth    : 95,
+                autoWidth   : true,
+                autoHeight  : true,
+				activeTab   : 0,
 				items : [ lph.browser, lph.tools, {
 					title	: 'Help',
+                    iconCls : 'help-16',
 					html	: 'Help'
 				} ]
 			}]

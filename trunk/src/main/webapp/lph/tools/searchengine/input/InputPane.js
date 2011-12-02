@@ -3,6 +3,7 @@ Ext.define('lph.tools.searchengine.input.InputPane', {
     extend	: 'Ext.Panel',
 
     title	: 'Input',
+    iconCls : 'data-input-16',
     layout	: 'border',
     
     constructor: function(config) {

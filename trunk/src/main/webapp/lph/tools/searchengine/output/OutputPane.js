@@ -3,6 +3,7 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
     extend	: 'Ext.Panel',
     
     title	: 'Output',
+    iconCls : 'data-output-16',
     layout	: 'border',
 
     constructor: function(config) {
@@ -43,6 +44,7 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
             region	    : 'center',
             store       : this._getStore(),
             selModel    : sm,
+            hierarchy   : this.hierarchy,
             features	: [
                 groupingFeature,
                 {
@@ -53,7 +55,13 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
         });
         this.add(this.resultGrid);
 
+        this.bind();
+
         return this;
+    },
+
+    bind: function(){
+        this.hierarchy.addListener('checkchange', this.resultGrid.filter, this.resultGrid);
     },
 
     executeQuery : function(params){
@@ -86,16 +94,17 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
     },
 
     _getStore: function(id){
-    	return Ext.create('Ext.data.Store', {
+    	var store = Ext.create('Ext.data.Store', {
 		    model       : 'MS1SearchEngineResultModel',
             groupField  : 'mass'
 		});
+        return store;
     }
 });
 
 Ext.define('MS1SearchEngineResultModel', {
     extend: 'Ext.data.Model',
-    url : '',
+    //url : '',
     fields: [
         { name: 'itemId', type: 'int' },
         { name: 'name', type: 'string' },

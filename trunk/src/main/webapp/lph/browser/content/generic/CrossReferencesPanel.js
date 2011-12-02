@@ -14,6 +14,7 @@ Ext.define('lph.browser.content.generic.CrossReferencesPanel', {
     extend		: 'Ext.form.Panel',
     
     title		: 'Xrefs',
+    iconCls     : 'xref-16',
     border		: false,
     data		: null,
     border		: false,

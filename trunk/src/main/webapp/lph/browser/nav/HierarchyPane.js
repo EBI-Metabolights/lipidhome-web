@@ -12,6 +12,7 @@ Ext.define('lph.browser.nav.HierarchyPane', {
     region	: 'center',
     layout	: 'fit',
     title	: 'Lipid structure hierarchy',
+    iconCls : 'hierarchy-16',
     border	: false,
     margins	: '0 5 0 5',
     frame	: true,
