@@ -2,8 +2,13 @@ Ext.define('lph.tools.searchengine.input.OptionsPane', {
 	/* Begin Definitions */
     extend	: 'Ext.Panel',
 
-    width   : 350,
-    layout	: 'border',
+    width   : 400,
+    frame   : true,
+    layout  : {
+        type    : 'vbox',
+        pack    : 'start',
+        align   : 'stretch'
+    },
 
     constructor: function(config) {
     	this.callParent(arguments);
@@ -11,15 +16,20 @@ Ext.define('lph.tools.searchengine.input.OptionsPane', {
 
         this.param = Ext.create('lph.tools.searchengine.input.SearchParamPanel');
         this.add(this.param);
+
+        this.adductIons = Ext.create('lph.tools.searchengine.input.AdductIonPanel');
+        this.add(this.adductIons);
         
         return this;
     },
 
     validate: function(){
-        return this.param.validate();
+        var paramValid = this.param.validate();
+        var adductIonValid = this.adductIons.validate();
+        return paramValid && adductIonValid;
     },
 
     getData: function(){
-        return this.param.getData();
+        return Ext.merge(this.param.getData(), this.adductIons.getData());
     }
 });

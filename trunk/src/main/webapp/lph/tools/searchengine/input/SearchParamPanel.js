@@ -1,26 +1,18 @@
 Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
 	/* Begin Definitions */
     extend	: 'Ext.form.FormPanel',
-    region	: 'center',
-    frame   : true,
-    border  : false,
-    padding : '10 0 10 10',
-    layout  : {
-        type    : 'vbox',
-        align   : 'right'
-    },
+
+    frame       : true,
+    border      : false,
+    collapsible : true,
+    collapsed   : false,
+    padding     : '10 10 10 10',
+    margin      : '5 0 0 0',
+    title       : 'MS1 Search Options',
 
     constructor: function(config) {
     	this.callParent(arguments);
         this.initConfig(config);
-
-        this.fieldset = Ext.create('Ext.form.FieldSet',{
-            title    : 'MS1 Search Options',
-            layout   : 'anchor',
-            defaults : {
-                anchor : '100%'
-            }
-        });
 
         this.resolution = Ext.create('Ext.data.Store', {
 		    model: "ResolutionLevel",
@@ -41,7 +33,7 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
             allowBlank   : false,
 		});
         this.combo.select(this.combo.getStore().data.items[0]);
-		this.fieldset.add(this.combo);
+        this.add(this.combo);
 
         Ext.form.VTypes['toleranceVal'] = /^(\d+(\.\d+)?)$/;
         Ext.form.VTypes['toleranceText'] = "Mass tolerance must be greater than or equal to zero.";
@@ -57,15 +49,13 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
             allowBlank  : false,
             vtype       : 'tolerance'
 		});
-		this.fieldset.add(this.tolerance);
+        this.add(this.tolerance);
 		
 		this.identified = Ext.create('Ext.form.field.Checkbox',{
 			boxLabel		: 'Identified',
 			boxLabelAlign	: 'before'
 		})
-		this.fieldset.add(this.identified);
-
-        this.add(this.fieldset);
+        this.add(this.identified);
 
         return this;
     },

@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 public abstract interface ToolsService {
     @POST
     @Path( "/ms1search" )
-    Response ms1Search(@FormParam("masses") String masses, @FormParam("level") String level, @FormParam("tolerance") Float tolerance, @FormParam("identified") Boolean identified);
+    Response ms1Search(@FormParam("masses") String masses, @FormParam("level") String level, @FormParam("tolerance") Float tolerance, @FormParam("identified") Boolean identified, @FormParam("adductIons") String adductIons);
 
     @POST
     @Produces("application/xml")

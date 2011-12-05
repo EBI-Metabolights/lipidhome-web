@@ -10,6 +10,7 @@
  */
 package uk.ac.ebi.lipidhome.core.dao;
 
+import uk.ac.ebi.lipidhome.core.model.AdductIons;
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.Specie;
@@ -43,5 +44,5 @@ public interface SpecieDao<T> extends BaseDao<Specie>{
 	
 	List<SimpleFAScanSpecie> getSimpleFAScanSpeciesList(Long id);
 
-    List<MS1SearchRowResult> getMS1SearchResult(float mass, float tolerance, boolean identified);
+    List<MS1SearchRowResult> getMS1SearchResult(float mass, AdductIons adductIon, float tolerance, boolean identified);
 }

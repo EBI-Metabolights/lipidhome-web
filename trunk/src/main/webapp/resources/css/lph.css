@@ -80,6 +80,11 @@
 
 /* ######################## ICONS ####################### */
 
+.csv-export-16 {
+    background-image: url("../icons/csv.png") !important;
+    height: 16px;
+}
+
 .data-input-16 {
     background-image: url("../icons/data_input.png") !important;
     height: 16px;
@@ -87,6 +92,11 @@
 
 .data-output-16 {
     background-image: url("../icons/data_output.png") !important;
+    height: 16px;
+}
+
+.excel-export-16 {
+    background-image: url("../icons/xls.png") !important;
     height: 16px;
 }
 
@@ -115,6 +125,11 @@
     height: 16px;
 }
 
+.json-export-16 {
+    background-image: url("../icons/json.png") !important;
+    height: 16px;
+}
+
 .ms1-search-engine-16 {
     background-image: url("../icons/ms1_search_engine.png") !important;
     height: 16px;
@@ -130,8 +145,18 @@
 
 }
 
+.tsv-export-16 {
+    background-image: url("../icons/tsv.png") !important;
+    height: 16px;
+}
+
 .home-16 {
     background-image: url("../icons/house.png") !important;
+    height: 16px;
+}
+
+.xml-export-16 {
+    background-image: url("../icons/xml.png") !important;
     height: 16px;
 }
 

@@ -36,14 +36,10 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
             enableGroupingMenu  : false,
             groupHeaderTpl      : 'Mass: {name} ({rows.length} Item{[values.rows.length > 1 ? "s" : ""]})'
         })
-        var sm = Ext.create('Ext.selection.CheckboxModel',{
-            checkOnly: true
-        });
-        sm.suspendEvents();
+
         this.resultGrid = Ext.create('lph.tools.searchengine.output.ResultGrid',{
             region	    : 'center',
             store       : this._getStore(),
-            selModel    : sm,
             hierarchy   : this.hierarchy,
             features	: [
                 groupingFeature,
@@ -61,7 +57,7 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
     },
 
     bind: function(){
-        this.hierarchy.addListener('checkchange', this.resultGrid.filter, this.resultGrid);
+        this.hierarchy.addListener('filterchange', this.resultGrid.filter, this.resultGrid);
     },
 
     executeQuery : function(params){
@@ -82,6 +78,7 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
         })
         if(this.fireEvent('beforeload')!==false){
             this.resultGrid._refresh();
+            //this.resultGrid.getStore().removeAll(true);
             this.resultGrid.getStore().loadRawData(res);
             this.fireEvent('load');
         }
@@ -113,6 +110,7 @@ Ext.define('MS1SearchEngineResultModel', {
         { name: 'faCarbons', type: 'int' },
         { name: 'faDoubleBonds', type: 'int' },
         { name: 'resMass', type: 'float' },
+        { name: 'adductIon', type: 'string' },
         { name: 'delta', type: 'float'},
         { name: 'code', type: 'string' },
         { name: 'type', type: 'string' }

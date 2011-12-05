@@ -13,6 +13,7 @@ package uk.ac.ebi.lipidhome.core.dao.impl;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import uk.ac.ebi.lipidhome.core.dao.SpecieDao;
+import uk.ac.ebi.lipidhome.core.model.AdductIons;
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.Specie;
@@ -169,7 +170,7 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 	public List<Paper> getPapersList(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return jdbcTemplate.query(
-				"SELECT p.*, GROUP_CONCAT( distinct m.name SEPARATOR ', ' ) as mesh_terms, GROUP_CONCAT( distinct a.name SEPARATOR ', ' ) as authors " +   
+				"SELECT p.*, GROUP_CONCAT( distinct m.name SEPARATOR ', ' ) as mesh_terms, GROUP_CONCAT( distinct a.name SEPARATOR ', ' ) as authors " +
 				"FROM species_has_paper as h, mesh_term as m, paper_has_mesh_term as hm, paper as p, author as a, paper_has_author as ha " +
 				"WHERE ha.l_author_id = a.author_id and ha.l_paper_id = p.paper_id and hm.l_paper_id = p.paper_id and hm.l_mesh_term_id = m.mesh_term_id and p.paper_id = h.l_paper_id and h.l_species_id = ? group by p.paper_id;",
 				new Object[] { id }, new PaperMapper());
@@ -192,26 +193,27 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 	}
 
     @Override
-    public List<MS1SearchRowResult> getMS1SearchResult(float mass, float tolerance, boolean identified) {
+    public List<MS1SearchRowResult> getMS1SearchResult(float mass, AdductIons adductIon, float tolerance, boolean identified) {
+        double inferredMass = mass - adductIon.getMass();
         JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
         if(identified)
             return jdbcTemplate.query(
-                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass as res_mass, c.formula, sc.code, 'specie' as type " +
+                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
                     "FROM species as s, composition as c, sub_class as sc " +
                     "WHERE s.l_composition_id = c.composition_id " +
                     "AND s.l_sub_class_id = sc.sub_class_id " +
                     "AND s.identified = TRUE " +
                     "AND c.mass <= ? + ? " +
                     "AND c.mass >= ? - ?;",
-                    new Object[] { mass, mass, tolerance, mass, tolerance }, new MS1SearchRowResultMapper());
+                    new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
         else
             return jdbcTemplate.query(
-                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass as res_mass, c.formula, sc.code, 'specie' as type " +
+                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
                     "FROM species as s, composition as c, sub_class as sc " +
                     "WHERE s.l_composition_id = c.composition_id " +
                     "AND s.l_sub_class_id = sc.sub_class_id " +
                     "AND c.mass <= ? + ? " +
                     "AND c.mass >= ? - ?;",
-                    new Object[] { mass, mass, tolerance, mass, tolerance }, new MS1SearchRowResultMapper());
+                    new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
     }
 }

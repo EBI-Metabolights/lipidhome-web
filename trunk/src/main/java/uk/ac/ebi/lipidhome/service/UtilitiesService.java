@@ -24,4 +24,8 @@ public abstract interface UtilitiesService {
 	@GET
     @Path( "/pathto" )
     Response getPathsTo( @QueryParam("itemId") Long itemId, @QueryParam("name") String name, @QueryParam("identified") Boolean identified, @QueryParam("type") String type);
+
+    @GET
+    @Path("/adductions")
+    Response getAdductIons();
 }
