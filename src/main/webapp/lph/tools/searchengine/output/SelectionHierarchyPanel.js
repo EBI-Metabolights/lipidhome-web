@@ -15,6 +15,10 @@ Ext.define('lph.tools.searchengine.output.SelectionHierarchyPanel', {
     	this.callParent(arguments);
         this.initConfig(config);
 
+        this.addEvents({
+            filterchange : true
+        });
+
         this._loadNode(this.getStore().getRootNode());
 
         this.bind();
@@ -63,9 +67,12 @@ Ext.define('lph.tools.searchengine.output.SelectionHierarchyPanel', {
     },
 
     _checkChange: function(node, checked, opts){
+        this.suspendEvents();
         node.cascadeBy(function(n){
             n.set('checked', checked);
         });
+        this.resumeEvents();
+        this.fireEvent('filterchange', node, checked, opts);
     },
 
     /*

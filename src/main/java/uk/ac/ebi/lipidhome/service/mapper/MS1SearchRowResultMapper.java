@@ -19,6 +19,7 @@ public class MS1SearchRowResultMapper implements RowMapper {
         row.setIdentified(rs.getBoolean("identified"));
         row.setMass(rs.getFloat("mass"));
         row.setResMass(rs.getFloat("res_mass"));
+        row.setAdductIon(rs.getString("adductIon"));
         row.setType(rs.getString("type"));
         return row;
     }

@@ -13,7 +13,9 @@ import uk.ac.ebi.lipidhome.core.model.*;
 import uk.ac.ebi.lipidhome.service.UtilitiesService;
 import uk.ac.ebi.lipidhome.service.result.ListConverter;
 import uk.ac.ebi.lipidhome.service.result.Result;
+import uk.ac.ebi.lipidhome.service.result.model.AdductIonItem;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
+import uk.ac.ebi.lipidhome.service.result.model.ResultObjectList;
 import uk.ac.ebi.lipidhome.service.util.HierarchyNode;
 
 import javax.ws.rs.core.Response;
@@ -181,11 +183,23 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
 			break;
 			
 		default:
-			//throw exception JOE
+			//throw exception
 		}
 		
 		Result result = new Result(tree.toFlatLists());
 		return result2Response(result);
 	}
 
+    @Override
+    public Response getAdductIons() {
+        List<AdductIonItem> list = new ArrayList<AdductIonItem>();
+        for (AdductIons adductIon : AdductIons.values()) {
+            AdductIonItem aii = new AdductIonItem(adductIon.getItemId(), adductIon.getName(), adductIon.getMass());
+            list.add(aii);
+        }
+
+        ListConverter<AdductIonItem> converter = new ListConverter<AdductIonItem>();
+        ResultObjectList adductIonsList = converter.getLipidObjectList(list);
+        return result2Response(new Result(adductIonsList));
+    }
 }

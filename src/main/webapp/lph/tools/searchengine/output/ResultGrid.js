@@ -12,12 +12,17 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
             id      : 'resultgrid-csv-button',
             text    : 'CSV',
             format  : 'csv',
-            //iconCls : 'add16',
+            iconCls : 'csv-export-16',
+        },{
+            id      : 'resultgrid-tsv-button',
+            text    : 'TSV',
+            format  : 'tsv',
+            iconCls : 'tsv-export-16',
         },{
             id      : 'resultgrid-excel-button',
             text    : 'MS Excel',
             format  : 'excel',
-            //iconCls : 'add16',
+            iconCls : 'excel-export-16',
         },/*{
             id      : 'grid-mztab-button',
             text    : 'MZ-Tab',
@@ -27,12 +32,12 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
             id      : 'resultgrid-xml-button',
             text    : 'XML',
             format  : 'xml',
-            //iconCls: 'add16',
+            iconCls : 'xml-export-16',
         },{
             id      : 'resultgrid-json-button',
             text    : 'JSon',
             format  : 'json',
-            //iconCls: 'add16',
+            iconCls : 'json-export-16',
         }]
     }],
 
@@ -52,11 +57,12 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
         },
         { header: 'Code', dataIndex: 'code', groupable: false},
         { header: 'Name', dataIndex: 'name', flex: 1, filter: {type: 'string' }, groupable: false},
+        { header: 'Mass', dataIndex: 'resMass', filter: {type: 'float' }, groupable: false},
+        { header: 'Delta', dataIndex: 'delta', filter: {type: 'float' }, groupable: false},
+        { header: 'Adduct Ion', dataIndex: 'adductIon', filter: {type: 'string' }, groupable: false},
         { header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean' }, groupable: false},
         { header: 'FA Carbons', dataIndex: 'faCarbons', filter: {type: 'int' }, groupable: false},
-        { header: 'FA Double Bonds', dataIndex: 'faDoubleBonds', filter: {type: 'int' }, groupable: false},
-        { header: 'Mass', dataIndex: 'resMass', filter: {type: 'float' }, groupable: false},
-        { header: 'Delta', dataIndex: 'delta', filter: {type: 'float' }, groupable: false}
+        { header: 'FA Double Bonds', dataIndex: 'faDoubleBonds', filter: {type: 'int' }, groupable: false}
     ],
 
     constructor: function(config) {
@@ -79,6 +85,7 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
 
         //Binding all the export buttons to
         Ext.getCmp('resultgrid-csv-button').addListener('click', this.exportData, this);
+        Ext.getCmp('resultgrid-tsv-button').addListener('click', this.exportData, this);
         Ext.getCmp('resultgrid-excel-button').addListener('click', this.exportData, this);
         Ext.getCmp('resultgrid-xml-button').addListener('click', this.exportData, this);
         Ext.getCmp('resultgrid-json-button').addListener('click', this.exportData, this);
@@ -87,9 +94,9 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
     },
 
     _onFilterUpdate: function(store, opts){
-        store.suspendEvents();
+        this.getStore().suspendEvents()
         this.filter();
-        store.resumeEvents();
+        this.getStore().resumeEvents()
     },
 
     filter: function(node, checked, opts){

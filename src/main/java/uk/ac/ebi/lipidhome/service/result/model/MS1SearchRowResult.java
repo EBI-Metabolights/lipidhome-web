@@ -7,6 +7,7 @@ public class MS1SearchRowResult extends ResultObject {
     private int faCarbons;
     private int faDoubleBonds;
     private float resMass;
+    private String adductIon;
     private String code;
     private String type;
 
@@ -62,6 +63,14 @@ public class MS1SearchRowResult extends ResultObject {
 
     public void setResMass(float resMass) {
         this.resMass = resMass;
+    }
+
+    public String getAdductIon() {
+        return adductIon;
+    }
+
+    public void setAdductIon(String adductIon) {
+        this.adductIon = adductIon;
     }
 
     public String getCode() {
