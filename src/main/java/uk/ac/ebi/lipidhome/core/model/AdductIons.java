@@ -6,7 +6,7 @@ public enum AdductIons {
     KPlus (38.96370668,"[M+K]+", 3L),
     NaPlus (22.98976928,"[M+Na]+",4L),
     NH4Plus (17.026549096,"[M+NH4]+", 5L),
-    HMinus (1.007825032,"[M-H]-", 6L),
+    HMinus (-1.007825032,"[M-H]-", 6L),
     ClMinus (34.96885268,"[M-Cl]-", 7L),
     BrMinus (78.9183371,"[M-Br]-", 8L);
     //AceMinus (-1.0078250732,"[M-Ace]-", 9L);

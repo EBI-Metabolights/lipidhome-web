@@ -4,11 +4,14 @@
 Ext.define('lph.tools.ToolsPane', {
 	/* Begin Definitions */
     extend		: 'Ext.tab.Panel',
-    
-    title		: 'Tools',
+
+    tabConfig   : {
+        title    : 'Tools',
+        tooltip  : 'A selection of lipidomics tools'
+    },
     iconCls     : 'tools-16',
 	tabPosition	: 'bottom',
-	
+
 	constructor: function(config) {
     	this.callParent(arguments);
         this.initConfig(config);

@@ -43,8 +43,12 @@ Ext.application({
 			id		: 'maintab',
 			items : [{
 				region	: 'north',
-				title	: 'LipidHome v.01',
-				height	: 25
+                frame   : true,
+                border  : false,
+				//title	: 'LipidHome v.01',
+				height	: 68, //98,
+                html    : '<div class="banner"><img src="resources/images/LipidHomeBanner.png" alt="LipidHome" height="60"/></div>'
+
 			},{
 				region      : 'center',
 				xtype       : 'tabpanel',
@@ -57,7 +61,10 @@ Ext.application({
                 autoHeight  : true,
 				activeTab   : 0,
 				items : [ lph.browser, lph.tools, {
-					title	: 'Help',
+                    tabConfig   : {
+                        title    : 'Help',
+                        tooltip  : 'Documentation and help about LipidHome'
+                    },
                     iconCls : 'help-16',
 					html	: 'Help'
 				} ]

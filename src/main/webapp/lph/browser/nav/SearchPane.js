@@ -60,13 +60,14 @@ Ext.define('lph.browser.nav.SearchPane', {
             hideTrigger	 : true,
             flex		 : 1,
             emptyText	 : 'Search...',
+            tooltip      : 'Live search by name, minumum 4 characters',
 			pageSize	 : 10,
 			displayField : 'name',
             listConfig	 : {
-                loadingText: 'Searching...',
-                emptyText: 'No matching lipids found.',
+                loadingText : 'Searching...',
+                emptyText   : 'No matching lipids found.',
                 // Custom rendering template for each item
-                getInnerTpl: function(name) {
+                getInnerTpl : function(name) {
                     return  '<div>' +
                             '   <div class="{type}-{cls}" />' +
                             '   <div class="list-title">Name: {name}</div>' +
@@ -74,12 +75,12 @@ Ext.define('lph.browser.nav.SearchPane', {
                             '</div>';
                 }
             },
-            listeners: {
-            	scope		: this,
-            	'select'	: this.itemSelected
+            listeners   : {
+            	scope	 : this,
+            	'select' : this.itemSelected
             }
         });
-        
+        this.search.addListener('render', this._onItemRender)
         this.container.add(this.search);
                 
         // The data store containing the list of structure hierarchy levels
@@ -105,23 +106,29 @@ Ext.define('lph.browser.nav.SearchPane', {
 		    displayField	: 'name',
 		    valueField		: 'level',
 		    forceSelection	: true,
-		    value			: this.comboStore.getAt(0).get('level')
+		    value			: this.comboStore.getAt(0).get('level'),
+            tooltip         : 'Search by specific level of structure hierarchy or by all'
 		});
+        this.combo.addListener('render', this._onItemRender)
         this.container.add(this.combo);
-        
-        /*this.submit = Ext.create('Ext.Button',{
-        	text : 'S'
-        });
-        this.container.add(this.submit);*/
-        
+
         this.add(this.container);
-        
+
         return this;
     },
     
     itemSelected: function(combo, records, eOpts){
         var record = records[0];
         this.fireEvent('itemSelected', record);
+    },
+
+    _onItemRender: function(c){
+        if(Ext.isEmpty(c.tooltip)) return;
+        Ext.QuickTips.register({
+            target  : c.getEl(),
+            text    : c.tooltip,
+            title   : c.fieldLabel
+        });
     }
 });
 

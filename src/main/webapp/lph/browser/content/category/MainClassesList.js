@@ -10,7 +10,7 @@
  */
 Ext.define('lph.browser.content.category.MainClassesList', {
 	/* Begin Definitions */
-    extend	: 'Ext.grid.Panel',
+    extend	    : 'lph.browser.content.generic.GenericList',
 
     title		: 'Main Class List',
     region		: 'center',
@@ -22,14 +22,7 @@ Ext.define('lph.browser.content.category.MainClassesList', {
 	}],
 	
     columns: [
-        {header: 'Code', dataIndex: 'code', filter: {type: 'string'}},
-        {header: 'Name',  dataIndex: 'name', flex: 1, filter: {type: 'string'}}
-    ],
-    
-    constructor: function(config){
-    	this.callParent(arguments);
-        this.initConfig(config);
-        
-    	return this;
-    }
+        {header: 'Code', dataIndex: 'code', filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature main class code'},
+        {header: 'Name',  dataIndex: 'name', flex: 1, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'}
+    ]
 });

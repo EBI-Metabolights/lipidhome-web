@@ -16,7 +16,10 @@ Ext.define('lph.browser.BrowserPane', {
 	/* Begin Definitions */
     extend	: 'Ext.Panel',
     
-    title	: 'Browser',
+    tabConfig   : {
+        title    : 'Browser',
+        tooltip  : 'The LipidHome database browser'
+    },
     iconCls : 'home-16',
     layout	: 'border',
     

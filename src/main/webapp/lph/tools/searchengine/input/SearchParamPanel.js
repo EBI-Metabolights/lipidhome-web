@@ -22,7 +22,7 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
 		        {'id': 'subSpecie', 'name':'Sub Species'}
 			]
 		});
-        
+
         this.combo = Ext.create('Ext.form.ComboBox', {
         	labelWidth	 : 150,
 		    fieldLabel	 : 'Identification Resolution',
@@ -31,8 +31,10 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
 		    displayField : 'name',
 		    valueField	 : 'id',
             allowBlank   : false,
+            tooltip      : 'The Structural resolution of results'
 		});
         this.combo.select(this.combo.getStore().data.items[0]);
+        this.combo.addListener('render', this._onItemRender);
         this.add(this.combo);
 
         Ext.form.VTypes['toleranceVal'] = /^(\d+(\.\d+)?)$/;
@@ -42,19 +44,24 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
         };
 
 		this.tolerance = Ext.create('Ext.form.field.Number', {
-			fieldLabel	: 'Tolerance',
+            labelWidth	: 150,
+			fieldLabel	: 'Mass Tolerance (Da)',
 			value		: 0.2,
 			step		: 0.1,
             minValue    : 0,
             allowBlank  : false,
-            vtype       : 'tolerance'
+            vtype       : 'tolerance',
+            tooltip     : 'The mass tolerance applied to search masses'
 		});
+        this.tolerance.addListener('render', this._onItemRender);
         this.add(this.tolerance);
 		
 		this.identified = Ext.create('Ext.form.field.Checkbox',{
 			boxLabel		: 'Identified',
-			boxLabelAlign	: 'before'
+			boxLabelAlign	: 'before',
+            tooltip         : 'Return only identifed records'
 		})
+        this.identified.addListener('render', this._onItemRender);
         this.add(this.identified);
 
         return this;
@@ -70,6 +77,16 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
             'tolerance'  : this.tolerance.getValue(),
             'identified' : this.identified.getValue()
         };
+    },
+
+    _onItemRender: function(c){
+        if(Ext.isEmpty(c.tooltip)) return;
+        var title = !Ext.isEmpty(c.fieldLabel) ? c.fieldLabel : c.boxLabel;
+        Ext.QuickTips.register({
+            target  : c.getEl(),
+            text    : c.tooltip,
+            title   : title
+        });
     }
 });
 
