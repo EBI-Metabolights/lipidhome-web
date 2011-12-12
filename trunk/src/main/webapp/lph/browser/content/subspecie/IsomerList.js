@@ -10,7 +10,7 @@
  */
 Ext.define('lph.browser.content.subspecie.IsomerList', {
 	/* Begin Definitions */
-    extend	: 'Ext.grid.Panel',
+    extend	    : 'lph.browser.content.generic.GenericList',
 
     title		: 'Isomer List',
     region		: 'center',
@@ -22,15 +22,8 @@ Ext.define('lph.browser.content.subspecie.IsomerList', {
 	}],
 	
     columns: [
-        {header: 'Name',  dataIndex: 'name', width:150, filter: {type: 'string'}},
-        {header: 'Systematic name', dataIndex: 'systematicName', flex:1, filter: {type: 'string'}},
-        {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}}
-    ],
-    
-    constructor: function(config){
-    	this.callParent(arguments);
-        this.initConfig(config);
-       
-    	return this;
-    }
+        {header: 'Name',  dataIndex: 'name', width:150, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'},
+        {header: 'Systematic name', dataIndex: 'systematicName', flex:1, filter: {type: 'string'}, tooltip: 'Systematic name'},
+        {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}, tooltip: 'Identified in a paper/external resource'}
+    ]
 });

@@ -20,7 +20,11 @@ Ext.define('lph.browser.content.mainclass.MainClassPane', {
     	this.callParent(arguments);
         this.initConfig(config);
         
-        this.infoPanel = Ext.create('lph.browser.content.mainclass.InfoPanel');
+        this.infoPanel = Ext.create('lph.browser.content.mainclass.InfoPanel',{
+            tabConfig : {
+                tooltip  : 'General information about the main class ' + config.elem.get('text')
+            }
+        });
         
         config.model = 'MainSummaryModel';
         this.details = Ext.create('lph.browser.content.generic.DetailsPane', config);

@@ -57,6 +57,11 @@
     /*background: url(../images/icons.png) no-repeat 0 -40px;*/
 }
 
+.banner {
+    background-image:url('../images/BannerBackground.png');
+    background-size: 58px;
+}
+
 .list-icon {
     position: absolute;
     float: left;

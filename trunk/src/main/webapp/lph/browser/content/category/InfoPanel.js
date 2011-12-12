@@ -13,17 +13,17 @@
 Ext.define('lph.browser.content.category.InfoPanel', {
 	/* Begin Definitions */
     extend	: 'lph.browser.content.generic.InfoPanel',
-    
-    title	: 'Category info',
+
+    title   : 'Category info',
     layout	: 'border',
     border	: false,
         
     constructor : function(config){
-    	this.callParent(arguments);
+        this.callParent(arguments);
         this.initConfig(config);
-        
+
         var lm = new Ext.LoadMask('loading', {msg: 'Loading...'});
-        
+
         this.content = Ext.create('Ext.form.Panel',{
         	region		: 'west',
         	border		: false,

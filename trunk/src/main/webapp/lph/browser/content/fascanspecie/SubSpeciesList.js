@@ -11,7 +11,7 @@
 
 Ext.define('lph.browser.content.fascanspecie.SubSpeciesList', {
 	/* Begin Definitions */
-    extend	: 'Ext.grid.Panel',
+    extend	    : 'lph.browser.content.generic.GenericList',
 
     title		: 'Sub Species List',
     region		: 'center',
@@ -23,15 +23,8 @@ Ext.define('lph.browser.content.fascanspecie.SubSpeciesList', {
 	}],
 	
     columns: [
-        {header: 'Name',  dataIndex: 'name', flex:1, filter: {type: 'string'}},
-        {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}},
-        {header: 'Score', dataIndex: 'score', filter: {type: 'numeric'}}
-    ],
-    
-    constructor: function(config){
-    	this.callParent(arguments);
-        this.initConfig(config);
-       
-    	return this;
-    }
+        {header: 'Name',  dataIndex: 'name', flex:1, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'},
+        {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}, tooltip: 'Identified in a paper/external resource'},
+        {header: 'Score', dataIndex: 'score', filter: {type: 'numeric'}, tooltip: 'Score based upon identified parents and components'}
+    ]
 });

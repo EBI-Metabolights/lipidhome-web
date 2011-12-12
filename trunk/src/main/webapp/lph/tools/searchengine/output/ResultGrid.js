@@ -1,6 +1,6 @@
 Ext.define('lph.tools.searchengine.output.ResultGrid', {
 	/* Begin Definitions */
-    extend	: 'Ext.grid.Panel',
+    extend	: 'lph.tools.generic.ResultGrid',
 
     region      : 'center',
 
@@ -55,14 +55,14 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
                 }
             }]
         },
-        { header: 'Code', dataIndex: 'code', groupable: false},
-        { header: 'Name', dataIndex: 'name', flex: 1, filter: {type: 'string' }, groupable: false},
-        { header: 'Mass', dataIndex: 'resMass', filter: {type: 'float' }, groupable: false},
-        { header: 'Delta', dataIndex: 'delta', filter: {type: 'float' }, groupable: false},
-        { header: 'Adduct Ion', dataIndex: 'adductIon', filter: {type: 'string' }, groupable: false},
-        { header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean' }, groupable: false},
-        { header: 'FA Carbons', dataIndex: 'faCarbons', filter: {type: 'int' }, groupable: false},
-        { header: 'FA Double Bonds', dataIndex: 'faDoubleBonds', filter: {type: 'int' }, groupable: false}
+        { header: 'Code', dataIndex: 'code', groupable: false, tooltip:'Sub class code'},
+        { header: 'Name', dataIndex: 'name', flex: 1, filter: {type: 'string' }, groupable: false, tooltip:'LipidomicNet nomenclature name'},
+        { header: 'Mass', dataIndex: 'resMass', filter: {type: 'float' }, groupable: false, tooltip:'Exact adduct ion mass'},
+        { header: 'Delta', dataIndex: 'delta', filter: {type: 'float' }, groupable: false, tooltip:'Search mass - Hit Mass'},
+        { header: 'Adduct Ion', dataIndex: 'adductIon', filter: {type: 'string' }, groupable: false, tooltip:'Adduct ion code'},
+        { header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean' }, groupable: false, tooltip:'Identified in a paper/external resource'},
+        { header: 'FA Carbons', dataIndex: 'faCarbons', filter: {type: 'int' }, groupable: false, tooltip:'Total number of carbons in combined fatty acids'},
+        { header: 'FA Double Bonds', dataIndex: 'faDoubleBonds', filter: {type: 'int' }, groupable: false, tooltip:'Total number of double bonds in combined fatty acids'}
     ],
 
     constructor: function(config) {

@@ -18,8 +18,12 @@ Ext.define('lph.browser.content.category.CategoryPane', {
     constructor: function(config){
     	this.callParent(arguments);
         this.initConfig(config);
-        
-        this.infoPanel = Ext.create('lph.browser.content.category.InfoPanel');
+
+        this.infoPanel = Ext.create('lph.browser.content.category.InfoPanel',{
+            tabConfig : {
+                tooltip  : 'General information about the category ' + config.elem.get('text')
+            }
+        });
         
         config.model = 'CategorySummaryModel';
         this.details = Ext.create('lph.browser.content.generic.DetailsPane', config);

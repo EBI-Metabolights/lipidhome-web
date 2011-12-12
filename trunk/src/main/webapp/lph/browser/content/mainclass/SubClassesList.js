@@ -10,7 +10,7 @@
  */
 Ext.define('lph.browser.content.mainclass.SubClassesList', {
 	/* Begin Definitions */
-    extend	: 'Ext.grid.Panel',
+    extend	    : 'lph.browser.content.generic.GenericList',
 
     title		: 'Sub Class List',
     region		: 'center',
@@ -22,15 +22,8 @@ Ext.define('lph.browser.content.mainclass.SubClassesList', {
 	}],
 	
     columns: [
-        {header: 'Code', dataIndex: 'code', filter: {type: 'string'}},
-        {header: 'Name',  dataIndex: 'name', flex:1, filter: {type: 'string'}},
-        {header: 'Radyl Chains', dataIndex: 'radylChains', filter: {type: 'numeric'}}
-    ],
-    
-    constructor: function(config){
-    	this.callParent(arguments);
-        this.initConfig(config);
-       
-    	return this;
-    }
+        {header: 'Code', dataIndex: 'code', filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature main class code'},
+        {header: 'Name',  dataIndex: 'name', flex:1, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'},
+        {header: 'Radyl Chains', dataIndex: 'radylChains', filter: {type: 'numeric'}, tooltip: 'Number of radyl chains attached to the sub class'}
+    ]
 });

@@ -19,10 +19,23 @@ Ext.define('lph.browser.content.fascanspecie.FAScanSpeciePane', {
     constructor: function(config){
     	this.callParent(arguments);
         this.initConfig(config);
-        
-        this.infoPanel = Ext.create('lph.browser.content.fascanspecie.InfoPanel');
-        this.xrefPanel = Ext.create('lph.browser.content.generic.CrossReferencesPanel');
+
+        var text = config.elem.get('text');
+
+        this.infoPanel = Ext.create('lph.browser.content.fascanspecie.InfoPanel',{
+            tabConfig : {
+                tooltip  : 'General information about the fatty acid scan specie ' + text
+            }
+        });
+        this.xrefPanel = Ext.create('lph.browser.content.generic.CrossReferencesPanel',{
+            tabConfig : {
+                tooltip  : 'External datasources with information about the fatty acid scan specie ' + text
+            }
+        });
         this.papersPanel = Ext.create('lph.browser.content.generic.PapersPanel',{
+            tabConfig : {
+                tooltip  : 'Papers in which the fatty acid scan specie ' + text + ' is mentioned in the abstract'
+            },
         	store : Ext.create('Ext.data.ArrayStore', {model: 'Paper'})
         });
         

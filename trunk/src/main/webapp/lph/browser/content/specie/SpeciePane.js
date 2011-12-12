@@ -19,10 +19,23 @@ Ext.define('lph.browser.content.specie.SpeciePane', {
     constructor: function(config){
     	this.callParent(arguments);
         this.initConfig(config);
-        
-        this.infoPanel = Ext.create('lph.browser.content.specie.InfoPanel');
-        this.xrefPanel = Ext.create('lph.browser.content.generic.CrossReferencesPanel');
+
+        var text = config.elem.get('text');
+
+        this.infoPanel = Ext.create('lph.browser.content.specie.InfoPanel',{
+            tabConfig : {
+                tooltip  : 'General information about tne specie ' + text
+            }
+        });
+        this.xrefPanel = Ext.create('lph.browser.content.generic.CrossReferencesPanel', {
+            tabConfig : {
+                tooltip  : 'External datasources with information about the specie ' + text
+            }
+        });
         this.papersPanel = Ext.create('lph.browser.content.generic.PapersPanel',{
+            tabConfig : {
+                tooltip  : 'Papers in which the specie ' + text + ' is mentioned in the abstract'
+            },
         	store : Ext.create('Ext.data.ArrayStore', {model: 'Paper'})
         });
         
