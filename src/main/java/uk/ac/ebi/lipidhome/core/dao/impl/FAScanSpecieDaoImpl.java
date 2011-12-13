@@ -15,12 +15,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 import uk.ac.ebi.lipidhome.core.dao.FAScanSpecieDao;
-import uk.ac.ebi.lipidhome.core.model.CrossReference;
-import uk.ac.ebi.lipidhome.core.model.FAScanChain;
-import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
-import uk.ac.ebi.lipidhome.core.model.Paper;
+import uk.ac.ebi.lipidhome.core.model.*;
 import uk.ac.ebi.lipidhome.service.mapper.*;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
+import uk.ac.ebi.lipidhome.service.result.model.MS1SearchRowResult;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSubSpecie;
 
 import java.util.ArrayList;
@@ -63,6 +61,7 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<BaseSearchItem> getFAScanSpecieByNameLike(String name) {
         name = "%%" + name + "%%";
@@ -204,5 +203,33 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				"WHERE h.l_sub_species_id = ss.sub_species_id and h.l_FA_scan_species_id = ?;",
 				new Object[] { id }, new SimpleSubSpecieMapper());
 	}
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<MS1SearchRowResult> getMS1SearchResult(float mass, AdductIons adductIon, float tolerance, boolean identified) {
+        double inferredMass = mass - adductIon.getMass();
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+        if(identified)
+            return jdbcTemplate.query(
+                    "SELECT  f.FA_scan_species_id as itemId, f.name, f.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
+                    "FROM FA_scan_species as f, species as s, composition as c, sub_class as sc " +
+                    "WHERE f.l_species_id = s.species_id " +
+                    "AND s.l_composition_id = c.composition_id " +
+                    "AND s.l_sub_class_id = sc.sub_class_id " +
+                    "AND f.identified = TRUE " +
+                    "AND c.mass <= ? + ? " +
+                    "AND c.mass >= ? - ?;",
+                    new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
+        else
+            return jdbcTemplate.query(
+                    "SELECT  f.FA_scan_species_id as itemId, f.name, f.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
+                    "FROM FA_scan_species as f, species as s, composition as c, sub_class as sc " +
+                    "WHERE f.l_species_id = s.species_id " +
+                    "AND s.l_composition_id = c.composition_id " +
+                    "AND s.l_sub_class_id = sc.sub_class_id " +
+                    "AND c.mass <= ? + ? " +
+                    "AND c.mass >= ? - ?;",
+                    new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
+    }
 
 }

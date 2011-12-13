@@ -5,7 +5,7 @@ Ext.define('lph.tools.searchengine.SearchEnginePane', {
 	/* Begin Definitions */
     extend	: 'Ext.Panel',
     
-    title	: 'Search engine',
+    title	: 'MS1 Search engine',
     iconCls : 'ms1-search-engine-16',
     layout  : 'border',
     
@@ -27,6 +27,7 @@ Ext.define('lph.tools.searchengine.SearchEnginePane', {
         
         
         this.output = Ext.create('lph.tools.searchengine.output.OutputPane');
+
 	    accordion.add(this.output);
 
         this.add(accordion);
@@ -67,6 +68,7 @@ Ext.define('lph.tools.searchengine.SearchEnginePane', {
     },
 
     expandOutput: function(){
+        this.output.setDisabled(false);
         this.output.expand();
     },
 

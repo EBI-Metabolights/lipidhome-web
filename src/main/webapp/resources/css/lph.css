@@ -58,8 +58,27 @@
 }
 
 .banner {
-    background-image:url('../images/BannerBackground.png');
-    background-size: 58px;
+    float: left;
+    width: 100%;
+    background-color: #b9d0ee; /* fallback flat color */
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b9d0ee), to(#d8e6f6) ); /* for Chrome + Safari */
+    background-image: -moz-linear-gradient(  top, #b9d0ee, #d8e6f6); /* for Firefox */
+}
+
+.banner-text {
+    padding: 15px;
+    float: right;
+    width:500px;
+    height: 65px;
+
+    text-align:justify;
+    color: blue;
+    font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+	letter-spacing:0.1em;
+	text-transform: lowercase;
+	line-height: 145%;
+	font-size: 10pt;
+	font-variant: small-caps;
 }
 
 .list-icon {

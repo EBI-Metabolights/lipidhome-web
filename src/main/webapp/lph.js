@@ -16,7 +16,13 @@ var tokenDelimiter = '|';
 
 // -- --
 var lph = {
-	ws : 'lphws'
+    name    : 'LipidHome',
+    version : '1.0',
+    phase   : {
+        html : '&beta;eta',
+        text : 'beta'
+    },
+	ws      : 'lphws'
 };
 
 Ext.Loader.setPath('Ext.ux', 'extjs/examples/ux/');
@@ -36,25 +42,26 @@ Ext.application({
 	launch : function() {
 		lph.browser = Ext.create('lph.browser.BrowserPane');
 		lph.tools = Ext.create('lph.tools.ToolsPane');
-		
 
+        var phase = (Ext.isEmpty(lph.phase) || Ext.isEmpty(lph.phase.html)) ? "" : lph.phase.html;
 		var viewport = Ext.create('Ext.container.Viewport', {
 			layout	: "border",
 			id		: 'maintab',
 			items : [{
 				region	: 'north',
-                frame   : true,
+                //padding : 5,
                 border  : false,
-				//title	: 'LipidHome v.01',
-				height	: 68, //98,
-                html    : '<div class="banner"><img src="resources/images/LipidHomeBanner.png" alt="LipidHome" height="60"/></div>'
+                html    : '<div class="banner">' +
+                            '<div style="float: left; margin-left: 15px;"><img src="resources/images/LipidHomeBanner.png" alt="LipidHome" height="60"/></div>' +
+                            '<div style="float: left;"><span style="color: #990000"><b>v'+ lph.version +'</b> ' + phase + '</span></div>' +
+                            '<div class="banner-text">' +
+                                '<b>LipidHome</b> is a portal of lipidomics knowledge, encompassing a structure browser, tools and accessible web services.' +
+                            '</div>' +
+                          '</div>'
 
 			},{
 				region      : 'center',
 				xtype       : 'tabpanel',
-                /*tabBar      : {
-                    height    : 40,
-                },*/
                 minTabWidth : 80,
                 tabWidth    : 95,
                 autoWidth   : true,
@@ -77,6 +84,12 @@ Ext.application({
 
 Ext.onReady(function() {
 	Ext.QuickTips.init();
+
+    var title = Ext.get("web-title");
+    if(!Ext.isEmpty(title)){
+        var phase = (Ext.isEmpty(lph.phase) || Ext.isEmpty(lph.phase.html)) ? "" : "(" + lph.phase.html + ")";
+        title.update(lph.name + " :: v" + lph.version + " " + phase );
+    }
 
 	var historyManagement = function(token){
 		/*

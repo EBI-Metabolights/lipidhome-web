@@ -14,28 +14,17 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
     	this.callParent(arguments);
         this.initConfig(config);
 
-        this.resolution = Ext.create('Ext.data.Store', {
-		    model: "ResolutionLevel",
-		    data : [
-		        {'id': 'specie', 'name':'Species'},
-		        {'id': 'faScanSpecie', 'name':'FA Scan Species'},
-		        {'id': 'subSpecie', 'name':'Sub Species'}
-			]
-		});
-
-        this.combo = Ext.create('Ext.form.ComboBox', {
+        this.level= Ext.create('Ext.form.TextField', {
         	labelWidth	 : 150,
 		    fieldLabel	 : 'Identification Resolution',
-		    store		 : this.resolution,
-		    queryMode	 : 'local',
 		    displayField : 'name',
-		    valueField	 : 'id',
+            value        : 'Specie',
+            readOnly     : true,
             allowBlank   : false,
             tooltip      : 'The Structural resolution of results'
 		});
-        this.combo.select(this.combo.getStore().data.items[0]);
-        this.combo.addListener('render', this._onItemRender);
-        this.add(this.combo);
+        this.level.addListener('render', this._onItemRender);
+        this.add(this.level);
 
         Ext.form.VTypes['toleranceVal'] = /^(\d+(\.\d+)?)$/;
         Ext.form.VTypes['toleranceText'] = "Mass tolerance must be greater than or equal to zero.";
@@ -68,12 +57,12 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
     },
 
     validate: function(){
-        return (this.combo.validate() && this.tolerance.validate());
+        return (this.level.validate() && this.tolerance.validate());
     },
 
     getData: function(){
         return {
-            'level'      : this.combo.getValue(),
+            'level'      : this.level.getValue().toLowerCase(),
             'tolerance'  : this.tolerance.getValue(),
             'identified' : this.identified.getValue()
         };
@@ -89,8 +78,3 @@ Ext.define('lph.tools.searchengine.input.SearchParamPanel', {
         });
     }
 });
-
-Ext.define("ResolutionLevel",{
-    extend: 'Ext.data.Model',
-    fields: ['id', 'name'],
-})

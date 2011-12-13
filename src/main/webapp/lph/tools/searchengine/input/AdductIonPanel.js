@@ -15,6 +15,19 @@ Ext.define('lph.tools.searchengine.input.AdductIonPanel', {
     	this.callParent(arguments);
         this.initConfig(config);
 
+        this.checkboxgroup = Ext.create('Ext.form.CheckboxGroup',{
+            anchor      : '100%',
+            fieldLabel  : 'Select ions',
+            tooltip     : 'Addcuts to be applied to database records',
+            allowBlank  : false,
+            msgTarget   : 'side',
+            columns     : 2,
+            vertical    : true,
+            //items       : items
+        });
+        this.checkboxgroup.addListener('render', this._onItemRender, this);
+        this.add(this.checkboxgroup);
+
         Ext.Ajax.request({
             url     : 'service/utils/adductions',
             success : this.createAdductIonItems,
@@ -38,18 +51,7 @@ Ext.define('lph.tools.searchengine.input.AdductIonPanel', {
             })
         }, this);
 
-        this.checkboxgroup = Ext.create('Ext.form.CheckboxGroup',{
-            anchor      : '100%',
-            fieldLabel  : 'Select ions',
-            tooltip     : 'Addcuts to be applied to database records',
-            allowBlank  : false,
-            msgTarget   : 'side',
-            columns     : 2,
-            vertical    : true,
-            items       : items
-        });
-        this.checkboxgroup.addListener('render', this._onItemRender, this);
-        this.add(this.checkboxgroup);
+        this.checkboxgroup.add(items);
     },
 
     validate: function(){
@@ -67,10 +69,14 @@ Ext.define('lph.tools.searchengine.input.AdductIonPanel', {
 
     _onItemRender: function(c){
         if(Ext.isEmpty(c.tooltip)) return;
+
+        var target = !Ext.isEmpty(c.labelEl) ? c.labelEl : c.getEl();
+        var text = c.tooltip;
         var title = !Ext.isEmpty(c.fieldLabel) ? c.fieldLabel : c.boxLabel;
+
         Ext.QuickTips.register({
-            target  : c.getEl(),
-            text    : c.tooltip,
+            target  : target,
+            text    : text,
             title   : title
         });
     }
