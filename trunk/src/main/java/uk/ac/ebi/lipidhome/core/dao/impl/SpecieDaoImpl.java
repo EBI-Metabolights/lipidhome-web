@@ -61,6 +61,7 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<BaseSearchItem> getSpecieByNameLike(String name) {
         name = "%%" + name + "%%";
@@ -192,6 +193,7 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 				new Object[] { id }, new SimpleFAScanSpecieMapper());
 	}
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<MS1SearchRowResult> getMS1SearchResult(float mass, AdductIons adductIon, float tolerance, boolean identified) {
         double inferredMass = mass - adductIon.getMass();

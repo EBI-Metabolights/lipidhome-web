@@ -5,6 +5,7 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
     title	: 'Output',
     iconCls : 'data-output-16',
     layout	: 'border',
+    disabled: true,
 
     constructor: function(config) {
     	this.callParent(arguments);

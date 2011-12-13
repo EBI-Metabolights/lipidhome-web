@@ -26,18 +26,22 @@ Ext.define('lph.browser.content.ContentPane', {
         
         this.manager = Ext.create('lph.browser.content.ContentManager');
         this.contained = null;
-                
+
+        var welcome = Ext.create('lph.browser.content.welcome.WelcomePane');
+        this.addContent(welcome);
+
         return this;
     },
     
     loadContent: function(node, selections, obj){
     	var elem = selections[0];
-    	
-    	if(elem!=undefined){
-	    	var type = elem.data.type;
-	    	var id = elem.data.itemId;
 
-	    	var panel = this.manager.getPanel(type, id, {node: node, elem: elem});
+    	if(elem!=undefined){
+	    	var type = elem.get("type");
+	    	var id = elem.get("itemId");
+            var parentId = elem.parentNode.get("itemId");
+
+	    	var panel = this.manager.getPanel(type, id, parentId, {node: node, elem: elem});
 
 	    	if(!Ext.isEmpty(panel)){
                 this.removeContent();

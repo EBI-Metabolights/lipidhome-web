@@ -21,8 +21,8 @@ Ext.define('lph.browser.content.ContentManager', {
         return this;
     },
     
-    getPanel: function(type, id, params){
-    	var panel = this._getPanel(type, id);
+    getPanel: function(type, id, parentId, params){
+    	var panel = this._getPanel(type, id, parentId);
     	if(!Ext.isEmpty(panel)) return panel;
     	
     	if(type=="category"){
@@ -79,7 +79,7 @@ Ext.define('lph.browser.content.ContentManager', {
 	        //this.fireEvent('newContent', {list : panel.list, path: panel.details.path, type : 'fasSpecie', itemId: id});
     	}
     	
-    	this._addPanel(type, id, panel);
+    	this._addPanel(type, id, parentId, panel);
     	
     	return panel;
     },
@@ -95,21 +95,27 @@ Ext.define('lph.browser.content.ContentManager', {
     	return hash;
     },
     
-    _addPanel: function(type, id, panel){
+    _addPanel: function(type, id, parentId, panel){
     	var hash = this._getOrCreate(type);
-    	if(hash.containsKey(id)){
+    	if(hash.containsKey(id + "-" + parentId)){
     		//console.warn("The panel already exists");
     		//TODO: Thrown an exception
     	}else{
-    		hash.add(id, panel);
+            var paneRef = this._getPanelReference(id, parentId);
+    		hash.add(paneRef, panel);
     	}
     },
     
-    _getPanel: function(type, id){
+    _getPanel: function(type, id, parentId){
     	if(this.typePanes.containsKey(type)){
-    		return this.typePanes.get(type).get(id);
+            var paneRef = this._getPanelReference(id, parentId);
+    		return this.typePanes.get(type).get(paneRef);
     	}else{
     		return undefined;
     	}
+    },
+
+    _getPanelReference: function(id, parentId){
+        return id + "-" + parentId;
     }
 });

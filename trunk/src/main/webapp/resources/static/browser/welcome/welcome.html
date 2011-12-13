@@ -1,0 +1,39 @@
+<div class="welcome">
+    <h1>LipidHome</h1>
+
+    <p>
+        LipidHome is a database of theoretical lipid structures derived from a seed set of lipid sub classes 
+        and some lipid chemical space constraints agreed upon with experts in the field. Lipids are organised 
+        according to a combination of the LIPID MAPS ontology and a recent publication by the LipidomicNet 
+        consortium defining their nomenclature as follows:
+    </p>
+
+    <div style="width: 100%; text-align: center">
+    <img src="resources/images/StructuralHierarchy.png" alt="Structural Hierarchy" title="Structural Hierarchy" height="450px" style="margin: 20px;">
+    </div>
+
+    <p>
+      <ol class="alpha">
+        <li>Category - LIPIDMAPS lipid category
+        <li>Main Class - LIPIDMAPS lipid main class
+        <li>Sub Class - A stratification of main class in which the fatty acid linkages are known, but their sn position is not
+        <li>Specie - Species have the format: Headgroup carbons:double\_bonds, e.g. PC 36:2. Any known non acyl fatty acid linkages are reported like so: Headgroup linkages carbons:double\_bonds, where linkages can be quantified by m,d,t or e and the non acyl linkages themselves can be any of 'a' for alkyl or 'p' for plasmalogen (alkenyl/acyl) e.g. PC da 36:2
+        <li>Fatty acid scan species - Following the same rules as species these identifications differ by knowing the fatty acid constituents, but not the sn position of the fatty acids. Fatty acids with unknown positions are separated by '\_' e.g PC 18:0\_18:2. The same rules for defining linkages apply as for species
+        <li>Sub Specie - With the position of the fatty acids known they are written in sn position order separated by '/' e.g. PC 18:0/18:2. At this resolution non acyl linkages are no longer written as before, the position of the linkages is reported as part of the fatty acid, where the linkages are defined by 'O-' for alkyl and 'P-' for plasmalogen type bond. e.g. PC O-18:0/O-18:2
+        <li>Isomer - Isomers are the highest resolution structure covered by LipidHome, similar to sub species except that double bond positions are defined as comma separated integers within square brackets e.g. PC 18:0/18:2[3,6].
+      </ol>
+    </p>
+
+    <p>
+        Annotations to lipids are also provided where available, including literature references and cross references
+        to other lipid related services. In addition a selection of tools are available to perform common lipidomic
+        research tasks e.g. MS1 search. This tool suite along with the supported lipids in the database will grow in
+        future months.
+    </p>
+
+    <p>
+        This site, the database and the web services that combine the two are currently under development, so please
+        take caution when using it. For any further information, suggestions or questions please contact
+        <a href="mailto:jfoster@ebi.ac.uk">Joe Foster</a>
+    </p>
+</div>

@@ -4,8 +4,10 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import uk.ac.ebi.lipidhome.core.dao.FAScanSpecieDao;
 import uk.ac.ebi.lipidhome.core.dao.SpecieDao;
 import uk.ac.ebi.lipidhome.core.model.AdductIons;
+import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
 import uk.ac.ebi.lipidhome.core.model.LipidType;
 import uk.ac.ebi.lipidhome.core.model.Specie;
 import uk.ac.ebi.lipidhome.service.ToolsService;
@@ -43,6 +45,14 @@ public class ToolsServiceImpl extends LipidService implements ToolsService {
 
         List<MS1SearchRowResult> rows = new ArrayList<MS1SearchRowResult>();
         switch (type) {
+            case FA_SCAN_SPECIE:
+                FAScanSpecieDao<FAScanSpecie> faScanSpecieDao = getDaoFactory().getFAScanSpecieDao();
+                for (Float mass : massList) {
+                    for (AdductIons adductIon : selectedAdductIons) {
+                        rows.addAll(faScanSpecieDao.getMS1SearchResult(mass, adductIon, tolerance, identified));
+                    }
+                }
+                break;
             default:
             case SPECIE:
                 SpecieDao<Specie> specieDao = getDaoFactory().getSpecieDao();

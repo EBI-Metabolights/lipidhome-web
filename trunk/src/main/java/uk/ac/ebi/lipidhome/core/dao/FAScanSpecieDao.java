@@ -10,10 +10,12 @@
  */
 package uk.ac.ebi.lipidhome.core.dao;
 
+import uk.ac.ebi.lipidhome.core.model.AdductIons;
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
+import uk.ac.ebi.lipidhome.service.result.model.MS1SearchRowResult;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSubSpecie;
 
 import java.util.List;
@@ -41,4 +43,6 @@ public interface FAScanSpecieDao<T> extends BaseDao<FAScanSpecie> {
 	List<Paper> getPapersList(Long id);
 	
 	List<SimpleSubSpecie> getSimpleSubSpeciesList(Long id);
+
+    List<MS1SearchRowResult> getMS1SearchResult(float mass, AdductIons adductIon, float tolerance, boolean identified);
 }

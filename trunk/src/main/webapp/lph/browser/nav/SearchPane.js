@@ -17,7 +17,7 @@ Ext.define('lph.browser.nav.SearchPane', {
     
     region	: 'north',
     layout	: 'fit',
-    height 	: 35,
+    height 	: 40,
     margins	: '5 5 5 5',
     frame	: true,
     border	: false,
@@ -34,7 +34,9 @@ Ext.define('lph.browser.nav.SearchPane', {
         	layout	: 'hbox',
         	border	: false,
 	        defaults: {
-	            hideLabel: true
+	            hideLabel   : true,
+                border      : false,
+                margins     : '3 0 3 0'
 	        }
         });
         
@@ -58,6 +60,7 @@ Ext.define('lph.browser.nav.SearchPane', {
             typeAhead	 : false,
             hideLabel	 : true,
             hideTrigger	 : true,
+            //triggerAction: 'all',
             flex		 : 1,
             emptyText	 : 'Search...',
             tooltip      : 'Live search by name, minumum 4 characters',
