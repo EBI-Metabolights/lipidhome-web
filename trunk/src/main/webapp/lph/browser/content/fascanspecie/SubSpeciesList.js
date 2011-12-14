@@ -23,6 +23,19 @@ Ext.define('lph.browser.content.fascanspecie.SubSpeciesList', {
 	}],
 	
     columns: [
+        {
+            xtype       : 'actioncolumn',
+            width       : 20,
+            resizable   : false,
+            hideable    : false,
+            items       : [{
+                getClass : function(v, metadata, record, rowIndex, colIndex, store) {
+                    var type = record.get("type");
+                    var identified = record.get("identified") ? "identified" : "unidentified" ;
+                    return type + "-" + identified;
+                }
+            }]
+        },
         {header: 'Name',  dataIndex: 'name', flex:1, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'},
         {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}, tooltip: 'Identified in a paper/external resource'},
         {header: 'Score', dataIndex: 'score', filter: {type: 'numeric'}, tooltip: 'Score based upon identified parents and components'}

@@ -4,43 +4,6 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
 
     region      : 'center',
 
-    bbar: [{
-        //xtype :'splitbutton',
-        text    : 'Export results...',
-        iconCls : 'export-16',
-        menu: [{
-            id      : 'resultgrid-csv-button',
-            text    : 'CSV',
-            format  : 'csv',
-            iconCls : 'csv-export-16',
-        },{
-            id      : 'resultgrid-tsv-button',
-            text    : 'TSV',
-            format  : 'tsv',
-            iconCls : 'tsv-export-16',
-        },{
-            id      : 'resultgrid-excel-button',
-            text    : 'MS Excel',
-            format  : 'excel',
-            iconCls : 'excel-export-16',
-        },/*{
-            id      : 'grid-mztab-button',
-            text    : 'MZ-Tab',
-            format  : 'mztab',
-            //iconCls: 'add16',
-        },*/{
-            id      : 'resultgrid-xml-button',
-            text    : 'XML',
-            format  : 'xml',
-            iconCls : 'xml-export-16',
-        },{
-            id      : 'resultgrid-json-button',
-            text    : 'JSon',
-            format  : 'json',
-            iconCls : 'json-export-16',
-        }]
-    }],
-
     columns: [
         {
             xtype       : 'actioncolumn',
@@ -66,6 +29,9 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
     ],
 
     constructor: function(config) {
+        var id = this.getId();
+        Ext.apply(config, this._getBBarConfig(id));
+
     	this.callParent(arguments);
         this.initConfig(config);
 
@@ -84,13 +50,56 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
         this.getStore().addListener('datachanged',this._onFilterUpdate, this);
 
         //Binding all the export buttons to
-        Ext.getCmp('resultgrid-csv-button').addListener('click', this.exportData, this);
-        Ext.getCmp('resultgrid-tsv-button').addListener('click', this.exportData, this);
-        Ext.getCmp('resultgrid-excel-button').addListener('click', this.exportData, this);
-        Ext.getCmp('resultgrid-xml-button').addListener('click', this.exportData, this);
-        Ext.getCmp('resultgrid-json-button').addListener('click', this.exportData, this);
+        Ext.getCmp(id + '-csv-button').addListener('click', this.exportData, this);
+        Ext.getCmp(id + '-tsv-button').addListener('click', this.exportData, this);
+        Ext.getCmp(id + '-excel-button').addListener('click', this.exportData, this);
+        Ext.getCmp(id + '-xml-button').addListener('click', this.exportData, this);
+        Ext.getCmp(id + '-json-button').addListener('click', this.exportData, this);
 
         return this;
+    },
+
+    _getBBarConfig: function(id){
+
+        config = {
+            bbar : [{
+                //xtype :'splitbutton',
+                text    : 'Export results...',
+                iconCls : 'export-16',
+                menu: [{
+                    id      : id + '-csv-button',
+                    text    : 'CSV',
+                    format  : 'csv',
+                    iconCls : 'csv-export-16',
+                },{
+                    id      : id + '-tsv-button',
+                    text    : 'TSV',
+                    format  : 'tsv',
+                    iconCls : 'tsv-export-16',
+                },{
+                    id      : id + '-excel-button',
+                    text    : 'MS Excel',
+                    format  : 'excel',
+                    iconCls : 'excel-export-16',
+                },/*{
+                    id      : id + '-mztab-button',
+                    text    : 'MZ-Tab',
+                    format  : 'mztab',
+                    //iconCls: 'add16',
+                },*/{
+                    id      : id + '-xml-button',
+                    text    : 'XML',
+                    format  : 'xml',
+                    iconCls : 'xml-export-16',
+                },{
+                    id      : id + '-json-button',
+                    text    : 'JSon',
+                    format  : 'json',
+                    iconCls : 'json-export-16',
+                }]
+            }]
+        };
+        return config;
     },
 
     _onFilterUpdate: function(store, opts){
@@ -128,7 +137,6 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
         });
 
         Ext.get(this.exportHelperDataID).dom.value = Ext.encode(data);
-        console.info(btn.format);
         Ext.get(this.exportHelperFormatID).dom.value = btn.format;
         Ext.get(this.exportHelperID).dom.submit();
 

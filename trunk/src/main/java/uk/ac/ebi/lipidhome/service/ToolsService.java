@@ -13,6 +13,6 @@ public abstract interface ToolsService {
     @POST
     @Produces("application/xml")
     @Path( "/export" )
-    //Response ms1Export(@QueryParam("data") String data, @QueryParam("format") String format);
     Response ms1Export(@FormParam("data") String data, @FormParam("format") String format);
+
 }

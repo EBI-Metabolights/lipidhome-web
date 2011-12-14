@@ -22,6 +22,18 @@ Ext.define('lph.browser.content.category.MainClassesList', {
 	}],
 	
     columns: [
+        {
+            xtype       : 'actioncolumn',
+            width       : 20,
+            resizable   : false,
+            hideable    : false,
+            items       : [{
+                getClass : function(v, metadata, record, rowIndex, colIndex, store) {
+                    var type = record.get("type");
+                    return type + "-identified";
+                }
+            }]
+        },
         {header: 'Code', dataIndex: 'code', filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature main class code'},
         {header: 'Name',  dataIndex: 'name', flex: 1, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'}
     ]

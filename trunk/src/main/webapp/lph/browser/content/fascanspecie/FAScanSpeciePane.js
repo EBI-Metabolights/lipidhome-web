@@ -104,6 +104,7 @@ Ext.define('SimpleSubSpecie', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'itemId', type: 'int' },
+        { name: 'type',  type : 'string', defaultValue: 'subSpecie'},
         { name: 'name', type: 'string' },
         { name: 'identified', type: 'boolean' },
         { name: 'score', type: 'float' }

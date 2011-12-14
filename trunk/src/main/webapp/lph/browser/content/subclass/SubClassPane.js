@@ -82,6 +82,7 @@ Ext.define('SimpleSpecie', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'itemId', type: 'int' },
+        { name: 'type',  type : 'string', defaultValue: 'specie'},
         { name: 'name', type: 'string' },
         { name: 'identified', type: 'boolean' },
         { name: 'carbons', type: 'int' },

@@ -83,6 +83,7 @@ Ext.define('SimpleSubClass', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'itemId', type: 'int' },
+        { name: 'type',  type : 'string', defaultValue: 'subClass'},
         { name: 'name', type: 'string' },
         { name: 'code', type: 'string' },
         { name: 'radylChains', type: 'int' }
