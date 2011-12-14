@@ -23,7 +23,8 @@ Ext.define('lph.browser.content.subspecie.IsomerList', {
 	
     columns: [
         {header: 'Name',  dataIndex: 'name', width:150, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'},
-        {header: 'Systematic name', dataIndex: 'systematicName', flex:1, filter: {type: 'string'}, tooltip: 'Systematic name'},
-        {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}, tooltip: 'Identified in a paper/external resource'}
+        {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}, tooltip: 'Identified in a paper/external resource'},
+        //{header: 'Systematic name', dataIndex: 'systematicName', flex:1, filter: {type: 'string'}, tooltip: 'Systematic name'},
+        {header: 'Smile', dataIndex: 'smile', flex:1, filter: {type: 'string'}, tooltip: 'Smile molecule representation'}
     ]
 });

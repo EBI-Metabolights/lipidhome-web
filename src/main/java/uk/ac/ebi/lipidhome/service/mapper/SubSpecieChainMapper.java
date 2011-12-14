@@ -4,12 +4,11 @@
  */
 package uk.ac.ebi.lipidhome.service.mapper;
 
+import org.springframework.jdbc.core.RowMapper;
+import uk.ac.ebi.lipidhome.core.model.SubSpecieChain;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.springframework.jdbc.core.RowMapper;
-
-import uk.ac.ebi.lipidhome.core.model.SubSpecieChain;
 
 public class SubSpecieChainMapper implements RowMapper {
 	
@@ -19,6 +18,8 @@ public class SubSpecieChainMapper implements RowMapper {
 		chain.setName(rs.getString("name"));
 		chain.setPosition(rs.getInt("position"));
 		chain.setLinkage(rs.getString("linkage"));
+        chain.setCarbons(rs.getInt("carbons"));
+        chain.setDoubleBonds((rs.getInt("double_bonds")));
 		return chain;
 	}
 

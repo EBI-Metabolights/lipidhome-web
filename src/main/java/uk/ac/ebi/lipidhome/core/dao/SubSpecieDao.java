@@ -13,6 +13,7 @@ package uk.ac.ebi.lipidhome.core.dao;
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.SubSpecie;
+import uk.ac.ebi.lipidhome.core.model.SubSpecieChain;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleIsomer;
 
@@ -32,7 +33,9 @@ public interface SubSpecieDao<T> extends BaseDao<SubSpecie>{
 	
 	int getIsomerCountById(Long id);
 	
-	String getChainById(Long id);
+	String getChainNameById(Long id);
+
+    List<SubSpecieChain> getChainsById(Long id);
 	
 	List<CrossReference> getCrossReferencesList(Long id);
 	

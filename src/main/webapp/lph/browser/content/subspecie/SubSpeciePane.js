@@ -105,7 +105,8 @@ Ext.define('SimpleIsomer', {
     fields: [
         { name: 'itemId', type: 'int' },
         { name: 'name', type: 'string' },
-        { name: 'systematicName', type: 'string' },
+        //{ name: 'systematicName', type: 'string' },
+        { name: 'smile', type: 'string' },
         { name: 'identified', type: 'boolean' }
         
     ]
