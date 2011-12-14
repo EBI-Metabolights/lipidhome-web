@@ -88,6 +88,7 @@ Ext.define('SimpleMainClass', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'itemId', type: 'int' },
+        { name: 'type',  type : 'string', defaultValue: 'mainClass'},
         { name: 'name', type: 'string' },
         { name: 'code', type: 'string' }
     ]

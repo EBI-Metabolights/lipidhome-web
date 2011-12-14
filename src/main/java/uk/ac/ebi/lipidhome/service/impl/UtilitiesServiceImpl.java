@@ -8,6 +8,10 @@
  */
 package uk.ac.ebi.lipidhome.service.impl;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import uk.ac.ebi.lipidhome.core.dao.*;
 import uk.ac.ebi.lipidhome.core.model.*;
 import uk.ac.ebi.lipidhome.service.UtilitiesService;
@@ -17,6 +21,9 @@ import uk.ac.ebi.lipidhome.service.result.model.AdductIonItem;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.ResultObjectList;
 import uk.ac.ebi.lipidhome.service.util.HierarchyNode;
+import uk.ac.ebi.lipidhome.service.util.dataexport.DataContainer;
+import uk.ac.ebi.lipidhome.service.util.dataexport.ExportFormat;
+import uk.ac.ebi.lipidhome.service.util.dataexport.converter.*;
 
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -124,6 +131,55 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
 
 		return result2Response(result, callback);
 	}
+
+    @Override
+    public Response generalExport(String data, String format) {
+        Response.ResponseBuilder response = null;
+
+        List<DataContainer> dataList = new ArrayList<DataContainer>();
+
+        try {
+            JSONArray items = new JSONArray(data);
+            for(int i=0; i<items.length(); ++i){
+                JSONObject item = items.getJSONObject(i);
+                DataContainer ms1DC = new DataContainer(item);
+                dataList.add(ms1DC);
+            }
+        } catch (JSONException e) {
+            /*Nothing here*/
+        }
+
+        ExportFormat exportFormat = ExportFormat.getFormat(format);
+        DataConverter converter;
+        switch (exportFormat){
+            case CSV:
+                converter = new Data2CSV(dataList);
+                break;
+            case TSV:
+                converter = new Data2TSV(dataList);
+                break;
+            case EXCEL:
+                converter = new Data2Excel(dataList);
+                HSSFWorkbook workbook = ((Data2Excel) converter).getWorkbook();
+                response = Response.ok((Object) workbook.getBytes());
+                break;
+            case XML:
+                converter = new Data2XML(dataList);
+                break;
+            default:
+                data = "{\"hits\":" + data + "}";
+                converter = null;
+        }
+
+        if(response==null)
+            response = Response.ok( (converter==null) ?  data : converter.getConvertedData());
+
+        String fileName = "lipidHomeDataExport." + exportFormat.getExtension();
+
+        //octet-stream
+        response.header("Content-Disposition", "attachment; filename=" + fileName);
+		return response.build();
+    }
 
     private static int safeLongToInt(long l) {
         if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {

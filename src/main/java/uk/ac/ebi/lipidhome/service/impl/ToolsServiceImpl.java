@@ -118,7 +118,6 @@ public class ToolsServiceImpl extends LipidService implements ToolsService {
 		return response.build();
     }
 
-
     private List<Float> getMassesList(String masses){
         Set<Float> set = new HashSet<Float>();
         for (String s : masses.split("\n"))

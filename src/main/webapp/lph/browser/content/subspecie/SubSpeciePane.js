@@ -104,6 +104,7 @@ Ext.define('SimpleIsomer', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'itemId', type: 'int' },
+        { name: 'type',  type : 'string', defaultValue: 'isomer'},
         { name: 'name', type: 'string' },
         //{ name: 'systematicName', type: 'string' },
         { name: 'smile', type: 'string' },

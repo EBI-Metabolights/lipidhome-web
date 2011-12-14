@@ -9,9 +9,8 @@
 
 package uk.ac.ebi.lipidhome.service;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 @Path( "/" )
@@ -20,7 +19,12 @@ public abstract interface UtilitiesService {
 	@GET
     @Path( "/search" )
     Response doSearch( @QueryParam("query") String query,  @QueryParam("type") String type, @QueryParam("start") Long start, @QueryParam("limit") Long limit, @QueryParam("page") Long page, @QueryParam("callback") String callback);
-	
+
+    @POST
+    @Produces("application/xml")
+    @Path( "/export" )
+    Response generalExport(@FormParam("data") String data, @FormParam("format") String format);
+
 	@GET
     @Path( "/pathto" )
     Response getPathsTo( @QueryParam("itemId") Long itemId, @QueryParam("name") String name, @QueryParam("identified") Boolean identified, @QueryParam("type") String type);
