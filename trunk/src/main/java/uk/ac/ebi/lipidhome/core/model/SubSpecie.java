@@ -9,6 +9,10 @@
 
 package uk.ac.ebi.lipidhome.core.model;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+
 public class SubSpecie extends LipidObject {
 	
 	private String model;
@@ -20,7 +24,7 @@ public class SubSpecie extends LipidObject {
 	private boolean identified;
 	
 	private double score;
-	
+
 	public String getModel() {
 		return model;
 	}
@@ -61,4 +65,18 @@ public class SubSpecie extends LipidObject {
 		this.score = score;
 	}
 
+    /*
+    * Convert String to InputStream using ByteArrayInputStream
+    * class. This class constructor takes the string byte array
+    * which can be done by calling the getBytes() method.
+    */
+    public InputStream getModelAsInputStream() {
+        InputStream is;
+        try {
+            is = new ByteArrayInputStream(getModel().getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            is = null;
+        }
+        return is;
+    }
 }

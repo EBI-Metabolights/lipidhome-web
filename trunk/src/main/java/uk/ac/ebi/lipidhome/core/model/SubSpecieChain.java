@@ -8,13 +8,19 @@
 
 package uk.ac.ebi.lipidhome.core.model;
 
+import structure.SingleLinkConfiguration;
+
 public class SubSpecieChain {
 
 	private String name;
 	
-	private int position;
+	private Integer position;
 	
 	private String linkage;
+
+    private Integer carbons;
+
+    private Integer doubleBonds;
 
 	public String getName() {
 		return name;
@@ -24,11 +30,11 @@ public class SubSpecieChain {
 		this.name = name;
 	}
 
-	public int getPosition() {
+	public Integer getPosition() {
 		return position;
 	}
 
-	public void setPosition(int position) {
+	public void setPosition(Integer position) {
 		this.position = position;
 	}
 
@@ -43,6 +49,13 @@ public class SubSpecieChain {
 	public boolean isAcyl(){
 		return linkage.equals("-");
 	}
+
+    public SingleLinkConfiguration getSingleLinkConfiguration(){
+        if (isAcyl())
+            return  SingleLinkConfiguration.Acyl;
+        else
+            return SingleLinkConfiguration.Alkyl;
+    }
 	
 	public boolean isAlkyl(){
 		return !isAcyl();
@@ -55,4 +68,20 @@ public class SubSpecieChain {
 			return linkage + "-" + name;
 		}
 	}
+
+    public Integer getCarbons() {
+        return carbons;
+    }
+
+    public void setCarbons(Integer carbons) {
+        this.carbons = carbons;
+    }
+
+    public Integer getDoubleBonds() {
+        return doubleBonds;
+    }
+
+    public void setDoubleBonds(Integer doubleBonds) {
+        this.doubleBonds = doubleBonds;
+    }
 }

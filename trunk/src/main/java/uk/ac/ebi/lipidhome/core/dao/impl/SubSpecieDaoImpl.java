@@ -63,6 +63,7 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<BaseSearchItem> getSubSpeciesByNameLike(String name) {
         name = "%%" + name + "%%";
@@ -92,8 +93,8 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 
     /**
      *
-     * @param name
-     * @return
+     * @param name the name to look for
+     * @return the number of sub species with a matching name
      */
 	@Override
 	public long getSubSpeciesCountByNameLike(String name){
@@ -127,11 +128,11 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
      * @return A string of fatty acid chain names concatenated by  " + "
      */
 	@Override
-	public String getChainById(Long id) {
+	public String getChainNameById(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		@SuppressWarnings("unchecked")
 		List<SubSpecieChain> list = jdbcTemplate.query(
-				"SELECT fa.name, h.position, h.linkage " +
+				"SELECT fa.name, h.position, h.linkage, fa.carbons, fa.double_bonds " +
 				"FROM fatty_acid_species as fa, sub_species_has_fatty_acid_species as h " +
 				"WHERE h.l_sub_species_id = ? and h.l_fatty_acid_species_id = fa.fatty_acid_species_id order by h.position;",
 				new Object[]{id}, new SubSpecieChainMapper());
@@ -142,6 +143,17 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 		}
 		return StringUtils.collectionToDelimitedString(result, "/");
 	}
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<SubSpecieChain> getChainsById(Long id) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+		return jdbcTemplate.query(
+				"SELECT fa.name, h.position, h.linkage, fa.carbons, fa.double_bonds " +
+				"FROM fatty_acid_species as fa, sub_species_has_fatty_acid_species as h " +
+				"WHERE h.l_sub_species_id = ? and h.l_fatty_acid_species_id = fa.fatty_acid_species_id order by h.position;",
+				new Object[]{id}, new SubSpecieChainMapper());
+    }
 
     /**
      *
@@ -185,7 +197,7 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 	public List<SimpleIsomer> getSimpleIsomerList(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return jdbcTemplate.query(
-				"SELECT i.isomer_id, i.name, i.systematic_name " +
+				"SELECT i.isomer_id, i.name " +
 				"FROM isomer as i " +
 				"WHERE i.l_sub_species_id = ?;",
 				new Object[] { id }, new SimpleIsomerMapper());

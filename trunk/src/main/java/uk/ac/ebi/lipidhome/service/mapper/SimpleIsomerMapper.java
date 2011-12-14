@@ -4,12 +4,11 @@
  */
 package uk.ac.ebi.lipidhome.service.mapper;
 
+import org.springframework.jdbc.core.RowMapper;
+import uk.ac.ebi.lipidhome.service.result.model.SimpleIsomer;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.springframework.jdbc.core.RowMapper;
-
-import uk.ac.ebi.lipidhome.service.result.model.SimpleIsomer;
 
 public class SimpleIsomerMapper implements RowMapper{
 
@@ -18,7 +17,6 @@ public class SimpleIsomerMapper implements RowMapper{
 		SimpleIsomer ss = new SimpleIsomer();
 		ss.setItemId(rs.getLong("isomer_id"));
 		ss.setName(rs.getString("name"));
-		ss.setSystematicName(rs.getString("systematic_name"));
 		ss.setIdentified(true);
 		return ss;
 	}
