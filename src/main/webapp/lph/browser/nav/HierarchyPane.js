@@ -19,6 +19,13 @@ Ext.define('lph.browser.nav.HierarchyPane', {
     rootVisible	: false,
 	useArrows	: true,
 
+    constructor: function(config) {
+    	this.callParent(arguments);
+        this.initConfig(config);
+
+        return this;
+    },
+
 	addNode: function(view, record, item, index, event, options, id, type){
 		var sm = this.getSelectionModel();
 		var selection = sm.getSelection();

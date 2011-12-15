@@ -17,18 +17,21 @@ Ext.define('lph.browser.content.ContentManager', {
         this.addEvents({
         	newContent : true
         });
-        
+
         return this;
     },
     
     getPanel: function(type, id, parentId, params){
     	var panel = this._getPanel(type, id, parentId);
-    	if(!Ext.isEmpty(panel)) return panel;
+        if(!Ext.isEmpty(panel)){
+            return panel;
+        }
     	
     	if(type=="category"){
 	    	panel = Ext.create('lph.browser.content.category.CategoryPane', {
 	        	itemId	: id,
 	        	type	: type,
+                parentId: parentId,
 	        	node	: params.node,
 	        	elem	: params.elem
 	        })
@@ -38,7 +41,8 @@ Ext.define('lph.browser.content.ContentManager', {
     		panel = Ext.create('lph.browser.content.mainclass.MainClassPane', {
 	        	itemId	: id,
 	        	type	: type,
-	        	node	: params.node,
+	        	parentId: parentId,
+                node	: params.node,
 	        	elem	: params.elem
 	        });
 	        this.fireEvent('newContent', {list : panel.list, path: panel.details.path, type : 'subClass', itemId: id});
@@ -46,7 +50,8 @@ Ext.define('lph.browser.content.ContentManager', {
     		panel = Ext.create('lph.browser.content.subclass.SubClassPane', {
 	        	itemId	: id,
 	        	type	: type,
-	        	node	: params.node,
+	        	parentId: parentId,
+                node	: params.node,
 	        	elem	: params.elem
 	        });
 	        this.fireEvent('newContent', {list : panel.list, path: panel.details.path, type : 'specie', itemId: id});
@@ -54,7 +59,8 @@ Ext.define('lph.browser.content.ContentManager', {
     		panel = Ext.create('lph.browser.content.specie.SpeciePane', {
 	        	itemId	: id,
 	        	type	: type,
-	        	node	: params.node,
+	        	parentId: parentId,
+                node	: params.node,
 	        	elem	: params.elem
 	        });
 	        this.fireEvent('newContent', {list : panel.list, path: panel.details.path, type : 'faScanSpecie', itemId: id});
@@ -62,7 +68,8 @@ Ext.define('lph.browser.content.ContentManager', {
     		panel = Ext.create('lph.browser.content.fascanspecie.FAScanSpeciePane', {
 	        	itemId	: id,
 	        	type	: type,
-	        	node	: params.node,
+	        	parentId: parentId,
+                node	: params.node,
 	        	elem	: params.elem
 	        });
 	        this.fireEvent('newContent', {list : panel.list, path: panel.details.path, type : 'subSpecie', itemId: id});
@@ -70,7 +77,8 @@ Ext.define('lph.browser.content.ContentManager', {
     		panel = Ext.create('lph.browser.content.subspecie.SubSpeciePane', {
 	        	itemId	: id,
 	        	type	: type,
-	        	node	: params.node,
+	        	parentId: parentId,
+                node	: params.node,
 	        	elem	: params.elem
 	        });
 	        this.fireEvent('newContent', {list : panel.list, path: panel.details.path, type : 'isomer', itemId: id});
@@ -80,7 +88,7 @@ Ext.define('lph.browser.content.ContentManager', {
     	}
     	
     	this._addPanel(type, id, parentId, panel);
-    	
+
     	return panel;
     },
     
@@ -97,11 +105,13 @@ Ext.define('lph.browser.content.ContentManager', {
     
     _addPanel: function(type, id, parentId, panel){
     	var hash = this._getOrCreate(type);
-    	if(hash.containsKey(id + "-" + parentId)){
-    		//console.warn("The panel already exists");
-    		//TODO: Thrown an exception
+        var paneRef = this._getPanelReference(id, parentId);
+    	if(hash.containsKey(paneRef)){
+            //TODO: Thrown an exception
+            if (Ext.global.console) {
+                Ext.global.console.warn("The panel already exists");
+            }
     	}else{
-            var paneRef = this._getPanelReference(id, parentId);
     		hash.add(paneRef, panel);
     	}
     },
