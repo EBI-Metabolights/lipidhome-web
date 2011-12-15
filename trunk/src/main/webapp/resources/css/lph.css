@@ -195,6 +195,11 @@
     height: 16px;
 }
 
+.category-list-identified {
+    background-image: url("../icons/lipids/category_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .category-identified{
     background-image: url("../icons/lipids/category_lipid_icon_base_16_filled_open.png") !important;
     height: 16px;
@@ -225,6 +230,11 @@
 /* ###################### MAIN CLASS ###################### */
 .mainclass-identified {
     background-image: url("../icons/lipids/mainclass_lipid_icon_base_16_filled_closed.png") !important;
+    height: 16px;
+}
+
+.mainclass-list-identified {
+    background-image: url("../icons/lipids/mainclass_lipid_icon_base_16_filled_open.png") !important;
     height: 16px;
 }
 
@@ -261,6 +271,11 @@
     height: 16px;
 }
 
+.subclass-list-identified {
+    background-image: url("../icons/lipids/subclass_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .subclass-identified{
     background-image: url("../icons/lipids/subclass_lipid_icon_base_16_filled_open.png") !important;
     height: 16px;
@@ -270,6 +285,12 @@
     background-image: url("../icons/lipids/subclass_lipid_icon_base_16_closed.png")!important;
     height: 16px;
 }
+
+.subclass-list-unidentified {
+    background-image: url("../icons/lipids/subclass_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .subclass-unidentified{
     background-image: url("../icons/lipids/subclass_lipid_icon_base_16_open.png") !important;
     height: 16px;

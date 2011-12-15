@@ -40,6 +40,7 @@ Ext.define('lph.browser.content.generic.PathPanel', {
                 text    : node.get("text"),
                 pressed : (node==selectedNode),
                 node    : node,
+                //parent  : node.parentNode,
                 handler : this.buttonClicked,
                 iconCls : node.get("iconCls"),
                 scope   : this

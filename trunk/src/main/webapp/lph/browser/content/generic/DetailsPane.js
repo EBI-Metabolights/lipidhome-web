@@ -12,7 +12,7 @@ Ext.define('lph.browser.content.generic.DetailsPane', {
     constructor: function(config){
     	this.callParent(arguments);
         this.initConfig(config);
-     
+
         this.path = Ext.create('lph.browser.content.generic.PathPanel', {
 			node		 : config.node,
 			elem		 : config.elem
