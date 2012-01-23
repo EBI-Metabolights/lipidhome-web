@@ -31,7 +31,7 @@ Ext.define('lph.browser.content.fascanspecie.SubSpeciesList', {
             items       : [{
                 getClass : function(v, metadata, record, rowIndex, colIndex, store) {
                     var type = record.get("type");
-                    var identified = record.get("identified") ? "identified" : "unidentified" ;
+                    var identified = record.get("identified") ? "list-identified" : "list-unidentified" ;
                     return type + "-" + identified;
                 }
             }]
