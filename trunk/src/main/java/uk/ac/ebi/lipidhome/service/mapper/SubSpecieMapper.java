@@ -19,7 +19,7 @@ public class SubSpecieMapper implements RowMapper{
 		subSpecie.setItemId(rs.getLong("sub_species_id"));
 		subSpecie.setName(rs.getString("name"));
 		subSpecie.setModel(rs.getString("model"));
-		subSpecie.setMass(rs.getDouble("mass"));
+		subSpecie.setMass(rs.getDouble("exact_mass"));
 		subSpecie.setFormula(rs.getString("formula"));
 		subSpecie.setIdentified(rs.getBoolean("identified"));
 		subSpecie.setScore(rs.getDouble("score"));
