@@ -36,7 +36,7 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 	public FAScanSpecie getSpecie(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return (FAScanSpecie) jdbcTemplate.queryForObject(
-				"SELECT f.FA_scan_species_id, f.name, c.formula, c.mass, f.identified, sc.model " +
+				"SELECT f.FA_scan_species_id, f.name, c.formula, c.exact_mass, f.identified, sc.model " +
 				"FROM species as s, composition as c, FA_scan_species as f, sub_class as sc " +
 				"WHERE s.l_sub_class_id = sc.sub_class_id and f.FA_scan_species_id = ? and f.l_species_id = s.species_id and s.l_composition_id = c.composition_id;;",
 				new Object[] { id }, new FAScanSpecieMapper());
@@ -211,24 +211,24 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
         JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
         if(identified)
             return jdbcTemplate.query(
-                    "SELECT  f.FA_scan_species_id as itemId, f.name, f.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
+                    "SELECT  f.FA_scan_species_id as itemId, f.name, f.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.exact_mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
                     "FROM FA_scan_species as f, species as s, composition as c, sub_class as sc " +
                     "WHERE f.l_species_id = s.species_id " +
                     "AND s.l_composition_id = c.composition_id " +
                     "AND s.l_sub_class_id = sc.sub_class_id " +
                     "AND f.identified = TRUE " +
-                    "AND c.mass <= ? + ? " +
-                    "AND c.mass >= ? - ?;",
+                    "AND c.exact_mass <= ? + ? " +
+                    "AND c.exact_mass >= ? - ?;",
                     new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
         else
             return jdbcTemplate.query(
-                    "SELECT  f.FA_scan_species_id as itemId, f.name, f.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
+                    "SELECT  f.FA_scan_species_id as itemId, f.name, f.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.exact_mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
                     "FROM FA_scan_species as f, species as s, composition as c, sub_class as sc " +
                     "WHERE f.l_species_id = s.species_id " +
                     "AND s.l_composition_id = c.composition_id " +
                     "AND s.l_sub_class_id = sc.sub_class_id " +
-                    "AND c.mass <= ? + ? " +
-                    "AND c.mass >= ? - ?;",
+                    "AND c.exact_mass <= ? + ? " +
+                    "AND c.exact_mass >= ? - ?;",
                     new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
     }
 

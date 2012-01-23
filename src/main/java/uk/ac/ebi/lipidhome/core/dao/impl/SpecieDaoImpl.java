@@ -36,7 +36,7 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 	public Specie getSpecie(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return (Specie) jdbcTemplate.queryForObject(
-				"SELECT s.*, sc.model, c.formula, c.mass " +
+				"SELECT s.*, sc.model, c.formula, c.exact_mass " +
 				"FROM species as s, composition as c, sub_class as sc " +
 				"WHERE s.species_id = ? and s.l_composition_id = c.composition_id and s.l_sub_class_id = sc.sub_class_id;",
 				new Object[] { id }, new SpecieMapper());
@@ -200,22 +200,22 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
         JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
         if(identified)
             return jdbcTemplate.query(
-                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
+                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.exact_mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
                     "FROM species as s, composition as c, sub_class as sc " +
                     "WHERE s.l_composition_id = c.composition_id " +
                     "AND s.l_sub_class_id = sc.sub_class_id " +
                     "AND s.identified = TRUE " +
-                    "AND c.mass <= ? + ? " +
-                    "AND c.mass >= ? - ?;",
+                    "AND c.exact_mass <= ? + ? " +
+                    "AND c.exact_mass >= ? - ?;",
                     new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
         else
             return jdbcTemplate.query(
-                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
+                    "SELECT  s.species_id as itemId, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, ? as mass, c.exact_mass + ? as res_mass, ? as adductIon, c.formula, sc.code, 'specie' as type " +
                     "FROM species as s, composition as c, sub_class as sc " +
                     "WHERE s.l_composition_id = c.composition_id " +
                     "AND s.l_sub_class_id = sc.sub_class_id " +
-                    "AND c.mass <= ? + ? " +
-                    "AND c.mass >= ? - ?;",
+                    "AND c.exact_mass <= ? + ? " +
+                    "AND c.exact_mass >= ? - ?;",
                     new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
     }
 }

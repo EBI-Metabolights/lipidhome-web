@@ -21,7 +21,7 @@ public class FAScanSpecieMapper implements RowMapper{
 		fass.setName(rs.getString("name"));
 		fass.setModel(rs.getString("model"));
 		fass.setFormula(rs.getString("formula"));
-		fass.setMass(rs.getDouble("mass"));
+		fass.setMass(rs.getDouble("exact_mass"));
 		fass.setIdentified(rs.getBoolean("identified"));
 		return fass;
 	}
