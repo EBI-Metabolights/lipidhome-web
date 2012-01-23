@@ -209,6 +209,16 @@
     background-image: url("../icons/lipids/category_lipid_icon_base_16_closed.png")!important;
     height: 16px;
 }
+
+.category-list-unidentified {
+    background-image: url("../icons/lipids/category_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
+.category-list-unidentified {
+    background-image: url("../icons/lipids/category_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
 .x-grid-tree-node-expanded .category-unidentified{
     background-image: url("../icons/lipids/category_lipid_icon_base_16_open.png") !important;
     height: 16px;
@@ -245,6 +255,16 @@
 
 .mainclass-unidentified {
     background-image: url("../icons/lipids/mainclass_lipid_icon_base_16_closed.png")!important;
+    height: 16px;
+}
+
+.mainclass-unidentified {
+    background-image: url("../icons/lipids/main_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
+.mainclass-list-unidentified {
+    background-image: url("../icons/lipids/main_lipid_icon_base_16_open.png")!important;
     height: 16px;
 }
 .x-grid-tree-node-expanded .mainclass-unidentified{
@@ -286,6 +306,11 @@
     height: 16px;
 }
 
+.subclass-unidentified {
+    background-image: url("../icons/lipids/subclass_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
 .subclass-list-unidentified {
     background-image: url("../icons/lipids/subclass_lipid_icon_base_16_open.png")!important;
     height: 16px;
@@ -314,6 +339,16 @@
     height: 16px;
 }
 
+.specie-list-identified {
+    background-image: url("../icons/lipids/specie_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
+.specie-list-identified {
+    background-image: url("../icons/lipids/specie_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .specie-identified{
     background-image: url("../icons/lipids/specie_lipid_icon_base_16_filled_open.png") !important;
     height: 16px;
@@ -321,6 +356,16 @@
 
 .specie-unidentified {
     background-image: url("../icons/lipids/specie_lipid_icon_base_16_closed.png")!important;
+    height: 16px;
+}
+
+.specie-list-unidentified {
+    background-image: url("../icons/lipids/specie_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
+.specie-list-unidentified {
+    background-image: url("../icons/lipids/specie_lipid_icon_base_16_open.png")!important;
     height: 16px;
 }
 .x-grid-tree-node-expanded .specie-unidentified{
@@ -346,6 +391,16 @@
     height: 16px;
 }
 
+.fascanspecie-list-identified {
+    background-image: url("../icons/lipids/fascanspecie_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
+.fascanspecie-list-identified {
+    background-image: url("../icons/lipids/fascanspecie_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .fascanspecie-identified{
     background-image: url("../icons/lipids/fascanspecie_lipid_icon_base_16_filled_open.png") !important;
     height: 16px;
@@ -353,6 +408,16 @@
 
 .fascanspecie-unidentified {
     background-image: url("../icons/lipids/fascanspecie_lipid_icon_base_16_closed.png")!important;
+    height: 16px;
+}
+
+.fascanspecie-list-unidentified {
+    background-image: url("../icons/lipids/fascanspecie_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
+.fascanspecie-list-unidentified {
+    background-image: url("../icons/lipids/fascanspecie_lipid_icon_base_16_open.png")!important;
     height: 16px;
 }
 .x-grid-tree-node-expanded .fascanspecie-unidentified{
@@ -377,6 +442,16 @@
     height: 16px;
 }
 
+.subspecie-list-identified {
+    background-image: url("../icons/lipids/subspecie_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
+.subspecie-list-identified {
+    background-image: url("../icons/lipids/subspecie_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .subspecie-identified{
     background-image: url("../icons/lipids/subspecie_lipid_icon_base_16_filled_open.png") !important;
     height: 16px;
@@ -386,6 +461,17 @@
     background-image: url("../icons/lipids/subspecie_lipid_icon_base_16_closed.png")!important;
     height: 16px;
 }
+
+.subspecie-list-unidentified {
+    background-image: url("../icons/lipids/subspecie_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
+.subspecie-list-unidentified {
+    background-image: url("../icons/lipids/subspecie_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .subspecie-unidentified{
     background-image: url("../icons/lipids/subspecie_lipid_icon_base_16_open.png") !important;
     height: 16px;
@@ -409,6 +495,11 @@
     height: 16px;
 }
 
+.isomer-list-identified {
+    background-image: url("../icons/lipids/isomer_lipid_icon_base_16_filled_open.png") !important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .isomer-identified{
     background-image: url("../icons/lipids/isomer_lipid_icon_base_16_filled_open.png") !important;
     height: 16px;
@@ -418,6 +509,12 @@
     background-image: url("../icons/lipids/isomer_lipid_icon_base_16_closed.png")!important;
     height: 16px;
 }
+
+.isomer-list-unidentified {
+    background-image: url("../icons/lipids/isomer_lipid_icon_base_16_open.png")!important;
+    height: 16px;
+}
+
 .x-grid-tree-node-expanded .isomer-unidentified{
     background-image: url("../icons/lipids/isomer_lipid_icon_base_16_open.png") !important;
     height: 16px;
