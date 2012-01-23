@@ -30,7 +30,7 @@ Ext.define('lph.browser.content.mainclass.SubClassesList', {
             items       : [{
                 getClass : function(v, metadata, record, rowIndex, colIndex, store) {
                     var type = record.get("type");
-                    return type + "-identified";
+                    return type + "-list-identified";
                 }
             }]
         },

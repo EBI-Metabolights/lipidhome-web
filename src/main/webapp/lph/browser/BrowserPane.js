@@ -46,13 +46,14 @@ Ext.define('lph.browser.BrowserPane', {
      * @param {} content contains the content tab elements to listen to
      */
     bindContentActions: function(content){
+        //Binds a clicked item of the path (button) to the hierarchy tree
+        content.path.addListener('itemclick', this.navigator.hierarchy.selectNode, this.navigator.hierarchy);
+
         //TODO: Remove this condition in order to show the Isomer panel in the browser
         if(content.type=="isomer") return;
 
         //Binds a clicked item of a list to the hierarchy tree
         content.list.addListener('itemdblclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content.itemId, content.type, content.identified], true));
-        //Binds a clicked item of the path (button) to the hierarchy tree
-        content.path.addListener('itemclick', this.navigator.hierarchy.selectNode, this.navigator.hierarchy);
     },
 
     manageLocationItemSelected: function(record){

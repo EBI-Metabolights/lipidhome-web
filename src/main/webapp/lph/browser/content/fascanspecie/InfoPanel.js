@@ -37,7 +37,7 @@ Ext.define('lph.browser.content.fascanspecie.InfoPanel', {
 		        name: 'formula',
 		        readOnly: true
 		    },{
-		        fieldLabel: 'Mass',
+		        fieldLabel: 'Mass (Da)',
 		        name: 'mass',
 		        readOnly: true
 		    },{
