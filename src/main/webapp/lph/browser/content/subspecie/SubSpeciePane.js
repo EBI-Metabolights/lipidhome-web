@@ -23,6 +23,7 @@ Ext.define('lph.browser.content.subspecie.SubSpeciePane', {
         var text = config.elem.get('text');
 
         this.infoPanel = Ext.create('lph.browser.content.subspecie.InfoPanel', {
+            name : text,
             tabConfig : {
                 tooltip  : 'General information about the sub specie ' + text
             }

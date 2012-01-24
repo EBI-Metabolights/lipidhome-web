@@ -4,6 +4,9 @@ Ext.define('lph.browser.content.generic.InfoPanel', {
     iconCls : 'information-16',
     
     loadRecord: function(data){
+        if(!Ext.isEmpty(this.name))
+            data.set("name", this.name);
+
     	if(!Ext.isEmpty(this.content))
             this.content.loadRecord(data);
 

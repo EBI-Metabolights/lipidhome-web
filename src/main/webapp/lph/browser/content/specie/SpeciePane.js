@@ -21,8 +21,8 @@ Ext.define('lph.browser.content.specie.SpeciePane', {
         this.initConfig(config);
 
         var text = config.elem.get('text');
-
         this.infoPanel = Ext.create('lph.browser.content.specie.InfoPanel',{
+            name : text,
             tabConfig : {
                 tooltip  : 'General information about tne specie ' + text
             }

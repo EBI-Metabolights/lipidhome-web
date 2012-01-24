@@ -40,9 +40,10 @@ Ext.define('lph.browser.content.generic.PathPanel', {
                 text    : node.get("text"),
                 pressed : (node==selectedNode),
                 node    : node,
-                //parent  : node.parentNode,
                 handler : this.buttonClicked,
-                iconCls : node.get("iconCls"),
+                // The node's "identified" attribute is not available at this point,
+                // so the next line is a patch in order to show the icon vertically
+                iconCls : node.get("iconCls").replace("-","-list-"),
                 scope   : this
             });
             this.add(btn);
