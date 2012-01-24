@@ -38,6 +38,11 @@ Ext.define('lph.browser.content.category.InfoPanel', {
     		//store		: config.store,
     		defaultType	: 'textfield',
 		    items		: [{
+		        fieldLabel  : 'Name',
+		        name        : 'name',
+                tooltip     : 'LipidomicNet nomenclature name.',
+		        readOnly    : true
+		    },{
 		        fieldLabel  : '# Main classes',
 		        name        : 'mainClasses',
                 tooltip     : 'The number of main classes that belong to this category.',

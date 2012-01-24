@@ -21,8 +21,8 @@ Ext.define('lph.browser.content.fascanspecie.FAScanSpeciePane', {
         this.initConfig(config);
 
         var text = config.elem.get('text');
-
         this.infoPanel = Ext.create('lph.browser.content.fascanspecie.InfoPanel',{
+            name : text,
             tabConfig : {
                 tooltip  : 'General information about the fatty acid scan specie ' + text
             }

@@ -33,6 +33,11 @@ Ext.define('lph.browser.content.subspecie.InfoPanel', {
     		},
     		defaultType	: 'textfield',
 		    items		: [{
+		        fieldLabel  : 'Name',
+		        name        : 'name',
+                tooltip     : 'LipidomicNet nomenclature name.',
+		        readOnly    : true
+		    },{
 		        fieldLabel: 'Formula',
 		        name: 'formula',
 		        readOnly: true
@@ -43,10 +48,6 @@ Ext.define('lph.browser.content.subspecie.InfoPanel', {
 		    },{
 		        fieldLabel: 'Identified',
 		        name: 'identified',
-		        readOnly: true
-		    },{
-		        fieldLabel: '# Sub Species',
-		        name: 'subSpecies',
 		        readOnly: true
 		    },{
 		        fieldLabel: '# Annotated Isomers',

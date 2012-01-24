@@ -23,7 +23,13 @@ Ext.define('lph.browser.nav.HierarchyPane', {
     	this.callParent(arguments);
         this.initConfig(config);
 
+        this.addListener("beforeitemdblclick", this._doubleClick, this);
         return this;
+    },
+
+    _doubleClick: function(t, record, item, index, event, eOpts){
+        return false;
+        //return record.childNodes.length>0;
     },
 
 	addNode: function(view, record, item, index, event, options, id, type){

@@ -33,6 +33,11 @@ Ext.define('lph.browser.content.specie.InfoPanel', {
     		},
     		defaultType	: 'textfield',
 		    items		: [{
+		        fieldLabel  : 'Name',
+		        name        : 'name',
+                tooltip     : 'LipidomicNet nomenclature name.',
+		        readOnly    : true
+		    },{
 		        fieldLabel: 'Formula',
 		        name: 'formula',
 		        readOnly: true

@@ -118,7 +118,7 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
                 totalCount = list.size();
                 if(totalCount>0){
                     Long end = start + limit;
-                    end = (end < totalCount) ? end : totalCount-1;
+                    end = (end < totalCount) ? end : totalCount;
 
                     Collections.sort(list);
                     list = list.subList(safeLongToInt(start), safeLongToInt(end));

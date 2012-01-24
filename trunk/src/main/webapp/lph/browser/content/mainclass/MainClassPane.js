@@ -19,10 +19,12 @@ Ext.define('lph.browser.content.mainclass.MainClassPane', {
     constructor: function(config){
     	this.callParent(arguments);
         this.initConfig(config);
-        
+
+        var text = config.elem.get('text');
         this.infoPanel = Ext.create('lph.browser.content.mainclass.InfoPanel',{
+            name : text,
             tabConfig : {
-                tooltip  : 'General information about the main class ' + config.elem.get('text')
+                tooltip  : 'General information about the main class ' + text
             }
         });
         

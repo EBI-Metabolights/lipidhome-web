@@ -20,9 +20,11 @@ Ext.define('lph.browser.content.subclass.SubClassPane', {
     	this.callParent(arguments);
         this.initConfig(config);
 
+        var text = config.elem.get('text');
         this.infoPanel = Ext.create('lph.browser.content.subclass.InfoPanel',{
+            name : text,
             tabConfig : {
-                tooltip  : 'General information about the sub class ' + config.elem.get('text')
+                tooltip  : 'General information about the sub class ' + text
             }
         });
         
