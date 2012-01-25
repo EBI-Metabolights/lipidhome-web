@@ -28,18 +28,7 @@ Ext.define('lph.browser.content.generic.SummaryPane', {
     setActiveTab: function(comp){
     	this.panel.setActiveTab(comp);
     },
-    
-    /**
-     * @deprecated
-     * 
-     * Remove it for ensuring code calling loadData
-     * 
-     * @return {}
-     */
-    //_getTabs: function(){
-    //	return this.tabs;
-    //},
-    
+
     loadData: function(data, operation){
     	Ext.each(this.tabs, function(tab){
     		tab.loadRecord(data);

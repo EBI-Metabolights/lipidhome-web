@@ -35,6 +35,11 @@ Ext.define('lph.tools.searchengine.output.ResultGrid', {
     	this.callParent(arguments);
         this.initConfig(config);
 
+        this.addEvents({
+            beforeFilter: true,
+        	afterFilter : true
+        });
+
         this.exportHelperID = "resultGridExportHelperID";
         this.exportHelperURL = "service/tools/export";
         this.exportHelperDataID = "resultGridExportDataID";

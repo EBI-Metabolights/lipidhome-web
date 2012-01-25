@@ -16,7 +16,9 @@ Ext.define('lph.tools.searchengine.output.SelectionHierarchyPanel', {
         this.initConfig(config);
 
         this.addEvents({
-            filterchange : true
+            beforeFilterChange: true,
+            filterChange : true,
+            afterFilterChange: true
         });
 
         this._loadNode(this.getStore().getRootNode());
@@ -67,12 +69,22 @@ Ext.define('lph.tools.searchengine.output.SelectionHierarchyPanel', {
     },
 
     _checkChange: function(node, checked, opts){
-        this.suspendEvents();
-        node.cascadeBy(function(n){
-            n.set('checked', checked);
-        });
-        this.resumeEvents();
-        this.fireEvent('filterchange', node, checked, opts);
+        if(this.fireEvent('beforeFilterChange')!==false){
+            this.suspendEvents();
+            node.cascadeBy(function(n){
+                n.set('checked', checked);
+            });
+            this.resumeEvents();
+
+            // PATCH! Just need to delay the execution of _fireFilterChangeEvent
+            // for 100ms because there is a time gap needed for placing the mask
+            setTimeout(Ext.bind(this._fireFilterChangeEvent, this, [node, checked, opts], true), 100);
+        };
+    },
+
+    _fireFilterChangeEvent: function(node, checked, opts){
+        this.fireEvent('filterChange', node, checked, opts);
+        this.fireEvent('afterFilterChange');
     },
 
     /*
