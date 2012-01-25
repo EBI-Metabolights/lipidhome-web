@@ -1,4 +1,4 @@
-/**
+ /**
  *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  * @author Joe Foster <jfoster@ebi.ac.uk>
@@ -22,20 +22,16 @@ Ext.define('lph.browser.content.category.InfoPanel', {
         this.callParent(arguments);
         this.initConfig(config);
 
-        var lm = new Ext.LoadMask('loading', {msg: 'Loading...'});
-
         this.content = Ext.create('Ext.form.Panel',{
         	region		: 'west',
         	border		: false,
         	bodyPadding	: "20 50 0 20",
         	width		: 400,
         	layout		: 'anchor',
-        	loadMask	: lm,
         	defaults	: {
         		anchor		: '100%',
         		labelWidth	: 130
     		},
-    		//store		: config.store,
     		defaultType	: 'textfield',
 		    items		: [{
 		        fieldLabel  : 'Name',

@@ -26,6 +26,8 @@ Ext.define('lph.browser.BrowserPane', {
     constructor: function(config) {
     	this.callParent(arguments);
         this.initConfig(config);
+
+        this.mask = new Ext.LoadMask(this, {msg:"Loading new content, please wait..."});
         
         this.navigator = Ext.create('lph.browser.nav.NavPane');
         this.add(this.navigator);
@@ -34,8 +36,10 @@ Ext.define('lph.browser.BrowserPane', {
         this.add(this.content);
 		
         this.navigator.hierarchy.addListener('selectionChange', this.content.loadContent, this.content);
+
+        this.content.manager.addListener('beforeNewContent', this._mask, this);
         this.content.manager.addListener('newContent', this.bindContentActions, this);
-        
+
         return this;
     },
     
@@ -46,19 +50,33 @@ Ext.define('lph.browser.BrowserPane', {
      * @param {} content contains the content tab elements to listen to
      */
     bindContentActions: function(content){
+        var panel = content.panel;
+        var path = panel.details.path;
+        var list = panel.list;
+
+        panel.addListener('afterrender', this._unmask, this);
+
         //Binds a clicked item of the path (button) to the hierarchy tree
-        content.path.addListener('itemclick', this.navigator.hierarchy.selectNode, this.navigator.hierarchy);
+        path.addListener('itemclick', this.navigator.hierarchy.selectNode, this.navigator.hierarchy);
 
         //TODO: Remove this condition in order to show the Isomer panel in the browser
         if(content.type=="isomer") return;
 
         //Binds a clicked item of a list to the hierarchy tree
-        content.list.addListener('itemdblclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content.itemId, content.type, content.identified], true));
+        list.addListener('itemdblclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content.itemId, content.type, content.identified], true));
     },
 
     manageLocationItemSelected: function(record){
         this.show();
         this.navigator.hierarchy.findPathTo(record);
+    },
+
+    _mask: function(){
+        this.mask.show();
+    },
+
+    _unmask: function(){
+        if(!Ext.isEmpty(this.mask)) this.mask.hide();
     }
 });
 

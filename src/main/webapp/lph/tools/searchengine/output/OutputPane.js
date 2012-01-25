@@ -17,6 +17,7 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
            itemSelected : true
         });
 
+        this.mask = new Ext.LoadMask(this, {msg:"Applying selected filter, please wait..."});
 
         var store = Ext.create('Ext.data.TreeStore', {
             fields  : [
@@ -58,7 +59,10 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
     },
 
     bind: function(){
-        this.hierarchy.addListener('filterchange', this.resultGrid.filter, this.resultGrid);
+        this.hierarchy.addListener('beforeFilterChange', this._mask, this);
+
+        this.hierarchy.addListener('filterChange', this.resultGrid.filter, this.resultGrid);
+        this.hierarchy.addListener('afterFilterChange', this._unmask, this);
     },
 
     executeQuery : function(params){
@@ -97,6 +101,14 @@ Ext.define('lph.tools.searchengine.output.OutputPane', {
             groupField  : 'mass'
 		});
         return store;
+    },
+
+    _mask: function(){
+        if(!Ext.isEmpty(this.mask)) this.mask.show();
+    },
+
+    _unmask: function(){
+        if(!Ext.isEmpty(this.mask)) this.mask.hide();
     }
 });
 

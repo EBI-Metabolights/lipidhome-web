@@ -42,6 +42,7 @@ Ext.application({
 	launch : function() {
 		lph.browser = Ext.create('lph.browser.BrowserPane');
 		lph.tools = Ext.create('lph.tools.ToolsPane');
+        lph.documentation = Ext.create('lph.documentation.DocumentationPane');
 
         var phase = (Ext.isEmpty(lph.phase) || Ext.isEmpty(lph.phase.html)) ? "" : lph.phase.html;
 		var viewport = Ext.create('Ext.container.Viewport', {
@@ -67,14 +68,7 @@ Ext.application({
                 autoWidth   : true,
                 autoHeight  : true,
 				activeTab   : 0,
-				items : [ lph.browser, lph.tools, {
-                    tabConfig   : {
-                        title    : 'Help',
-                        tooltip  : 'Documentation and help about LipidHome'
-                    },
-                    iconCls : 'help-16',
-					html	: 'Help'
-				} ]
+				items : [ lph.browser, lph.tools, lph.documentation ]
 			}]
 		});
 

@@ -57,12 +57,17 @@
     /*background: url(../images/icons.png) no-repeat 0 -40px;*/
 }
 
+.x-grid-group-hd .x-grid-cell .x-grid-cell-inner {
+    background-color: #5C6B82;
+    font-size: small;
+}
+
 .banner {
     float: left;
     width: 100%;
     background-color: #b9d0ee; /* fallback flat color */
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#b9d0ee), to(#d8e6f6) ); /* for Chrome + Safari */
-    background-image: -moz-linear-gradient(  top, #b9d0ee, #d8e6f6); /* for Firefox */
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b9d0ee), to(#232d38) ); /* for Chrome + Safari */
+    background-image: -moz-linear-gradient(  top, #b9d0ee, #232d38); /* for Firefox */
 }
 
 .banner-text {
