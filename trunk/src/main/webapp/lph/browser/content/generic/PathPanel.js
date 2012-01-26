@@ -14,10 +14,12 @@ Ext.define('lph.browser.content.generic.PathPanel', {
     extend	: 'Ext.toolbar.Toolbar',
    
     region	: 'north',
-	height	: 23,
+	height	: 38,
 	frame	: false,
 	border	: false,
-	
+    textLength : 20,
+    enableOverflow: true,
+
 	constructor: function(config){
 		this.callParent(arguments);
         this.initConfig(config);
@@ -36,16 +38,26 @@ Ext.define('lph.browser.content.generic.PathPanel', {
 
 	createPath: function(selectedNode){
          Ext.each(this._getParentPath(selectedNode), function(node){
-            var btn = Ext.create('Ext.Button', {
-                text    : node.get("text"),
+            var text = node.get("text");
+            var tooltip = false;
+            if(text.length>this.textLength){
+                var tooltip = true;
+                text = text.substr(0,this.textLength-3  ) + "...";
+            }
+            var btnCfg = {
+                text    : text,
+                margin  : "0 0 0 2",
                 pressed : (node==selectedNode),
                 node    : node,
                 handler : this.buttonClicked,
+                //width   : 150,
                 // The node's "identified" attribute is not available at this point,
                 // so the next line is a patch in order to show the icon vertically
                 iconCls : node.get("iconCls").replace("-","-list-"),
                 scope   : this
-            });
+            };
+            if(tooltip) btnCfg.tooltip = node.get("text");
+            var btn = Ext.create('Ext.Button', btnCfg);
             this.add(btn);
          },this);
     },
