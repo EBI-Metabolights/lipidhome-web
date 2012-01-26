@@ -124,6 +124,11 @@
     height: 16px;
 }
 
+.document-16 {
+    background-image: url("../icons/document.png") !important;
+    height: 16px;
+}
+
 .excel-export-16 {
     background-image: url("../icons/xls.png") !important;
     height: 16px;
@@ -191,6 +196,11 @@
 
 .xref-16 {
     background-image: url("../icons/xref.png") !important;
+    height: 16px;
+}
+
+.ws-16 {
+    background-image: url("../icons/ws.png") !important;
     height: 16px;
 }
 
