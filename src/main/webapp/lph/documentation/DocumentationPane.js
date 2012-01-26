@@ -56,7 +56,6 @@ Ext.define('lph.documentation.DocumentationPane', {
     },
 
     _loadOptions: function(panel, paths){
-        console.info(paths);
         var items = [];
         Ext.Array.each(paths, function(path){
             var elems = path.split("\/");
