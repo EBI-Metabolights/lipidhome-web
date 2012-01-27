@@ -58,10 +58,13 @@
     /*background: url(../images/icons.png) no-repeat 0 -40px;*/
 }
 
+
+/* UNCOMMENT THIS BLOCK FOR THE GROUPING HEADER ROW COLOR
 .x-grid-group-hd .x-grid-cell .x-grid-cell-inner {
     background-color: #5C6B82;
     font-size: small;
 }
+*/
 
 .x-tab-default-top button, .x-tab-default-top .x-tab-inner {
     height: 16px;
