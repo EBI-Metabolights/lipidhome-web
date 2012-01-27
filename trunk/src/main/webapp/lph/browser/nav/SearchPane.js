@@ -137,7 +137,7 @@ Ext.define('lph.browser.nav.SearchPane', {
 
 Ext.define("LipidLevels",{
     extend: 'Ext.data.Model',
-    fields: ['level', 'name'],
+    fields: ['level', 'name']
 });
 
 Ext.define("SearchData", {
