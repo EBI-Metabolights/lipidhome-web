@@ -37,6 +37,23 @@ Ext.define('lph.browser.content.specie.FASSpeciesList', {
         },
         {header: 'Name',  dataIndex: 'name', flex:1, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'},
         {header: 'Identified',  dataIndex: 'identified', filter: {type: 'boolean'}, tooltip: 'Identified in a paper/external resource', renderer: function(value){return value?"Yes":"No"}},
-        {header: 'Score',  dataIndex: 'score', filter: {type: 'numeric'}, tooltip: 'Score based upon identified parents and components'}
+        {header: 'Score',  dataIndex: 'score', filter: {type: 'numeric'}, tooltip: 'Score based upon identified parents and components'},
+        {
+            xtype       : 'actioncolumn',
+            width       : 20,
+            resizable   : false,
+            hideable    : false,
+            sortable    : false,
+            items       : [{
+                getClass : function(v, metadata, record, rowIndex, colIndex, store) {
+                    return "lph-grid-button";
+                },
+                tooltip : "Go to this lipid...",
+                handler : function(grid, rowIndex, colIndex) {
+                    var rec = grid.getStore().getAt(rowIndex);
+                    grid.fireEvent('itemdblclick', grid, rec, null, null, null);
+                }
+            }]
+        }
     ]
 });

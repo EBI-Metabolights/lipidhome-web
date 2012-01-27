@@ -27,6 +27,7 @@ Ext.define('lph.browser.content.category.MainClassesList', {
             width       : 20,
             resizable   : false,
             hideable    : false,
+            sortable    : false,
             items       : [{
                 getClass : function(v, metadata, record, rowIndex, colIndex, store) {
                     var type = record.get("type");
@@ -35,6 +36,23 @@ Ext.define('lph.browser.content.category.MainClassesList', {
             }]
         },
         {header: 'Code', dataIndex: 'code', filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature main class code'},
-        {header: 'Name',  dataIndex: 'name', flex: 1, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'}
+        {header: 'Name',  dataIndex: 'name', flex: 1, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'},
+        {
+            xtype       : 'actioncolumn',
+            width       : 20,
+            resizable   : false,
+            hideable    : false,
+            sortable    : false,
+            items       : [{
+                getClass : function(v, metadata, record, rowIndex, colIndex, store) {
+                    return "lph-grid-button";
+                },
+                tooltip : "Go to this lipid...",
+                handler : function(grid, rowIndex, colIndex) {
+                    var rec = grid.getStore().getAt(rowIndex);
+                    grid.fireEvent('itemdblclick', grid, rec, null, null, null);
+                }
+            }]
+        }
     ]
 });

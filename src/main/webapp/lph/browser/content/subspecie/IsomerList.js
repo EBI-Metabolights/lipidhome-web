@@ -38,6 +38,23 @@ Ext.define('lph.browser.content.subspecie.IsomerList', {
         {header: 'Name',  dataIndex: 'name', width:150, filter: {type: 'string'}, tooltip: 'LipidomicNet nomenclature name'},
         {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}, tooltip: 'Identified in a paper/external resource', renderer: function(value){return value?"Yes":"No"}},
         //{header: 'Systematic name', dataIndex: 'systematicName', flex:1, filter: {type: 'string'}, tooltip: 'Systematic name'},
-        {header: 'Smile', dataIndex: 'smile', flex:1, filter: {type: 'string'}, tooltip: 'Smile molecule representation'}
+        {header: 'Smile', dataIndex: 'smile', flex:1, filter: {type: 'string'}, tooltip: 'Smile molecule representation'},
+        {
+            xtype       : 'actioncolumn',
+            width       : 20,
+            resizable   : false,
+            hideable    : false,
+            sortable    : false,
+            items       : [{
+                getClass : function(v, metadata, record, rowIndex, colIndex, store) {
+                    return "lph-grid-button";
+                },
+                tooltip : "Go to this lipid...",
+                handler : function(grid, rowIndex, colIndex) {
+                    var rec = grid.getStore().getAt(rowIndex);
+                    grid.fireEvent('itemdblclick', grid, rec, null, null, null);
+                }
+            }]
+        }
     ]
 });

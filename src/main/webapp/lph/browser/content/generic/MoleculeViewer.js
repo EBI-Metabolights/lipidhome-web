@@ -61,7 +61,7 @@ Ext.define('lph.browser.content.generic.MoleculeViewer', {
 
     	//console.info(h, 'BONDS_WIDH_2D', BONDS_WIDH_2D, 'BONDS_HASH_SPACING', BONDS_HASH_SPACING, 'ATOMS_FONT_SIZE', ATOMS_FONT_SIZE, 'SCALE_TO_AVERAGE_BOND_LENGTH', SCALE_TO_AVERAGE_BOND_LENGTH);
 
-        viewer.specs.backgroundColor = "#ffffcc";
+        //viewer.specs.backgroundColor = "#ffffcc";
 		viewer.specs.bonds_width_2D = BONDS_WIDH_2D;
 		//the spacing between higher order bond lines should be 18% of the length of the bond
 		viewer.specs.bonds_saturationWidth_2D = .18;
