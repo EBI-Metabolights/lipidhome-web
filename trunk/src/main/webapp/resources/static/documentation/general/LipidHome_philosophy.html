@@ -1,0 +1,28 @@
+<div class="documentation">
+<h1>LipidHome philosophy</h1>
+
+<p>The field of lipidomics is producing lipid identification at a rapidly increasing rate via high throughput technologies such as mass spectrometry. Lipid identifications from mass spectrometry in particular do not constitute structurally resolved molecules, typically some higher level representation of the lipid such as PC 36:2 is all that is possible. Current databases of lipid structures contain information at the level of geometric isomer where the precise structure is known, these databases do not accurately support the current state of the field. In addition existing lipid database resources contain only the most common lipid molecules, the theoretical chemical space that lipids are bounded by is vastly underestimated.</p>
+
+<p>LipidHome is a database of in <i>silico</i> theoretically generated lipids from a simple set of starting parameters, providing a comprehensive reference for lipid identification, not only the high structural resolution present in existing resources but also at lower resolutions more appropriate to the high throughput identification of lipids and current state of the field. In addition to a reference space for lipid identification, LipidHome provides an intuitive GUI in the form of a platform and browser independent web application. Users may browse the lipid records in a systematic way and via a live search system visualizing the molecules and meta data associated with them, including cross references to other resources  (LIPID MAPS , PubChem, KEGG) as well as automatically annotated papers in which a particular a lipid is described in the abstract. In parallel to its  core reference functionality, LipidHome provides a series of tools including a customisable MS1 precursor ion scan search engine.</p>
+
+<p>On top of the web application indirect access to the data is provided by simple to use, language independent web services. LipidHome is designed to be an extensible, computationally accessible platform on which many future developments in the standardisation and systematic analysis of lipidomics data can be built. Modelled on the same philosophies as more mature service in proteomics, a resource similar to LipidHome will eventually have to form a central pillar of all lipidomic research.</p>
+
+<p>The code for this web application and its associated web services is distributed under an Apache 2.0 license and is available from <a href="http://code.google.com/p/lipidhome/">http://code.google.com/p/lipidhome/</a> </p>
+
+<p>In order to support the lipidomics community and provide easy access to a comprehensive catalogue of lipids a system is needed to:</p>
+
+<ul>
+	<li> Provide stable identifiers for all common lipid structures. Consistent naming is a critical feature of a database, but consistent internal IDs of records is equally important to facilitate long lasting third party code written to use information in the database.
+	
+	<li> Provide all theoretical lipid structures within agreed upon chemical bounds, while maintaining a clear separation between them and experimentally validated structures. Expressed by the LipidomicNet Consortium and seen in Lipid Bank, experimentally validated structures are of primary interest and the theoretical chemical space is not appropriate for some analyses. 
+	
+	<li> Provide an evidence based system where lipids at all levels of the structural hierarchy can be annotated with cross-references into other resources, literature references, chemical descriptors and spectra. The main use of the database will not come from its dictionary functionality but its supporting meta data of lipids.
+	
+	<li> Provide a highly normalised database that allows complex queries of lipid components e.g. mass, fatty acids, modifications. Different users will approach the database with entirely different aims, some from a literature search point of view, others from a mass spectrometry peak list of masses to identify. 
+	
+	<li> Provide programmatic access so that bioinformatic tools such as lipid identification software or Laboratory Information Management Systems can utilise it and promote its growth. A simple to use web service is key to accessing data from a complex relational database.
+	
+	<li> Provide a platform and browser independent web application to represent the information in the database in an intuitive graphical user interface. 
+</ul>
+
+</div>
