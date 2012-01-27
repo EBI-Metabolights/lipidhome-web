@@ -173,6 +173,11 @@
     height: 16px;
 }
 
+.general-16 {
+    background-image: url("../icons/lipid.ico") !important;
+    height: 16px;
+}
+
 .help-16 {
     background-image: url("../icons/help.png") !important;
     height: 16px;
@@ -570,3 +575,36 @@
     height: 24px;
     background-repeat: no-repeat;
 }
+
+/*
+######################## BEGIN DOCUMENTATION STYLE ########################
+*/
+.documentation {
+    font-size: larger;
+    text-align: justify;
+    padding: 20px;
+    padding-bottom: 350px;  /* Do NOT delete this property, it helps users to better read the bottom of the page*/
+}
+
+.documentation h1 {
+    font-size: x-large;
+    color: #0000cc;
+}
+
+.documentation p {
+    margin-top: 15px;
+    text-indent: 15px;
+}
+
+.documentation ul, ol {
+    margin-left:1.5em;
+    padding-left:0px;
+}
+
+.documentation li {
+    margin-bottom:0.5em;
+    list-style-type: circle;
+}
+/*
+######################## END DOCUMENTATION STYLE ########################
+*/

@@ -19,7 +19,8 @@ Ext.define('lph.documentation.DocumentationPane', {
         this.add(this.opts);
 
         this.doc = Ext.create('Ext.panel.Panel',{
-            region  : 'center'
+            region      : 'center',
+            autoScroll  : true
         });
 
         this.opts.addListener('optionSelected', this._loadURL, this);
