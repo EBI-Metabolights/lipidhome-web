@@ -111,5 +111,5 @@ Ext.define('lph.browser.content.generic.GenericList', {
         Ext.get(this.exportHelperDataID).dom.value = Ext.encode(data);
         Ext.get(this.exportHelperFormatID).dom.value = btn.format;
         Ext.get(this.exportHelperID).dom.submit();
-    },
+    }
 });

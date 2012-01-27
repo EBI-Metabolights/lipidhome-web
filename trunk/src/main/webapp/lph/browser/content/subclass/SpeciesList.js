@@ -41,6 +41,23 @@ Ext.define('lph.browser.content.subclass.SpeciesList', {
         {header: 'FA Double bonds', dataIndex: 'doubleBonds', filter: {type: 'numeric'}, tooltip: 'Total number of double bonds in combined fatty acids'},
         {header: 'Score', dataIndex: 'score', filter: {type: 'numeric'}, tooltip: 'Score based upon identified parents and components'},
         {header: 'Formula', dataIndex: 'formula', flex:1, filter: {type: 'string'}, tooltip: 'Chemical formula'},
-        {header: 'Mass', dataIndex: 'mass', filter: {type: 'numeric'}, tooltip: 'Exact Mass'}
+        {header: 'Mass', dataIndex: 'mass', filter: {type: 'numeric'}, tooltip: 'Exact Mass'},
+        {
+            xtype       : 'actioncolumn',
+            width       : 20,
+            resizable   : false,
+            hideable    : false,
+            sortable    : false,
+            items       : [{
+                getClass : function(v, metadata, record, rowIndex, colIndex, store) {
+                    return "lph-grid-button";
+                },
+                tooltip : "Go to this lipid...",
+                handler : function(grid, rowIndex, colIndex) {
+                    var rec = grid.getStore().getAt(rowIndex);
+                    grid.fireEvent('itemdblclick', grid, rec, null, null, null);
+                }
+            }]
+        }
     ]
 });
