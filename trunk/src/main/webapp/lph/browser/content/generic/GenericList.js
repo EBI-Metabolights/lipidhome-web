@@ -57,17 +57,17 @@ Ext.define('lph.browser.content.generic.GenericList', {
                     id      : id + '-csv-button',
                     text    : 'CSV',
                     format  : 'csv',
-                    iconCls : 'csv-export-16',
+                    iconCls : 'csv-export-16'
                 },{
                     id      : id + '-tsv-button',
                     text    : 'TSV',
                     format  : 'tsv',
-                    iconCls : 'tsv-export-16',
+                    iconCls : 'tsv-export-16'
                 },{
                     id      : id + '-excel-button',
                     text    : 'MS Excel',
                     format  : 'excel',
-                    iconCls : 'excel-export-16',
+                    iconCls : 'excel-export-16'
                 },/*{
                     id      : id + '-mztab-button',
                     text    : 'MZ-Tab',
@@ -77,12 +77,12 @@ Ext.define('lph.browser.content.generic.GenericList', {
                     id      : id + '-xml-button',
                     text    : 'XML',
                     format  : 'xml',
-                    iconCls : 'xml-export-16',
+                    iconCls : 'xml-export-16'
                 },{
                     id      : id + '-json-button',
                     text    : 'JSon',
                     format  : 'json',
-                    iconCls : 'json-export-16',
+                    iconCls : 'json-export-16'
                 }]
             }]
         };
