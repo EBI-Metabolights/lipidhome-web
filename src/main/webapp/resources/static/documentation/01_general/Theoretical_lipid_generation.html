@@ -1,0 +1,48 @@
+<div class="documentation">
+<h1>Theoretical lipid generation</h1>
+<p>Commonly identified lipids within the LipidomicNet consortium are mainly members of the glycerophospholipid category, these lipids all share a similar structure.
+
+The following lipid main classes will represent the base set of main classes from which theoretical lipids will be generated:</p>
+<ul>
+
+	<li>Glycerophosphoethanolamine
+	<li>Glycerophosphocholine
+	<li>Glycerophosphoserine
+	<li>Glycerophosphoinositol
+	<li>Glycerophosphates
+	<li>Glycerophosphoglycerol
+</ul>
+
+<p>Of these main classes the following sub class types will be generated:</p>
+
+<ul>
+	<li>diacyl
+	<li>dialky
+	<li>monacy,monoalkyl
+<ul>
+
+ <div style="width: 100%; text-align: center">
+    <img src="resources/images/lipid_structure.png" alt="Generic glycerophospholipid structure" title="Generic glycerophospholipid structure"  style="margin: 20px; width:600px">
+    </div>
+
+<p>This category of lipids is composed of a few parts; headgroup, phosphate, glycerol, linkages and fatty acids. By doing a Cartesian cross of all main classes and linkages we get 18 lipid sub classes that will be the inputs for lipid enumeration. Within a lipid sub class it is the fatty acid composition of lipids that makes them different. Each of these subclasses has two fatty acid R groups, each of which can be anything from a pool of theoretical fatty acids. In order to estimate the chemical bounds for fatty acid generation a survey was conducted amongst LipidomicNet partners and additional lipid scientists at the Babraham Institute. A provisional set of parameters was agreed upon as</p>:
+<ul>
+
+	<li>Minimum number of carbons - 2
+	<li>Minimum number of carbons - 30
+	<li>Odd number of carbon fatty acids - Fatty acid chains may have an odd nubmer of carbons
+	<li>Minimum number of double bonds - 0
+	<li>Maximum number of double bonds -10
+	<li>double bond spacing - Must be spaced at least 2 carbons apart (i.e. conjugated double bonds not allowed).	
+</ul>
+
+<p>While these parameters do not reflect the enormous variety of fatty acids synthesised in nature e.g. branch-chain fatty acids. They do reflect a simple test case to prove the methodology upon and will be used to construct a large proportion of the lipids of interest within the LipidomicNet consortium. From this pool of fatty acids a Cartesian cross is performed between fatty acids and sub classes to produce all viable lipids within the defined chemical space</p>
+
+
+ <div style="width: 100%; text-align: center">
+    <img src="resources/images/lipid_construction.png" alt="Glycerophospholipid construction" title="Glycerophospholipid construction" height="450px" style="margin: 20px;">
+    </div>
+    
+<p>Lipids are created directly as chemical objects using the Chemical Development Kit (CDK)\cite{Steinbeck}. This Java library allows the efficient creation and manipulation of in silico chemicals, with convenience functions to extract properties such as mass, formula and SMILES. The library that performs the theoretical lipid generation is primarily the code of Pablo Moreno who created a stand alone Java library with all the basic functionality to generate lipid molecule objects given the previously described fatty acid generation parameters and the sub class head group + phosphate + glycerol structures as mol format files.</p>
+</div>
+
