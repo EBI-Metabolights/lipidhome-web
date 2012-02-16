@@ -1,13 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The specieDaoImpl contains all the methods to access specie related information from the DataSource.
- */
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,6 +14,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleFAScanSpecie;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The specieDaoImpl contains all the methods to access specie related information from the DataSource.
+ *
+ */
 @Repository
 public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Specie>{
 

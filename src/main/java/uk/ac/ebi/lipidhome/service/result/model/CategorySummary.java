@@ -1,11 +1,15 @@
-/**
- * Implements ResultObject to gain access to name and id, this simple class extends it to model a category summary
- */
-
 package uk.ac.ebi.lipidhome.service.result.model;
 
 import uk.ac.ebi.lipidhome.core.model.Category;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model a category summary
+ *
+ */
 public class CategorySummary extends ResultObject{
 	
 	private String code;

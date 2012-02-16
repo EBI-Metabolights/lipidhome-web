@@ -1,14 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The subClassDaoImpl contains all the methods to access sub class related information from the DataSource.
- */
-
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +12,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleSpecie;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The subClassDaoImpl contains all the methods to access sub class related information from the DataSource.
+ *
+ */
 @Repository
 public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDao<SubClass> {
 

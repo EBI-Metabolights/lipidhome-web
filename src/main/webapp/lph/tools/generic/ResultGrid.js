@@ -1,3 +1,10 @@
+/**
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 Ext.define('lph.tools.generic.ResultGrid', {
 	/* Begin Definitions */
     extend	: 'Ext.grid.Panel',

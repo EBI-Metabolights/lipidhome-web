@@ -1,5 +1,13 @@
 package uk.ac.ebi.lipidhome.core.model;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public class Isomer extends LipidObject {
 
     private String smile;

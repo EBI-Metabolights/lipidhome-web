@@ -1,16 +1,4 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * The FAScanSpecieServiceImpl contains all the logic for  fulfilling the methods defined in the FAScanSpecieServiceService Interface
- */
-
 package uk.ac.ebi.lipidhome.service.impl;
-
-import java.util.List;
-
-import javax.ws.rs.core.Response;
 
 import uk.ac.ebi.lipidhome.core.dao.FAScanSpecieDao;
 import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
@@ -20,6 +8,17 @@ import uk.ac.ebi.lipidhome.service.result.Result;
 import uk.ac.ebi.lipidhome.service.result.model.FAScanSpecieSummary;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSubSpecie;
 
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The FAScanSpecieServiceImpl contains all the logic for  fulfilling the methods defined in the FAScanSpecieServiceService Interface
+ *
+ */
 public class FAScanSpecieServiceImpl extends LipidService implements FAScanSpecieService{
 
      /**

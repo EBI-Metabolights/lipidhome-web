@@ -3,7 +3,14 @@ package uk.ac.ebi.lipidhome.service;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The ToolsService interface defines the avilable category related services and the paths that they map to.
+ *
+ */
 @Path( "/" )
 public abstract interface ToolsService {
     @POST

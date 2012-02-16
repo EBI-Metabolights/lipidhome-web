@@ -1,12 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * The SubSpecieServiceImpl contains all the logic for  fulfilling the methods defined in the SubSpecieServiceService Interface
- */
-
-
 package uk.ac.ebi.lipidhome.service.impl;
 
 import exec.IterativePhospholipidGetterDefCarbsDoubleBondPerChain;
@@ -27,6 +18,14 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The SubSpecieServiceImpl contains all the logic for  fulfilling the methods defined in the SubSpecieServiceService Interface
+ *
+ */
 public class SubSpecieServiceImpl extends LipidService implements SubSpecieService{
 
      /**

@@ -2,6 +2,14 @@ package uk.ac.ebi.lipidhome.service.util.ms1export;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public abstract class MS1DataConverter {
 
     protected List<MS1DataContainer> dataList;

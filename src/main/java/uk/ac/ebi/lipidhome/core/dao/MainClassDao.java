@@ -1,13 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The MainClassDao defines all the necessary functions to retrieve information pertaining to a Main Class.
- */
 package uk.ac.ebi.lipidhome.core.dao;
 
 import uk.ac.ebi.lipidhome.core.model.MainClass;
@@ -16,6 +6,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleSubClass;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The MainClassDao defines all the necessary functions to retrieve information pertaining to a Main Class.
+ *
+ */
 public interface MainClassDao<T> extends BaseDao<MainClass>{
 
 	MainClass getMainClass(Long id);

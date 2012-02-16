@@ -34,4 +34,16 @@
     <!--<welcome-file-list>-->
         <!--<welcome-file>index.html</welcome-file>-->
     <!--</welcome-file-list>-->
+
+     <!-- Servlets -->
+    <servlet>
+        <servlet-name>DocumentationServlet</servlet-name>
+        <servlet-class>uk.ac.ebi.lipidhome.servlet.DocumentationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DocumentationServlet</servlet-name>
+        <url-pattern>/servlets/documentation</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

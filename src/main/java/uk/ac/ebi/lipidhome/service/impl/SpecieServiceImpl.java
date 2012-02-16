@@ -1,11 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * The SpecieServiceImpl contains all the logic for  fulfilling the methods defined in the SpecieService Interface
- */
-
 package uk.ac.ebi.lipidhome.service.impl;
 
 import uk.ac.ebi.lipidhome.core.dao.SpecieDao;
@@ -19,6 +11,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SpecieSummary;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The SpecieServiceImpl contains all the logic for  fulfilling the methods defined in the SpecieService Interface
+ *
+ */
 public class SpecieServiceImpl extends LipidService implements SpecieService{
 
      /**

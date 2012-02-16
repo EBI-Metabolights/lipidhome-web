@@ -1,5 +1,13 @@
 package uk.ac.ebi.lipidhome.core.model;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public enum AdductIons {
     NEUTRAL(0.0, "[M]", 1L),
     HPlus (1.007825032, "[M+H]+", 2L),

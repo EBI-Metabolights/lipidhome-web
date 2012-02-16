@@ -19,7 +19,14 @@ import uk.ac.ebi.lipidhome.service.util.ms1export.*;
 import javax.ws.rs.core.Response;
 import java.util.*;
 
-
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public class ToolsServiceImpl extends LipidService implements ToolsService {
 
     public ToolsServiceImpl() {

@@ -1,13 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The FAScanSpecieDao defines all the necessary functions to retrieve information pertaining to a FAScanSpecie.
- */
 package uk.ac.ebi.lipidhome.core.dao;
 
 import uk.ac.ebi.lipidhome.core.model.AdductIons;
@@ -20,6 +10,17 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleSubSpecie;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * @date August 2011
+ *
+ *
+ * The FAScanSpecieDao defines all the necessary functions to retrieve information pertaining to a FAScanSpecie.
+ *
+ */
 public interface FAScanSpecieDao<T> extends BaseDao<FAScanSpecie> {
 
 	FAScanSpecie getSpecie(Long id);

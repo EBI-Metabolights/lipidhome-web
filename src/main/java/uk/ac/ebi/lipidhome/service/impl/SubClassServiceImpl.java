@@ -1,15 +1,4 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * The SubClassServiceImpl contains all the logic for  fulfilling the methods defined in the SubclasService Interface
- */
 package uk.ac.ebi.lipidhome.service.impl;
-
-import java.util.List;
-
-import javax.ws.rs.core.Response;
 
 import uk.ac.ebi.lipidhome.core.dao.SubClassDao;
 import uk.ac.ebi.lipidhome.core.model.SubClass;
@@ -19,6 +8,17 @@ import uk.ac.ebi.lipidhome.service.result.Result;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSpecie;
 import uk.ac.ebi.lipidhome.service.result.model.SubClassSummary;
 
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The SubClassServiceImpl contains all the logic for  fulfilling the methods defined in the SubclasService Interface
+ *
+ */
 public class SubClassServiceImpl extends LipidService implements SubClassService {
 
      /**

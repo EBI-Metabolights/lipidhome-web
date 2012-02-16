@@ -1,11 +1,15 @@
-/**
- * Implements ResultObject to gain access to name and id, this simple class extends it to model a main class summary
- */
-
 package uk.ac.ebi.lipidhome.service.result.model;
 
 import uk.ac.ebi.lipidhome.core.model.MainClass;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model a main class summary
+ *
+ */
 public class MainClassSummary extends ResultObject{
 	
 	private String code;

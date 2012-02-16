@@ -9,8 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
  * A hierarchy node is a simple class holding the minimal information required to display it in the tree
  * and a list of its children which are also hierarchy nodes.
+ *
  */
 public class HierarchyNode {
 	private Long itemId;

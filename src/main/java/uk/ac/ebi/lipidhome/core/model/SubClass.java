@@ -1,13 +1,12 @@
+package uk.ac.ebi.lipidhome.core.model;
+
 /**
- *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  * @author Joe Foster <jfoster@ebi.ac.uk>
  *
  * Defines a model of the sub_class database table.
+ *
  */
-
-package uk.ac.ebi.lipidhome.core.model;
-
 public class SubClass extends LipidObject{
 
 	private String code;

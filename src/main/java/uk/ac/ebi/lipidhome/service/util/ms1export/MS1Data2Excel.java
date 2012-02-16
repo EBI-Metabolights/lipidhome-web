@@ -6,6 +6,14 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public class MS1Data2Excel extends MS1DataConverter{
 
     public MS1Data2Excel(List<MS1DataContainer> dataList) {

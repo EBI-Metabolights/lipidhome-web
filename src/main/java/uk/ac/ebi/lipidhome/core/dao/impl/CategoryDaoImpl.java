@@ -1,14 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The categoryDaoImpl contains all the methods to access category related information from the DataSource.
- */
-
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,6 +14,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleMainClass;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *  The categoryDaoImpl contains all the methods to access category related information from the DataSource.
+ *
+ */
 @Repository
 public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDao<Category> {
 

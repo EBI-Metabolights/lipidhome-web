@@ -1,3 +1,5 @@
+package uk.ac.ebi.lipidhome.core.model;
+
 /**
  *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
@@ -11,10 +13,8 @@
  * Fatty acid scan specie - Individual fatty acid number of carbons and dobule bonds known, position of fatty acid unknown
  * Sub specie - Fatty acid sn positions known
  * Isomer- Double bond/ modification positions known.
+ *
  */
-
-package uk.ac.ebi.lipidhome.core.model;
-
 public enum LipidType {
     NONE("none"),
 	CATEGORY("category"),

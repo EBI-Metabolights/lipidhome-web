@@ -1,6 +1,13 @@
 package uk.ac.ebi.lipidhome.service.result.model;
 
-
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public class MS1SearchRowResult extends ResultObject {
     private float mass;
     private boolean identified;

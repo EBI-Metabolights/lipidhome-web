@@ -1,9 +1,14 @@
-/**
- * Implements ResultObject to gain access to name and id, this simple class extends it to model a simple sub class
- * used for sub class lists.
- */
 package uk.ac.ebi.lipidhome.service.result.model;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model a simple sub class
+ * used for sub class lists.
+ *
+ */
 public class SimpleSubClass extends ResultObject {
 
 	private String code;

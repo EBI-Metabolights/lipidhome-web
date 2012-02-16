@@ -1,16 +1,20 @@
-/**
- * Implements ResultObject to gain access to name and id, this simple class extends it to model a FAScanSpecie summary
- */
-
 package uk.ac.ebi.lipidhome.service.result.model;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.FAScanSpecie;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model a FAScanSpecie summary
+ *
+ */
 public class FAScanSpecieSummary extends ResultObject {
 
 	private String model;

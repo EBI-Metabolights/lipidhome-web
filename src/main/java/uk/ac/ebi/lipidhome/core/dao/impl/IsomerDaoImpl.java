@@ -9,6 +9,14 @@ import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 @Repository
 public class IsomerDaoImpl extends BaseDaoImpl<Isomer> implements IsomerDao<Isomer> {
 

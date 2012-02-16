@@ -1,15 +1,20 @@
-/**
- * Implements ResultObject to gain access to name and id, this simple class extends it to model a specie summary
- */
 package uk.ac.ebi.lipidhome.service.result.model;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.Specie;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model a specie summary
+ *
+ */
 public class SpecieSummary extends ResultObject {
 	
 	private String model;

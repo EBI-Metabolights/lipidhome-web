@@ -1,8 +1,11 @@
-/*
-    The HierarchyPane is a Tree that represents the structure of the items in the database.
-    Items are either added, or if they already exist just selected.
-    Upon adding new items the tree is reordered to always be in alphabetical order.
-
+/**
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *  The HierarchyPane is a Tree that represents the structure of the items in the database.
+ *  Items are either added, or if they already exist just selected.
+ *  Upon adding new items the tree is reordered to always be in alphabetical order.
+ *
 */
 
 Ext.define('lph.browser.nav.HierarchyPane', {
@@ -158,7 +161,7 @@ Ext.define('lph.browser.nav.HierarchyPane', {
 
     findPathTo: function(record){
         Ext.Ajax.request({
-            url     : '/service/utils/pathto',
+            url     : 'service/utils/pathto',
             method  : 'GET',
             params  : {
                 itemId      : record.get("itemId"),

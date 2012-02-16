@@ -1,3 +1,10 @@
+/**
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 Ext.define('lph.documentation.DocumentationPane', {
 	/* Begin Definitions */
     extend		: 'Ext.panel.Panel',

@@ -1,13 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The SpecieDao defines all the necessary functions to retrieve information pertaining to a specie.
- */
 package uk.ac.ebi.lipidhome.core.dao;
 
 import uk.ac.ebi.lipidhome.core.model.AdductIons;
@@ -20,6 +10,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleFAScanSpecie;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The SpecieDao defines all the necessary functions to retrieve information pertaining to a specie.
+ *
+ */
 public interface SpecieDao<T> extends BaseDao<Specie>{
 
 	Specie getSpecie(Long id);

@@ -1,3 +1,8 @@
+package uk.ac.ebi.lipidhome.service;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+
 /**
  *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
@@ -5,14 +10,8 @@
  *
  * The UtilitiesService interface is a collection of services and the paths they map to that do not relate to a single
  * structural hierachy level, but cross multiple of them.
+ *
  */
-
-package uk.ac.ebi.lipidhome.service;
-
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-
 @Path( "/" )
 public abstract interface UtilitiesService {
 

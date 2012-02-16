@@ -1,13 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The SubSpecieDao defines all the necessary functions to retrieve information pertaining to a SubSpecie.
- */
 package uk.ac.ebi.lipidhome.core.dao;
 
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
@@ -19,6 +9,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleIsomer;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The SubSpecieDao defines all the necessary functions to retrieve information pertaining to a SubSpecie.
+ *
+ */
 public interface SubSpecieDao<T> extends BaseDao<SubSpecie>{
 
 	SubSpecie getSubSpecie(Long id);

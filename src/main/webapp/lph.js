@@ -45,7 +45,7 @@ Ext.application({
         lph.documentation = Ext.create('lph.documentation.DocumentationPane');
 
         var phase = (Ext.isEmpty(lph.phase) || Ext.isEmpty(lph.phase.html)) ? "" : lph.phase.html;
-		var viewport = Ext.create('Ext.container.Viewport', {
+		lph.viewport = Ext.create('Ext.container.Viewport', {
 			layout	: "border",
 			id		: 'maintab',
 			items : [{
