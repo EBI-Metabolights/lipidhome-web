@@ -4,6 +4,14 @@ import uk.ac.ebi.lipidhome.core.model.LipidType;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public abstract class MS1Data2XSV extends MS1DataConverter{
 
     protected String getHeader(String delimiter){

@@ -34,11 +34,11 @@ Ext.define('lph.browser.BrowserPane', {
         
         this.content = Ext.create('lph.browser.content.ContentPane');
         this.add(this.content);
-		
-        this.navigator.hierarchy.addListener('selectionChange', this.content.loadContent, this.content);
 
         this.content.manager.addListener('beforeNewContent', this._mask, this);
         this.content.manager.addListener('newContent', this.bindContentActions, this);
+
+        this.navigator.hierarchy.addListener('selectionChange', this.content.loadContent, this.content);
 
         return this;
     },

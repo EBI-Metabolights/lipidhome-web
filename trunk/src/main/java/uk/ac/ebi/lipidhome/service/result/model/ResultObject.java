@@ -2,6 +2,14 @@ package uk.ac.ebi.lipidhome.service.result.model;
 
 import uk.ac.ebi.lipidhome.core.model.LipidObject;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public abstract class ResultObject {
 
 	/**

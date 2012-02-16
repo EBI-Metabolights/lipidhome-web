@@ -1,5 +1,11 @@
+package uk.ac.ebi.lipidhome.core.dao.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import uk.ac.ebi.lipidhome.core.dao.*;
+import uk.ac.ebi.lipidhome.core.model.*;
+
 /**
- *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  * @author Joe Foster <jfoster@ebi.ac.uk>
  *
@@ -10,14 +16,6 @@
  *  There is currently a DAO fr each level of the structure Hierarchy. All the methods to get and set DAO factories are
  *  available here.
  */
-
-package uk.ac.ebi.lipidhome.core.dao.impl;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import uk.ac.ebi.lipidhome.core.dao.*;
-import uk.ac.ebi.lipidhome.core.model.*;
-
 @Component
 public class DaoFactoryImpl implements DaoFactory {
 

@@ -1,16 +1,20 @@
-/**
- * Implements the Spring RowMapper, capable of returning an appropriate object model from a result set.
- * This mapper returns objects that can be cast to a Specie Object.
- */
 package uk.ac.ebi.lipidhome.service.mapper;
+
+import org.springframework.jdbc.core.RowMapper;
+import uk.ac.ebi.lipidhome.core.model.Specie;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.jdbc.core.RowMapper;
-
-import uk.ac.ebi.lipidhome.core.model.Specie;
-
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Implements the Spring RowMapper, capable of returning an appropriate object model from a result set.
+ * This mapper returns objects that can be cast to a Specie Object.
+ *
+ */
 public class SpecieMapper implements RowMapper{
 
 	@Override

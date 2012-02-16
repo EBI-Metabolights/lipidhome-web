@@ -1,13 +1,17 @@
-/**
- * This class is a generic holder of lots of different result types fro the different services
- */
-
 package uk.ac.ebi.lipidhome.service.result;
 
 import uk.ac.ebi.lipidhome.service.result.model.ResultObject;
 import uk.ac.ebi.lipidhome.service.result.model.ResultObjectList;
 import uk.ac.ebi.lipidhome.service.result.model.ResultObjectListOfLists;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * This class is a generic holder of lots of different result types fro the different services
+ *
+ */
 public class Result {
 
 	private boolean success;

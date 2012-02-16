@@ -1,16 +1,4 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * The MainClassServiceImpl contains all the logic for  fulfilling the methods defined in the MainClassService Interface
- */
-
 package uk.ac.ebi.lipidhome.service.impl;
-
-import java.util.List;
-
-import javax.ws.rs.core.Response;
 
 import uk.ac.ebi.lipidhome.core.dao.MainClassDao;
 import uk.ac.ebi.lipidhome.core.model.MainClass;
@@ -20,6 +8,17 @@ import uk.ac.ebi.lipidhome.service.result.Result;
 import uk.ac.ebi.lipidhome.service.result.model.MainClassSummary;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSubClass;
 
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The MainClassServiceImpl contains all the logic for  fulfilling the methods defined in the MainClassService Interface
+ *
+ */
 public class MainClassServiceImpl extends LipidService implements MainClassService {
 
 	public MainClassServiceImpl(){

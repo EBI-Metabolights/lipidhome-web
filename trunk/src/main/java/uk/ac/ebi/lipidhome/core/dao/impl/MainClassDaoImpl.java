@@ -1,13 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The mainDaoImpl contains all the methods to access main class related information from the DataSource.
- */
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,6 +12,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleSubClass;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The mainDaoImpl contains all the methods to access main class related information from the DataSource.
+ *
+ */
 @Repository
 public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClassDao<MainClass>{
 

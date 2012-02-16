@@ -1,15 +1,13 @@
+package uk.ac.ebi.lipidhome.core.model;
+
 /**
  *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  * @author Joe Foster <jfoster@ebi.ac.uk>
  *
  * Defines a model of the category database table.
+ *
  */
-
-package uk.ac.ebi.lipidhome.core.model;
-
-import uk.ac.ebi.lipidhome.core.model.LipidObject;
-
 public class Category extends LipidObject {
 
 	private String code;

@@ -1,18 +1,17 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * Defines a model of the sub_specie database table.
- */
-
-
 package uk.ac.ebi.lipidhome.core.model;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Defines a model of the sub_specie database table.
+ *
+ */
 public class SubSpecie extends LipidObject {
 	
 	private String model;

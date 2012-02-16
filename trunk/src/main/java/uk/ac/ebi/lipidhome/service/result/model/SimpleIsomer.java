@@ -1,10 +1,14 @@
-/**
- * Implements ResultObject to gain access to name and id, this simple class extends it to model a simple isomer
- * used for isomer lists.
- */
-
 package uk.ac.ebi.lipidhome.service.result.model;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * Implements ResultObject to gain access to name and id, this simple class extends it to model a simple isomer
+ * used for isomer lists.
+ *
+ */
 public class SimpleIsomer extends ResultObject implements Comparable<SimpleIsomer>{
 
     private String smile = "";

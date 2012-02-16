@@ -1,14 +1,13 @@
+package uk.ac.ebi.lipidhome.core.model;
+
 /**
  *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  * @author Joe Foster <jfoster@ebi.ac.uk>
  *
  * Defines a model of the xref database table.
+ *
  */
-
-
-package uk.ac.ebi.lipidhome.core.model;
-
 public class CrossReference {
 
 	private String resource;

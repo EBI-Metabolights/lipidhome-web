@@ -1,15 +1,13 @@
+package uk.ac.ebi.lipidhome.core.model;
+
 /**
  *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  * @author Joe Foster <jfoster@ebi.ac.uk>
  *
  * Defines a model of the main_class database table.
+ *
  */
-
-package uk.ac.ebi.lipidhome.core.model;
-
-import uk.ac.ebi.lipidhome.core.model.LipidObject;
-
 public class MainClass extends LipidObject{
 	
 	private String code;

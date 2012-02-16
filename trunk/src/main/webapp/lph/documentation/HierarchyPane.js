@@ -1,3 +1,12 @@
+/**
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The HierarchyPane is a Tree that represents the structure of the items in the documentation static resources.
+ * It uses a dedicated servlet who provides the documentation static folder content (listing the content of the
+ * static folders use to be denied by security reasons).
+ *
+*/
 Ext.define('lph.documentation.HierarchyPane', {
 	/* Begin Definitions */
     extend	    : 'Ext.tree.Panel',
@@ -16,7 +25,7 @@ Ext.define('lph.documentation.HierarchyPane', {
     minWidth    : 200,
     collapsible : true,
     split		: true,
-    mainFolder  : 'resources/static/documentation',    //Always ending with "/"
+    mainFolder  : 'resources/static/documentation',
 
     constructor: function(config) {
     	this.callParent(arguments);
@@ -26,6 +35,8 @@ Ext.define('lph.documentation.HierarchyPane', {
             optionSelected: true
         });
 
+        var rootNode = this.getRootNode();
+        rootNode.set('path', "/");
         this.loadNodeContent(this.getRootNode());
 
         this.addListener("selectionchange", this._selectionChange, this);
@@ -34,57 +45,47 @@ Ext.define('lph.documentation.HierarchyPane', {
     },
 
     loadNodeContent: function(node){
-        var path = node.isRoot()?this.mainFolder:node.get('path');
-        this._getNodeContent(node, path + "/");
-    },
-
-    _loadNodeContent: function(node, paths){
-        Ext.Array.each(paths, function(path){
-            var prop = this._getPathProperties(path);
-            var newNode = node.appendChild({
-                text	: prop.name.replace(/_/g," "),
-                path    : prop.path,
-                leaf    : prop.isFile,
-                iconCls : prop.iconCls
-		    });
-            if(!prop.isFile){
-                this.loadNodeContent(newNode);
-            }
-        }, this);
-    },
-
-    _getNodeContent: function(node, path){
-        var regx =  new RegExp(path + "[a-zA-Z0-9_]+(\.html)?", "g");
         Ext.Ajax.request({
-            url     : path,
+            url     : 'servlets/documentation',
+            params  : {
+                path    : node.get('path')
+            },
             success : function(response,opts) {
-                this._loadNodeContent(node, response.responseText.match(regx));
+                this._loadNodeContent(node, response); //.responseText.match(regx));
             },
             scope   : this
         });
     },
 
-    _getPathProperties: function(path){
-        var regx =  new RegExp("[a-zA-Z0-9_]+\.html$", "g");
-        var names = path.match(regx);
-        var isFile = (names!=null);
-        var name = '';
-        var iconCls = '';
-        if(isFile){
-            name = names[0].replace(/[.]html$/g,"");
-            iconCls = "document-16";
-        }else{
-            var elems = path.split("\/");
-            name = elems.length==0?'':elems[elems.length-1];
-            iconCls = name.toLowerCase().replace(/_/g,"-") + "-16";
-        }
+    _loadNodeContent: function(node, response){
+        var res = Ext.decode(response.responseText);
+        if(res.success){
+            if(res.content.folders){
+                Ext.Array.each(res.content.folders, function(folder){
+                    var name = Ext.String.capitalize(folder.replace(/^(\d*_)/,"").replace(/_/g," "));
+                    var newNode = node.appendChild({
+                        text	: name,
+                        path    : node.get('path') + folder + "/",
+                        leaf    : false,
+                        iconCls : name.toLowerCase().replace(/ /g,"-") + "-16"
+                    });
+                    this.loadNodeContent(newNode);
+                }, this);
+            }
 
-        return {
-            path    : path,
-            isFile  : isFile,
-            name    : Ext.String.capitalize(name),
-            iconCls : iconCls
-        };
+            if(res.content.files){
+                Ext.Array.each(res.content.files, function(file){
+                    var name =  file.replace(/[.]html$/g,"").replace(/^(\d*_)/,"").replace(/_/g," ");
+                    var path = this.mainFolder + node.get('path') + file;
+                    var newNode = node.appendChild({
+                        text	: Ext.String.capitalize(name),
+                        path    : path,
+                        leaf    : true,
+                        iconCls : "document-16"
+                    });
+                }, this);
+            }
+        }
     },
 
     _selectionChange: function(tree, selection, opts){

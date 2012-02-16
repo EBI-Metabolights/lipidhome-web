@@ -6,6 +6,15 @@ import uk.ac.ebi.lipidhome.service.result.model.MS1SearchRowResult;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
+
 public class MS1SearchRowResultMapper implements RowMapper {
 
     @Override

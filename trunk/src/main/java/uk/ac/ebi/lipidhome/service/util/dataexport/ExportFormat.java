@@ -1,5 +1,13 @@
 package uk.ac.ebi.lipidhome.service.util.dataexport;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public enum ExportFormat {
     NONE("",""),
     CSV("csv","csv"),

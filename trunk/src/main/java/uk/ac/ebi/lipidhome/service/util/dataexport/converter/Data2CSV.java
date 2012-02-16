@@ -4,6 +4,14 @@ import uk.ac.ebi.lipidhome.service.util.dataexport.DataContainer;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public class Data2CSV extends Data2XSV {
 
     private static String DELIMITER = ",";

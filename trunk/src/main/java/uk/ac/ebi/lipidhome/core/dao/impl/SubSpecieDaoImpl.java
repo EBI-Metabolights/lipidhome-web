@@ -1,14 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The subSpecieDaoImpl contains all the methods to access sub specie related information from the DataSource.
- */
-
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,6 +15,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleIsomer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The subSpecieDaoImpl contains all the methods to access sub specie related information from the DataSource.
+ *
+ */
 @Repository
 public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpecieDao<SubSpecie>{
 

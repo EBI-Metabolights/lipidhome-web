@@ -5,6 +5,14 @@ import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 public interface IsomerDao <T> extends BaseDao<Isomer> {
 
     List<BaseSearchItem> getIsomerByNameLike(String name, Long start, Long limit);

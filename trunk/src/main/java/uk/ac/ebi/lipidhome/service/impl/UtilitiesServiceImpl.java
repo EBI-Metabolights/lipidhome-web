@@ -1,11 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- *  This class contians the implementations of all the emthods defined in UtilitiesService. These services are not
- *  related to a single hierarchy structure level and so have been lumped tog ether in this class.
- */
 package uk.ac.ebi.lipidhome.service.impl;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -30,7 +22,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *  This class contians the implementations of all the emthods defined in UtilitiesService. These services are not
+ *  related to a single hierarchy structure level and so have been lumped tog ether in this class.
+ *
+ */
 public class UtilitiesServiceImpl extends LipidService implements UtilitiesService{
 
 	public UtilitiesServiceImpl(){

@@ -1,3 +1,10 @@
+/**
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ *
+ *
+ */
 Ext.define('lph.tools.generic.DescriptionPanel', {
 	/* Begin Definitions */
     extend      : 'Ext.Panel',
@@ -6,7 +13,7 @@ Ext.define('lph.tools.generic.DescriptionPanel', {
     iconCls     : 'information-16',
 	collapsible	: true,
 	layout		: 'fit',
-
+    autoScroll  : true,
 	url 		: null,
 	
 	constructor: function(config) {

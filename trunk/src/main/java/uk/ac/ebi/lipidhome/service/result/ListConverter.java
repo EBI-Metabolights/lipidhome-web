@@ -1,15 +1,18 @@
-/**
- * This class converts a list of objects into a single ResultObjectList object
- */
-
 package uk.ac.ebi.lipidhome.service.result;
-
-import java.util.List;
 
 import uk.ac.ebi.lipidhome.service.result.model.ResultObject;
 import uk.ac.ebi.lipidhome.service.result.model.ResultObjectList;
-import uk.ac.ebi.lipidhome.service.result.model.ResultObjectListOfLists;
 
+import java.util.List;
+
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * This class converts a list of objects into a single ResultObjectList object
+ *
+ */
 public class ListConverter<T extends ResultObject> {
 
 	public ResultObjectList getLipidObjectList(List<T> list){

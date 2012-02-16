@@ -1,3 +1,13 @@
+package uk.ac.ebi.lipidhome.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import uk.ac.ebi.lipidhome.core.dao.DaoFactory;
+import uk.ac.ebi.lipidhome.service.result.Result;
+import uk.ac.ebi.lipidhome.service.result.ResultStreamingOutput;
+
+import javax.ws.rs.core.Response;
+
 /**
  *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
@@ -5,19 +15,8 @@
  *
  *  LipidService is the core Class that most Services extend, it gives them access to the DaoFactory and methods
  *  to transform Results into json encoded Responses,
+ *
  */
-
-package uk.ac.ebi.lipidhome.service.impl;
-
-import javax.ws.rs.core.Response;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import uk.ac.ebi.lipidhome.core.dao.DaoFactory;
-import uk.ac.ebi.lipidhome.service.result.Result;
-import uk.ac.ebi.lipidhome.service.result.ResultStreamingOutput;
-
 @Service
 abstract class LipidService {
 

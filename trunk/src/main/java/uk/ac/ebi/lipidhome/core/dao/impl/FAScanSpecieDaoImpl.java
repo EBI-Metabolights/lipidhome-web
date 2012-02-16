@@ -1,14 +1,3 @@
-/**
- *
- * @author Antonio Fabregat <fabregat@ebi.ac.uk>
- * @author Joe Foster <jfoster@ebi.ac.uk>
- *
- * @date August 2011
- *
- *
- *  The FAScanSpecieDaoImpl contains all the methods to access FAScanSpecie related information from the DataSource.
- */
-
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,6 +13,14 @@ import uk.ac.ebi.lipidhome.service.result.model.SimpleSubSpecie;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Antonio Fabregat <fabregat@ebi.ac.uk>
+ * @author Joe Foster <jfoster@ebi.ac.uk>
+ *
+ * The FAScanSpecieDaoImpl contains all the methods to access FAScanSpecie related information from the DataSource.
+ *
+ */
 @Repository
 public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FAScanSpecieDao<FAScanSpecie>{
 
