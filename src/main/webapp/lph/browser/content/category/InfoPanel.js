@@ -44,10 +44,20 @@ Ext.define('lph.browser.content.category.InfoPanel', {
                 tooltip     : 'The number of main classes that belong to this category.',
 		        readOnly    : true
 		    },{
+		        fieldLabel  : '# Sub classes',
+		        name        : 'subClasses',
+                tooltip     : 'The number of sub classes that belong to this category.',
+		        readOnly    : true
+		    },{
 		        fieldLabel  : '# Species',
 		        name        : 'species',
 		        tooltip     : 'The number of species that belong to this category.',
                 readOnly    : true
+		    },{
+		        fieldLabel  : '# FA scan species',
+		        name        : 'faScanSpecies',
+                tooltip     : 'The number of fatty acid scan species that belong to this category.',
+		        readOnly    : true
 		    },{
 		        fieldLabel  : '# Sub species',
 		        name        : 'subSpecies',

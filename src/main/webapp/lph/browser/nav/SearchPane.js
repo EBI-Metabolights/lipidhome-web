@@ -21,6 +21,7 @@ Ext.define('lph.browser.nav.SearchPane', {
     margins	: '5 5 5 5',
     frame	: true,
     border	: false,
+    example : 'PC 36:2',
     
     constructor: function(config) {
     	this.callParent(arguments);
@@ -62,7 +63,7 @@ Ext.define('lph.browser.nav.SearchPane', {
             hideTrigger	 : true,
             //triggerAction: 'all',
             flex		 : 1,
-            emptyText	 : 'Search...',
+            emptyText	 : 'Search... (Example: ' + this.example + ')',
             tooltip      : 'Live search by name, minumum 4 characters',
 			pageSize	 : 10,
 			displayField : 'name',
@@ -80,7 +81,8 @@ Ext.define('lph.browser.nav.SearchPane', {
             },
             listeners   : {
             	scope	 : this,
-            	'select' : this.itemSelected
+            	'select' : this.itemSelected,
+                'focus'  : this.onFocus,
             }
         });
         this.search.addListener('render', this._onItemRender)
@@ -123,6 +125,16 @@ Ext.define('lph.browser.nav.SearchPane', {
     itemSelected: function(combo, records, eOpts){
         var record = records[0];
         this.fireEvent('itemSelected', record);
+    },
+
+    onFocus: function(field, ops){
+        if(Ext.isEmpty(this.focusedBefore) && Ext.isEmpty(field.getValue())){
+            field.emptyText = 'Search...';
+            field.setValue(this.example);
+            field.doQueryTask.delay(field.queryDelay);
+            this.focusedBefore = true;
+        }
+        field.selectText();
     },
 
     _onItemRender: function(c){

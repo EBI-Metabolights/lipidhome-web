@@ -2,6 +2,7 @@ package uk.ac.ebi.lipidhome.service.impl;
 
 import uk.ac.ebi.lipidhome.core.dao.CategoryDao;
 import uk.ac.ebi.lipidhome.core.model.Category;
+import uk.ac.ebi.lipidhome.core.model.CategoryProperties;
 import uk.ac.ebi.lipidhome.service.CategoryService;
 import uk.ac.ebi.lipidhome.service.result.ListConverter;
 import uk.ac.ebi.lipidhome.service.result.Result;
@@ -42,14 +43,10 @@ public class CategoryServiceImpl extends LipidService implements CategoryService
 		
 		try {
 			Category category = categoryDao.getCategory(id);
-			CategorySummary cSummary = new CategorySummary(category);
-			cSummary.setAnnotatedIsomers(categoryDao.getIsomerCountById(id));						
-			cSummary.setSubSpecies(categoryDao.getSubSpeciesCountById(id));
-			cSummary.setMainClasses(categoryDao.getMainClassesCountById(id));
-			cSummary.setSpecies(categoryDao.getSpeciesCountById(id));
-			
+            CategoryProperties properties = categoryDao.getCategoryProperties(id);
+
+			CategorySummary cSummary = new CategorySummary(category, properties);
 			result = new Result(cSummary);
-			
 		} catch (RuntimeException e) {
 			String errorMessage =  "Record with id " + id + " is unavailable.";
 			result = new Result(errorMessage);

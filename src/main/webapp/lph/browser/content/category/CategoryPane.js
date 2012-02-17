@@ -67,7 +67,9 @@ Ext.define('CategorySummaryModel', {
         { name: 'id', type: 'int' },
         { name: 'model', type: 'string' },
         { name: 'mainClasses', type: 'int' },
+        { name: 'subClasses', type: 'int' },
         { name: 'species', type: 'int' },
+        { name: 'faScanSpecies', type: 'int' },
         { name: 'subSpecies', type: 'int' },
         { name: 'annotatedIsomers', type: 'int' }
     ],

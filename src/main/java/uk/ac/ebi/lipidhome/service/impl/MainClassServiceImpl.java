@@ -2,6 +2,7 @@ package uk.ac.ebi.lipidhome.service.impl;
 
 import uk.ac.ebi.lipidhome.core.dao.MainClassDao;
 import uk.ac.ebi.lipidhome.core.model.MainClass;
+import uk.ac.ebi.lipidhome.core.model.MainClassProperties;
 import uk.ac.ebi.lipidhome.service.MainClassService;
 import uk.ac.ebi.lipidhome.service.result.ListConverter;
 import uk.ac.ebi.lipidhome.service.result.Result;
@@ -38,13 +39,10 @@ public class MainClassServiceImpl extends LipidService implements MainClassServi
 		MainClassDao<MainClass> mainClassDao = getDaoFactory().getMainClassDao();
 		
 		try {
-			MainClass mainClass = mainClassDao.getMainClass(id); 
-			MainClassSummary mcSummary = new MainClassSummary(mainClass);
-			mcSummary.setAnnotatedIsomers(mainClassDao.getIsomerCountById(id));
-			mcSummary.setSubSpecies(mainClassDao.getSubSpeciesCountById(id));
-			mcSummary.setSubClasses(mainClassDao.getSubClassesCountById(id));
-			mcSummary.setSpecies(mainClassDao.getSpeciesCountById(id));
-			
+			MainClass mainClass = mainClassDao.getMainClass(id);
+            MainClassProperties properties = mainClassDao.getMainClassProperties(id);
+
+            MainClassSummary mcSummary = new MainClassSummary(mainClass, properties);
 			result = new Result(mcSummary);
 			
 		} catch (RuntimeException e) {
