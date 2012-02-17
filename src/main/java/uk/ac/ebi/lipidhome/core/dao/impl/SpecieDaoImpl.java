@@ -68,7 +68,7 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 				"SELECT species_id AS item_id, name, identified, 'specie' as type " +
 				"FROM species " +
 				"WHERE name LIKE ? ORDER BY identified DESC, name;",
-				new Object[]{ name }, new BaseSearchItemMapper());
+				new String[]{ name }, new BaseSearchItemMapper());
     }
 
     @Override

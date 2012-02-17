@@ -67,7 +67,7 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 				"SELECT FA_scan_species_id AS item_id, name, identified, 'faScanSpecie' as type " +
 				"FROM FA_scan_species " +
 				"WHERE name LIKE ? ORDER BY identified DESC, name;",
-				new Object[]{ name }, new BaseSearchItemMapper());
+				new String[]{ name }, new BaseSearchItemMapper());
     }
 
     @Override
