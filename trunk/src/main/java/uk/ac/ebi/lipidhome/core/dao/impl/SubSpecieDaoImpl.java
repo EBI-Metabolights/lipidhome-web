@@ -69,7 +69,7 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 				"SELECT sub_species_id AS item_id, name, identified, 'subSpecie' as type " +
 				"FROM sub_species " +
 				"WHERE name LIKE ? ORDER BY identified DESC, name;",
-				new Object[]{ name }, new BaseSearchItemMapper());
+				new String[]{ name }, new BaseSearchItemMapper());
     }
 
     /**

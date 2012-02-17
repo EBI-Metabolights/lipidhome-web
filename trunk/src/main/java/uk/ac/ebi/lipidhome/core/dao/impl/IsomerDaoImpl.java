@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Repository
 public class IsomerDaoImpl extends BaseDaoImpl<Isomer> implements IsomerDao<Isomer> {
-
+    @SuppressWarnings("unchecked")
     @Override
     public List<BaseSearchItem> getIsomerByNameLike(String name, Long start, Long limit) {
         name = "%%" + name + "%%";
@@ -31,6 +31,7 @@ public class IsomerDaoImpl extends BaseDaoImpl<Isomer> implements IsomerDao<Isom
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<BaseSearchItem> getIsomerByNameLike(String name) {
         name = "%%" + name + "%%";
@@ -39,7 +40,7 @@ public class IsomerDaoImpl extends BaseDaoImpl<Isomer> implements IsomerDao<Isom
 				"SELECT isomer_id AS item_id, name, TRUE as 'identified', 'isomer' as type " +
 				"FROM isomer " +
 				"WHERE name LIKE ? ORDER BY identified DESC, name;",
-				new Object[]{ name }, new BaseSearchItemMapper());
+				new String[]{ name }, new BaseSearchItemMapper());
     }
 
     @Override
@@ -53,6 +54,7 @@ public class IsomerDaoImpl extends BaseDaoImpl<Isomer> implements IsomerDao<Isom
 				new Object[]{name});
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<BaseSearchItem> getIsomerParents(Long id) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());

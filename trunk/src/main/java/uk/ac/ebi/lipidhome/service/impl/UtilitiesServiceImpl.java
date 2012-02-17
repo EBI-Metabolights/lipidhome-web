@@ -53,6 +53,8 @@ public class UtilitiesServiceImpl extends LipidService implements UtilitiesServi
         List<BaseSearchItem> list = new ArrayList<BaseSearchItem>();
         long totalCount = 0;
 
+        query = query.replaceAll("_", "\\\\_");
+
         switch (LipidType.getType(type)){
             case CATEGORY:
                 CategoryDao<Category> categoryDao = getDaoFactory().getCategoryDao();

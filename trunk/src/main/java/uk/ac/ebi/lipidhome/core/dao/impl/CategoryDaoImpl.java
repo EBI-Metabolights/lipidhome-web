@@ -68,6 +68,7 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
                 new Object[]{name, start, limit}, new BaseSearchItemMapper());
 	}
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<BaseSearchItem> getCategoryByNameLike(String name) {
         name = "%%" + name + "%%";
@@ -76,7 +77,7 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
                 "SELECT category_id AS item_id, name, TRUE AS identified, 'category' as type " +
                         "FROM category " +
                         "WHERE name LIKE ? ORDER BY identified DESC, name;",
-                new Object[]{name}, new BaseSearchItemMapper());
+                new String[]{name}, new BaseSearchItemMapper());
     }
 
     @Override

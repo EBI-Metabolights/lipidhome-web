@@ -74,7 +74,7 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 				"SELECT sub_class_id AS item_id, name, TRUE AS identified, 'subClass' as type " +
 				"FROM sub_class " +
 				"WHERE name LIKE ? ORDER BY identified DESC, name;",
-				new Object[]{ name }, new BaseSearchItemMapper());
+				new String[]{ name }, new BaseSearchItemMapper());
     }
 
     @Override

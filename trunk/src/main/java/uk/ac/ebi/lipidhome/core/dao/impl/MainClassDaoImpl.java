@@ -70,6 +70,7 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				new Object[]{ name, start, limit}, new BaseSearchItemMapper());
 	}
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<BaseSearchItem> getMainClassByNameLike(String name) {
         name = "%%" + name + "%%";
@@ -78,7 +79,7 @@ public class MainClassDaoImpl extends BaseDaoImpl<MainClass> implements MainClas
 				"SELECT main_class_id AS item_id, name, TRUE AS identified, 'mainClass' as type " +
 				"FROM main_class " +
 				"WHERE name LIKE ? ORDER BY identified DESC, name;",
-				new Object[]{ name }, new BaseSearchItemMapper());
+				new String[]{ name }, new BaseSearchItemMapper());
     }
 
     @Override
