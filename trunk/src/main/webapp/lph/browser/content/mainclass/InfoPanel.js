@@ -47,6 +47,11 @@ Ext.define('lph.browser.content.mainclass.InfoPanel', {
 		        name        : 'species',
 		        readOnly    : true
 		    },{
+		        fieldLabel  : '# FA scan species',
+		        name        : 'faScanSpecies',
+                tooltip     : 'The number of fatty acid scan species that belong to this main class.',
+		        readOnly    : true
+		    },{
 		        fieldLabel  : '# Sub species',
 		        name        : 'subSpecies',
 		        readOnly    : true

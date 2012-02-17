@@ -1,24 +1,17 @@
-package uk.ac.ebi.lipidhome.service.result.model;
-
-import uk.ac.ebi.lipidhome.core.model.MainClass;
-import uk.ac.ebi.lipidhome.core.model.MainClassProperties;
+package uk.ac.ebi.lipidhome.core.model;
 
 /**
  *
  * @author Antonio Fabregat <fabregat@ebi.ac.uk>
  * @author Joe Foster <jfoster@ebi.ac.uk>
  *
- * Implements ResultObject to gain access to name and id, this simple class extends it to model a main class summary
+ * Defines a model of the main_class_properties database table.
  *
  */
-public class MainClassSummary extends ResultObject{
-	
-	private String code;
-	
-	private String model;
-	
-	private Integer subClasses;
-	
+public class MainClassProperties extends LipidPropertiesObject{
+
+    private Integer subClasses;
+
 	private Integer species;
 
     private Integer faScanSpecies;
@@ -26,34 +19,6 @@ public class MainClassSummary extends ResultObject{
 	private Integer subSpecies;
 
 	private Integer annotatedIsomers;
-	
-	public MainClassSummary(MainClass mainClass, MainClassProperties properties){
-		super(mainClass);
-		setCode(mainClass.getCode());
-		setModel(mainClass.getModel());
-
-        setSubClasses(properties.getSubClasses());
-		setSpecies(properties.getSpecies());
-        setFaScanSpecies(properties.getFaScanSpecies());
-        setSubSpecies(properties.getSubSpecies());
-        setAnnotatedIsomers(properties.getAnnotatedIsomers());
-	}
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
 
     public Integer getSubClasses() {
         return subClasses;

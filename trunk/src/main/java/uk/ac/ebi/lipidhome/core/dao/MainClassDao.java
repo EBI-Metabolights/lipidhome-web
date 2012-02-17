@@ -1,6 +1,7 @@
 package uk.ac.ebi.lipidhome.core.dao;
 
 import uk.ac.ebi.lipidhome.core.model.MainClass;
+import uk.ac.ebi.lipidhome.core.model.MainClassProperties;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleSubClass;
 
@@ -17,6 +18,8 @@ import java.util.List;
 public interface MainClassDao<T> extends BaseDao<MainClass>{
 
 	MainClass getMainClass(Long id);
+
+    MainClassProperties getMainClassProperties(Long id);
 	
 	List<BaseSearchItem> getMainClassByNameLike(String name, Long start, Long limit);
 
@@ -25,14 +28,6 @@ public interface MainClassDao<T> extends BaseDao<MainClass>{
     long getMainClassCountByNameLike(String name);
 	
 	List<BaseSearchItem> getMainClassParents(Long id);
-	
-	int getIsomerCountById(Long id);
-	
-	int getSubSpeciesCountById(Long id);
-	
-	int getSubClassesCountById(Long id);
-	
-	int getSpeciesCountById(Long id);
-	
+
 	List<SimpleSubClass> getSimpleSubClassesList(Long id);
 }

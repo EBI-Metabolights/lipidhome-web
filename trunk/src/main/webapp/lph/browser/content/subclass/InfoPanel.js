@@ -39,17 +39,25 @@ Ext.define('lph.browser.content.subclass.InfoPanel', {
                 tooltip     : 'LipidomicNet nomenclature name.',
 		        readOnly    : true
 		    },{
-		        fieldLabel: '# Species',
-		        name: 'species',
-		        readOnly: true
+		        fieldLabel  : '# Species',
+		        name        : 'species',
+                tooltip     : 'The number of species that belong to this sub class.',
+		        readOnly    : true
 		    },{
-		        fieldLabel: '# Sub species',
-		        name: 'subSpecies',
-		        readOnly: true
+		        fieldLabel  : '# FA scan species',
+		        name        : 'faScanSpecies',
+                tooltip     : 'The number of fatty acid scan species that belong to this sub class.',
+		        readOnly    : true
 		    },{
-		        fieldLabel: '# Annotated isomers',
-		        name: 'annotatedIsomers',
-		        readOnly: true
+		        fieldLabel  : '# Sub species',
+		        name        : 'subSpecies',
+                tooltip     : 'The number of sub species that belong to this sub class.',
+		        readOnly    : true
+		    },{
+		        fieldLabel  : '# Annotated isomers',
+		        name        : 'annotatedIsomers',
+                tooltip     : 'The number of isomers for which there is evidence in external resources that belong to this sub class.',
+		        readOnly    : true
 		    }]
         });
         this.add(this.content);

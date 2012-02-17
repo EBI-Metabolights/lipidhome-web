@@ -2,6 +2,7 @@ package uk.ac.ebi.lipidhome.service.impl;
 
 import uk.ac.ebi.lipidhome.core.dao.SubClassDao;
 import uk.ac.ebi.lipidhome.core.model.SubClass;
+import uk.ac.ebi.lipidhome.core.model.SubClassProperties;
 import uk.ac.ebi.lipidhome.service.SubClassService;
 import uk.ac.ebi.lipidhome.service.result.ListConverter;
 import uk.ac.ebi.lipidhome.service.result.Result;
@@ -35,11 +36,9 @@ public class SubClassServiceImpl extends LipidService implements SubClassService
 		
 		try {
 			SubClass subClass = subClassDao.getSubClass(id);
-			SubClassSummary scSummary = new SubClassSummary(subClass);
-			scSummary.setAnnotatedIsomers(subClassDao.getIsomerCountById(id));						
-			scSummary.setSubSpecies(subClassDao.getSubSpeciesCountById(id));
-			scSummary.setSpecies(subClassDao.getSpeciesCountById(id));
-			
+            SubClassProperties properties = subClassDao.getSubClassProperties(id);
+
+			SubClassSummary scSummary = new SubClassSummary(subClass, properties);
 			result = new Result(scSummary);
 			
 		} catch (RuntimeException e) {
