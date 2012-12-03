@@ -1,6 +1,7 @@
 package uk.ac.ebi.lipidhome.core.model;
 
-import structure.SingleLinkConfiguration;
+
+import uk.ac.ebi.lipidhome.fastlipid.structure.SingleLinkConfiguration;
 
 /**
  *

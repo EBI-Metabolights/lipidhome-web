@@ -22,7 +22,8 @@ Ext.define('lph.browser.content.generic.PapersPanel', {
     autoScroll	 : true,
 	collapsible	 : true,
     animCollapse : false,
-    
+    disabled    : true,
+
 	columns		 : [
 		{header: 'PMID',  dataIndex: 'pmid'},
         {header: 'Title',  dataIndex: 'title', flex:1},
@@ -38,7 +39,7 @@ Ext.define('lph.browser.content.generic.PapersPanel', {
 	
 	_updateTab: function(num){
 		this.setTitle(this.title + " (" + num + ")");
-		if(num==0) this.disable();
+		if(num>0) this.enable();
 	},
 	
 	plugins: [{

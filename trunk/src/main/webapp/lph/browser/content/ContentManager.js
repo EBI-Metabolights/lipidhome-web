@@ -88,16 +88,23 @@ Ext.define('lph.browser.content.ContentManager', {
 	        });
             ntype = 'isomer';
     	}else if(type=="isomer"){
-    		panel = Ext.create('Ext.Panel');
-            ntype = '';
+    		panel = Ext.create('lph.browser.content.isomer.IsomerPane', {
+                itemId	: id,
+                type	: type,
+                parentId: parentId,
+                node	: params.node,
+                elem	: params.elem
+            });
+            ntype = null;
     	}
 
-        if(ntype!='')
+        if(ntype!=''){
             this.fireEvent('newContent', {
                 panel : panel,
                 type : ntype,
                 itemId: id
             });
+        }
 
     	this._addPanel(type, id, parentId, panel);
 

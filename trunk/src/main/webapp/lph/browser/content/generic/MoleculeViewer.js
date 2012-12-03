@@ -33,15 +33,25 @@ Ext.define('lph.browser.content.generic.MoleculeViewer', {
     	this.mol = ChemDoodle.readMOL(molfile);
     	this.createViewerCanvas();
     },
+
+    //Notice than this one receives a "mol" object, not a "molfile" :)
+    _renderMolecule: function(mol){
+        this.mol = mol;
+        this.createViewerCanvas();
+    },
+
+    renderSmile: function(smile){
+        ChemDoodle.iChemLabs.readSMILES(smile, Ext.bind(this._renderMolecule, this), function(e){/*Nothing here*/});
+    },
     
     createViewerCanvas: function(){
-    	if(Ext.isEmpty(this.mol)) return;
-    	
-    	var h = this.getHeight();
+        if(Ext.isEmpty(this.mol)) return;
+
+        var h = this.getHeight();
     	var w = this.getWidth();
     	this.viewerCanvas = new ChemDoodle.ViewerCanvas(this.id, w, h);
     	this._customizeViewerCanvas(this.viewerCanvas);
-    	this.viewerCanvas.loadMolecule(this.mol);	
+    	this.viewerCanvas.loadMolecule(this.mol);
     },
     
     _customizeViewerCanvas: function(viewer){

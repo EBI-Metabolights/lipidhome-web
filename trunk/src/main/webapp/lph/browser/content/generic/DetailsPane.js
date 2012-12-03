@@ -36,12 +36,20 @@ Ext.define('lph.browser.content.generic.DetailsPane', {
     },
     
     onRendered: function(){
-    	this.summaryPane.showMask();
-    	Ext.ModelMgr.getModel(this.model).load(this.itemId, {
-        	scope	: this.summaryPane,
-	    	success	: this.summaryPane.loadData,
-	    	failure	: this.summaryPane.showErrorMessage,
-	    	callback: this.summaryPane.hideMask
-		});
+        if(!Ext.isEmpty(this.model)){
+
+            var errorFn = this.summaryPane.showErrorMessage;
+            if(this.model=="Isomer" && !this.identified){
+                errorFn = function(){};
+            }
+
+            this.summaryPane.showMask();
+            Ext.ModelMgr.getModel(this.model).load(this.itemId, {
+                scope	: this.summaryPane,
+                success	: this.summaryPane.loadData,
+                failure	: errorFn,
+                callback: this.summaryPane.hideMask
+            });
+        }
     }
 });

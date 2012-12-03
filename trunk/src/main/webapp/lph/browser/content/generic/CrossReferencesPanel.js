@@ -21,6 +21,7 @@ Ext.define('lph.browser.content.generic.CrossReferencesPanel', {
 	bodyPadding	: "20 50 0 20",
 	width		: 400,
 	layout		: 'anchor',
+    disabled    : true,
 	defaults	: {
 		anchor		: '100%',
 		labelWidth	: 130,
@@ -44,6 +45,6 @@ Ext.define('lph.browser.content.generic.CrossReferencesPanel', {
 	
 	_updateTab: function(num){
 		this.setTitle(this.title + " (" + num + ")");
-		if(num==0) this.disable();
+		if(num>0) this.enable();
 	}
 });

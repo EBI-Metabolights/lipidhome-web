@@ -49,6 +49,7 @@ Ext.define('lph.browser.nav.SearchPane', {
 	    //This is adding the type parameter to the query taking into account
 	    //the selected item in the type combo box
 	    this.ds.addListener("beforeLoad", function(store, operation, opts){
+            Ext.Ajax.abortAll(); //TODO: Replace abortAll by abort(currentQueryId) -> Needed, find how to get the currentQueryId :D
 	    	store.getProxy().extraParams = {
 	    		query : this.search.getValue(),
 	    		type  : this.combo.getValue()
@@ -67,6 +68,7 @@ Ext.define('lph.browser.nav.SearchPane', {
             tooltip      : 'Live search by name, minumum 4 characters',
 			pageSize	 : 10,
 			displayField : 'name',
+            //queryDelay   : 2000,
             listConfig	 : {
                 loadingText : 'Searching...',
                 emptyText   : 'No matching lipids found.',
@@ -111,7 +113,7 @@ Ext.define('lph.browser.nav.SearchPane', {
 		    displayField	: 'name',
 		    valueField		: 'level',
 		    forceSelection	: true,
-		    value			: this.comboStore.getAt(0).get('level'),
+		    value			: this.comboStore.getAt(4).get('level'),
             tooltip         : 'Search by specific level of structure hierarchy or by all'
 		});
         this.combo.addListener('render', this._onItemRender)
@@ -155,12 +157,14 @@ Ext.define("LipidLevels",{
 Ext.define("SearchData", {
     extend: 'Ext.data.Model',
     proxy: {
-        type: 'jsonp',
-        url : 'service/utils/search',
-        reader: {
-            type: 'json',
-            root: 'list',
-            totalProperty: 'totalCount'
+        type    : 'ajax',
+        url     : 'service/utils/search',
+        timeout : 120000,
+        batchActions : false,
+        reader  : {
+            type          : 'json',
+            root          : 'list',
+            totalProperty : 'totalCount'
         }
     },
 

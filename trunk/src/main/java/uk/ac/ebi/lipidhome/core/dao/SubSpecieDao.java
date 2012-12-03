@@ -33,6 +33,8 @@ public interface SubSpecieDao<T> extends BaseDao<SubSpecie>{
 	
 	String getChainNameById(Long id);
 
+    String geteCode(Long id);
+
     List<SubSpecieChain> getChainsById(Long id);
 	
 	List<CrossReference> getCrossReferencesList(Long id);

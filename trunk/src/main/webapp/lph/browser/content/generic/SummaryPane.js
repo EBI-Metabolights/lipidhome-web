@@ -36,8 +36,7 @@ Ext.define('lph.browser.content.generic.SummaryPane', {
     },
     
     showErrorMessage: function(data, operation){
-    	//TODO: Show an error message
-    	alert("It was impossible to retrieve the data!");
+        alert("It was impossible to retrieve the data!");
     },
     
     showMask: function(){

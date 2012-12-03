@@ -18,10 +18,10 @@ var tokenDelimiter = '|';
 var lph = {
     name    : 'LipidHome',
     version : '1.0',
-    phase   : {
+    /*phase   : {
         html : '&beta;eta',
         text : 'beta'
-    },
+    },*/
 	ws      : 'lphws'
 };
 

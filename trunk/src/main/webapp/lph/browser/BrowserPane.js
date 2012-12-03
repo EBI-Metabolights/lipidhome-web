@@ -60,10 +60,11 @@ Ext.define('lph.browser.BrowserPane', {
         path.addListener('itemclick', this.navigator.hierarchy.selectNode, this.navigator.hierarchy);
 
         //TODO: Remove this condition in order to show the Isomer panel in the browser
-        if(content.type=="isomer") return;
+        //if(content.type=="isomer") return;
+        if(content.type==null) return;
 
         //Binds a clicked item of a list to the hierarchy tree
-        list.addListener('itemdblclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content.itemId, content.type, content.identified], true));
+        list.addListener('itemdblclick', Ext.bind(this.navigator.hierarchy.addNode, this.navigator.hierarchy, [content], true));
     },
 
     manageLocationItemSelected: function(record){

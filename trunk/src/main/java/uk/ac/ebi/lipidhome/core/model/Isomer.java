@@ -12,6 +12,8 @@ public class Isomer extends LipidObject {
 
     private String smile;
 
+    private String systematicName;
+
     public String getSmile() {
         return smile;
     }
@@ -20,12 +22,21 @@ public class Isomer extends LipidObject {
         this.smile = smile;
     }
 
+    public String getSystematicName() {
+        return systematicName;
+    }
+
+    public void setSystematicName(String systematicName) {
+        this.systematicName = systematicName;
+    }
+
     @Override
     public String toString() {
         return "Isomer{" +
                 "itemId='" + itemId + '\'' +
                 "name='" + name + '\'' +
                 "smile='" + smile + '\'' +
+                "systematicName='" + systematicName + '\'' +
                 '}';
     }
 }

@@ -141,6 +141,16 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 		return StringUtils.collectionToDelimitedString(result, "/");
 	}
 
+    @Override
+    public String geteCode(Long id) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+        return (String) jdbcTemplate.queryForObject(
+            "SELECT distinct(s.ecode) " +
+            "FROM species AS s, FA_scan_species AS f, FA_scan_species_has_sub_species AS h " +
+            "WHERE h.l_sub_species_id = " + id + " AND f.FA_scan_species_id = h.l_FA_scan_species_id AND f.l_species_id = s.species_id;",
+            String.class);
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public List<SubSpecieChain> getChainsById(Long id) {
