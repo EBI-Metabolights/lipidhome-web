@@ -1,12 +1,20 @@
 package uk.ac.ebi.lipidhome.service.impl;
 
-import exec.IterativePhospholipidGetterDefCarbsDoubleBondPerChain;
-import lnetmoleculegenerator.LNetMoleculeGeneratorException;
-import structure.ChainInfoContainer;
-import structure.ChemInfoContainer;
 import uk.ac.ebi.lipidhome.core.dao.SubSpecieDao;
 import uk.ac.ebi.lipidhome.core.model.SubSpecie;
 import uk.ac.ebi.lipidhome.core.model.SubSpecieChain;
+import uk.ac.ebi.lipidhome.fastlipid.counter.BooleanRBCounterStartSeeder;
+import uk.ac.ebi.lipidhome.fastlipid.exec.GeneralIterativeLipidGetter;
+import uk.ac.ebi.lipidhome.fastlipid.exec.IterativePhospholipidGetterDefCarbsDoubleBondPerChain;
+import uk.ac.ebi.lipidhome.fastlipid.generator.ChainFactoryGenerator;
+import uk.ac.ebi.lipidhome.fastlipid.generator.LNetMoleculeGeneratorException;
+import uk.ac.ebi.lipidhome.fastlipid.structure.ChainInfoContainer;
+import uk.ac.ebi.lipidhome.fastlipid.structure.ChemInfoContainer;
+import uk.ac.ebi.lipidhome.fastlipid.structure.HeadGroup;
+import uk.ac.ebi.lipidhome.fastlipid.structure.SingleLinkConfiguration;
+import uk.ac.ebi.lipidhome.fastlipid.structure.rule.BondDistance3nPlus2Rule;
+import uk.ac.ebi.lipidhome.fastlipid.structure.rule.BondRule;
+import uk.ac.ebi.lipidhome.fastlipid.structure.rule.StarterDoubleBondRule;
 import uk.ac.ebi.lipidhome.service.SubSpecieService;
 import uk.ac.ebi.lipidhome.service.result.ListConverter;
 import uk.ac.ebi.lipidhome.service.result.Result;
@@ -68,19 +76,20 @@ public class SubSpecieServiceImpl extends LipidService implements SubSpecieServi
         Result result;
 
         SubSpecieDao<SubSpecie> subSpecieDao = getDaoFactory().getSubSpecieDao();
-
+        String eCode = subSpecieDao.geteCode(id);
 
         try {
-            Set<String> identifiedIsomers = new HashSet<String>();
+            Map<String, SimpleIsomer> identifiedIsomers = new HashMap<String, SimpleIsomer>();
             for (SimpleIsomer simpleIsomer : subSpecieDao.getSimpleIsomerList(id)){
-                identifiedIsomers.add(simpleIsomer.getName());
+                identifiedIsomers.put(simpleIsomer.getName(), simpleIsomer);
             }
 
             SubSpecie subSpecie = subSpecieDao.getSubSpecie(id);
             List<SubSpecieChain> chains = subSpecieDao.getChainsById(id);
-            List<SimpleIsomer> theoreticalIsomers = getTheoreticalIsomers(subSpecie, chains);
+            List<SimpleIsomer> theoreticalIsomers = getTheoreticalIsomers(subSpecie, chains, eCode);
             for (SimpleIsomer theoreticalIsomer : theoreticalIsomers){
-                if(identifiedIsomers.contains(theoreticalIsomer.getName())){
+                if(identifiedIsomers.keySet().contains(theoreticalIsomer.getName())){
+                    theoreticalIsomer.setItemId(identifiedIsomers.get(theoreticalIsomer.getName()).getItemId());
                     theoreticalIsomer.setIdentified(true);
                 }
             }
@@ -96,18 +105,29 @@ public class SubSpecieServiceImpl extends LipidService implements SubSpecieServi
         return result2Response(result);
 	}
 
-    private List<SimpleIsomer> getTheoreticalIsomers(SubSpecie subSpecie, List<SubSpecieChain> chains) {
-        IterativePhospholipidGetterDefCarbsDoubleBondPerChain generator = new IterativePhospholipidGetterDefCarbsDoubleBondPerChain();
-        SubSpecieChain sscA = chains.get(0);
-        SubSpecieChain sscB = chains.get(1);
-        generator.setCarbonsChainA(sscA.getCarbons());
-        generator.setCarbonsChainB(sscB.getCarbons());
-        generator.setDoubleBondsChainA(sscA.getDoubleBonds());
-        generator.setDoubleBondsChainB(sscB.getDoubleBonds());
-        generator.setHeadMolStream(subSpecie.getModelAsInputStream());
+    private List<SimpleIsomer> getTheoreticalIsomers(SubSpecie subSpecie, List<SubSpecieChain> chains, String eCode) {
+        Integer[] cs = new Integer[chains.size()];
+        Integer[] db = new Integer[chains.size()];
+        SingleLinkConfiguration[] slc = new SingleLinkConfiguration[chains.size()];
+        for (int i = 0; i < cs.length; i++) {
+            SubSpecieChain ssc = chains.get(i);
+            cs[i] = ssc.getCarbons();
+            db[i] = ssc.getDoubleBonds();
+            slc[i] = ssc.getSingleLinkConfiguration();
+        }
+
+        List<BondRule> rules = Arrays.asList(new BondDistance3nPlus2Rule(), new StarterDoubleBondRule(2));
+        ChainFactoryGenerator cfg = new ChainFactoryGenerator(rules, new BooleanRBCounterStartSeeder(rules), true);
+
+        GeneralIterativeLipidGetter generator = new GeneralIterativeLipidGetter(cfg);
+        generator.setExoticModeOn(true);
+        //the next line apparently is not allowed.
+        generator.setCarbonsPerChains(cs);
+        generator.setDoubleBondsPerChains(db);
+        generator.setHeadGroup(HeadGroup.valueOf(eCode));
         generator.configForSmilesOutput();
         generator.setGenerateChainInfoContainer(true);
-        generator.setLinkConfigsR1R2(sscA.getSingleLinkConfiguration(), sscB.getSingleLinkConfiguration());
+        generator.setLinkConfigs(slc);
         generator.run();
 
         List<SimpleIsomer> theoreticalIsomers = new ArrayList<SimpleIsomer>();
@@ -126,6 +146,8 @@ public class SubSpecieServiceImpl extends LipidService implements SubSpecieServi
 
         return theoreticalIsomers;
     }
+
+
 
     private String isomerName(List<ChainInfoContainer> chains, SubSpecie subSpecie){
         String ssname = subSpecie.getName();

@@ -23,10 +23,10 @@ Ext.define('lph.tools.ToolsPane', {
         this.searchEngine = Ext.create('lph.tools.searchengine.SearchEnginePane');
         this.add(this.searchEngine);
         
-        this.add({
+        /*this.add({
         	title	: 'Other tool'
         	//,disabled: true
-        })
+        })*/
         
         this.setActiveTab(this.searchEngine);
 

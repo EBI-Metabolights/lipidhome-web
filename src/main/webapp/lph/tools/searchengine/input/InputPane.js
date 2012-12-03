@@ -52,6 +52,6 @@ Ext.define('lph.tools.searchengine.input.InputPane', {
     },
 
     reset: function(){
-        console.info("Reset");
+        //console.info("Reset");
     },
 });

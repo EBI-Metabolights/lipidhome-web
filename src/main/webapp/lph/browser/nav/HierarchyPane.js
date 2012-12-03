@@ -35,7 +35,9 @@ Ext.define('lph.browser.nav.HierarchyPane', {
         //return record.childNodes.length>0;
     },
 
-	addNode: function(view, record, item, index, event, options, id, type){
+	addNode: function(view, record, item, index, event, options, content){
+        var id = content.itemId
+        var type = content.type
 		var sm = this.getSelectionModel();
 		var selection = sm.getSelection();
 		var selected = selection.pop();
@@ -57,7 +59,7 @@ Ext.define('lph.browser.nav.HierarchyPane', {
 		var node = selected.findChild("itemId", itemId);
 		//If the node does not exist, a new one is created and added
 		if(Ext.isEmpty(node)){
-			node = selected.appendChild(this._createNode(itemId, name, type, identified));
+			node = selected.appendChild(this._createNode(itemId, name, type, identified, record));
 			this._sortChildren(selected);
 		}
 
@@ -115,7 +117,7 @@ Ext.define('lph.browser.nav.HierarchyPane', {
 	 * @param {} type
 	 * @return {}
 	 */
-	_createNode: function(itemId, name, type, identified){
+	_createNode: function(itemId, name, type, identified, extra){
         if(Ext.isEmpty(identified)){
             identified = true;
         }
@@ -124,7 +126,8 @@ Ext.define('lph.browser.nav.HierarchyPane', {
     		text	: name,
     		expanded: true,
     		type	: type,
-            iconCls : type + this._identified2String(identified)
+            iconCls : type + this._identified2String(identified),
+            extra   : extra
 		}
     },
 

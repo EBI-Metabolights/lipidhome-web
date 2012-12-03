@@ -41,7 +41,12 @@ Ext.define('lph.browser.content.ContentPane', {
 	    	var id = elem.get("itemId");
             var parentId = elem.parentNode.get("itemId");
 
-	    	var panel = this.manager.getPanel(type, id, parentId, {node: node, elem: elem});
+            //This will only happen with ISOMERS
+            if(id==-1){
+                id = elem.get("text").replace(/ */g,"");
+            }
+
+            var panel = this.manager.getPanel(type, id, parentId, {node: node, elem: elem});
 
 	    	if(!Ext.isEmpty(panel)){
                 this.removeContent();

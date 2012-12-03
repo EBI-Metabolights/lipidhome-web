@@ -1,5 +1,7 @@
 package uk.ac.ebi.lipidhome.service;
 
+import org.springframework.stereotype.Service;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
@@ -19,6 +21,12 @@ public abstract interface CategoryService {
     @GET
     @Path( "/summary" )
     Response getCategorySummary( @QueryParam("id") Long id);
+
+    /*
+    @GET
+    @Path( "/summary/{id}" )
+    Response getCategorySummary( @PathParam("id") final Long id);
+    */
     
     @GET
     @Path( "/list" )

@@ -71,6 +71,13 @@
             <ref bean="subSpecieService"/>
         </jaxrs:serviceBeans>
     </jaxrs:server>
+
+    <bean name="isomerService" class="uk.ac.ebi.lipidhome.service.impl.IsomerServiceImpl"/>
+    <jaxrs:server id="isomerServer" address="/isomer">
+        <jaxrs:serviceBeans>
+            <ref bean="isomerService"/>
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
     
     <bean name="utilitiesService" class="uk.ac.ebi.lipidhome.service.impl.UtilitiesServiceImpl"/>    
     <jaxrs:server id="utilitiesServer" address="/utils">

@@ -19,7 +19,7 @@ public class Specie extends LipidObject {
 	private boolean identified;
 	
 	private double score;
-	
+
 	public String getModel() {
 		return model;
 	}

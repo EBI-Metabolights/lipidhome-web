@@ -20,11 +20,19 @@ public class SimpleIsomer extends ResultObject implements Comparable<SimpleIsome
     }
 
     public SimpleIsomer(String name, String smile){
-        setItemId(generateItemId());
+        setItemId(generateItemId(name));
         setName(name);
         setSmile(smile);
         setIdentified(false);
     }
+
+    public SimpleIsomer(Long id, String smile){
+        setItemId(id);
+        setName(name);
+        setSmile(smile);
+        setIdentified(false);
+    }
+
 
     public String getSmile() {
         return smile;
@@ -42,8 +50,9 @@ public class SimpleIsomer extends ResultObject implements Comparable<SimpleIsome
         this.identified = identified;
     }
 
-    private Long generateItemId(){
-        return -1L;
+    private Long generateItemId(String name){
+        String id = name.replaceAll("[^\\d]","");
+        return Long.valueOf(id);
     }
 
     @Override
