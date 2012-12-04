@@ -10,6 +10,8 @@
     <packaging>war</packaging>
     <name>Lipid Home</name>
 
+    <!-- NOTE: You need to use a profile for set the properties of the database (go to beans.spring.xml to see more) -->
+
 	<repositories>
         <repository>
             <id>ebi-repo-snapshots</id>
