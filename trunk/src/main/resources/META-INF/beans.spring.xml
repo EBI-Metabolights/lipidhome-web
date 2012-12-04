@@ -10,12 +10,10 @@
     <!-- Spring specific -->
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
-
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://mysql-lnet.ebi.ac.uk:4265/lipidhomeTest" />
-		<property name="username" value="" />
-		<property name="password" value="" />
-	</bean>
-
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${database.driver}" />
+        <property name="url" value="${database.protocol}:${database.subprotocol}:${database.lph.dbalias}/${database.lph.schema}" />
+        <property name="username" value="${database.user}" />
+        <property name="password" value="${database.user.password}" />
+    </bean>
 </beans>
