@@ -58,6 +58,10 @@ Ext.application({
 });
 
 Ext.onReady(function() {
+    if(Ext.isIE){ //We have detected a bug in the extjs core implementation that breaks the app in IE browser
+        location.href = "../supported_browsers.html"
+        return;
+    }
 	Ext.QuickTips.init();
     Ext.Loader.setPath('Ext.ux', 'extjs/examples/ux/');
     Ext.require([
