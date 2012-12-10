@@ -69,8 +69,8 @@ img.center {
 	font-size: 35px;
 }
 #coming-soon img{
-    clear: both;
-    display: block;
+    /*clear: both;*/
+    /*display: block;*/
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
