@@ -36,33 +36,33 @@ import java.util.regex.Pattern;
  */
 public class SubSpecieServiceImpl extends LipidService implements SubSpecieService{
 
-     /**
+    /**
      *SubSpecieFAScanSpecie of interest
      * A SubSpecie Object is built and from it a SubSpecieSummary is built. This object is transformed to
      * json via the result2Response method in LipidService and returned as a response object.
      * @return A response object containing a json formatted SubSpecieSummary.
      */
-	@Override
-	public Response getSubSpecieSummary(Long id) {
-		Result result;
-		SubSpecieDao<SubSpecie> subSpecieDao = getDaoFactory().getSubSpecieDao();
-		
-		try {
-			SubSpecie subSpecie = subSpecieDao.getSubSpecie(id);
-			SubSpecieSummary ssSummary = new SubSpecieSummary(subSpecie);
-			ssSummary.setChain(subSpecieDao.getChainNameById(id));
-			ssSummary.setAnnotatedIsomers(subSpecieDao.getIsomerCountById(id));						
-			ssSummary.setXrefs(subSpecieDao.getCrossReferencesList(id));
-			ssSummary.setPapers(subSpecieDao.getPapersList(id));
-						
-			result = new Result(ssSummary);
-			
-		} catch (RuntimeException e) {
-			String errorMessage = "Record with id " + id + " is unavailable.";
-			result = new Result(errorMessage);
-		}
-		return result2Response(result);
-	}
+    @Override
+    public Response getSubSpecieSummary(Long id) {
+        Result result;
+        SubSpecieDao<SubSpecie> subSpecieDao = getDaoFactory().getSubSpecieDao();
+
+        try {
+            SubSpecie subSpecie = subSpecieDao.getSubSpecie(id);
+            SubSpecieSummary ssSummary = new SubSpecieSummary(subSpecie);
+            ssSummary.setChain(subSpecieDao.getChainNameById(id));
+            ssSummary.setAnnotatedIsomers(subSpecieDao.getIsomerCountById(id));
+            ssSummary.setXrefs(subSpecieDao.getCrossReferencesList(id));
+            ssSummary.setPapers(subSpecieDao.getPapersList(id));
+
+            result = new Result(ssSummary);
+
+        } catch (RuntimeException e) {
+            String errorMessage = "Record with id " + id + " is unavailable.";
+            result = new Result(errorMessage);
+        }
+        return result2Response(result);
+    }
 
     /**
      *
@@ -71,8 +71,8 @@ public class SubSpecieServiceImpl extends LipidService implements SubSpecieServi
      * as a json string.
      * @return A response object containing a json formatted List of SimpleIsomer.
      */
-	@Override
-	public Response getIsomerSimpleList(Long id) {
+    @Override
+    public Response getIsomerSimpleList(Long id) {
         Result result;
 
         SubSpecieDao<SubSpecie> subSpecieDao = getDaoFactory().getSubSpecieDao();
@@ -97,13 +97,13 @@ public class SubSpecieServiceImpl extends LipidService implements SubSpecieServi
 
             ListConverter<SimpleIsomer> converter = new ListConverter<SimpleIsomer>();
             result = new Result(converter.getLipidObjectList(theoreticalIsomers));
-		} catch (RuntimeException e) {
-			String errorMessage = "Record with id " + id + " is unavailable.";
-			result = new Result(errorMessage);
-		}
+        } catch (RuntimeException e) {
+            String errorMessage = "Record with id " + id + " is unavailable.";
+            result = new Result(errorMessage);
+        }
 
         return result2Response(result);
-	}
+    }
 
     private List<SimpleIsomer> getTheoreticalIsomers(SubSpecie subSpecie, List<SubSpecieChain> chains, String eCode) {
         Integer[] cs = new Integer[chains.size()];
@@ -134,9 +134,12 @@ public class SubSpecieServiceImpl extends LipidService implements SubSpecieServi
         try{
 
             ChemInfoContainer res = generator.nextChemInfoContainer();
-
+            Long resCount =0l;
             while(res!=null) {
-                theoreticalIsomers.add(new SimpleIsomer(isomerName(res.getChainsInfo(), subSpecie), res.getSmiles()));
+                if(resCount<101){
+                    theoreticalIsomers.add(new SimpleIsomer(subSpecie.getItemId()+resCount,isomerName(res.getChainsInfo(), subSpecie), res.getSmiles()));
+                }
+                resCount++;
                 res = generator.nextChemInfoContainer();
             }
 
@@ -158,22 +161,30 @@ public class SubSpecieServiceImpl extends LipidService implements SubSpecieServi
         Matcher m = p.matcher(ssname); // get a matcher object
         int count = 0;
         int offSet = 0;
+        int skipped = 0;
         while(m.find()) {
-            ChainInfoContainer chainIC = chains.get(count);
-            List<Integer> dbonds = chainIC.getDoubleBondPositions();
-            StringBuffer bondBuffer = new StringBuffer();
-            if(dbonds.size()>0){
-                bondBuffer.append("[");
-                for (Integer dbond : dbonds) {
-                    bondBuffer.append(dbond);
-                    bondBuffer.append(",");
+            if(!m.group().equals("0:0")){
+                ChainInfoContainer chainIC = chains.get(count-skipped);
+                List<Integer> dbonds = chainIC.getDoubleBondPositions();
+                StringBuffer bondBuffer = new StringBuffer();
+                if(dbonds.size()>0){
+                    bondBuffer.append("[");
+                    for (Integer dbond : dbonds) {
+                        bondBuffer.append(dbond);
+                        bondBuffer.append(",");
+                    }
+                    bondBuffer.deleteCharAt(bondBuffer.length()-1);
+                    bondBuffer.append("]");
                 }
-                bondBuffer.deleteCharAt(bondBuffer.length()-1);
-                bondBuffer.append("]");
+
+                sb.insert(m.end() + offSet,bondBuffer.toString());
+
+                offSet += bondBuffer.length();
+            }else{
+                skipped++;
             }
-            sb.insert(m.end() + offSet,bondBuffer.toString());
-            offSet += bondBuffer.length();
             count++;
+
         }
         return sb.toString();
     }

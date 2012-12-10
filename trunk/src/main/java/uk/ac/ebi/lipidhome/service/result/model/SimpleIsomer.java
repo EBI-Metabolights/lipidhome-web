@@ -19,8 +19,8 @@ public class SimpleIsomer extends ResultObject implements Comparable<SimpleIsome
 
     }
 
-    public SimpleIsomer(String name, String smile){
-        setItemId(generateItemId(name));
+    public SimpleIsomer(Long id, String name, String smile){
+        setItemId(id);
         setName(name);
         setSmile(smile);
         setIdentified(false);
