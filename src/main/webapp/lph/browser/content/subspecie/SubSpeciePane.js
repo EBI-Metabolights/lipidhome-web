@@ -62,6 +62,7 @@ Ext.define('lph.browser.content.subspecie.SubSpeciePane', {
 		    proxy: {
 		        type: 'ajax',
 		        url : 'service/subspecie/isomers',
+                timeout : 120000,
 		        reader: {
 		            type: 'json',
 		            root: 'list'
@@ -109,7 +110,7 @@ Ext.define('SimpleIsomer', {
         { name: 'name', type: 'string' },
         //{ name: 'systematicName', type: 'string' },
         { name: 'smile', type: 'string' },
-        { name: 'identified', type: 'boolean' }
-        
-    ]
+        { name: 'identified', type: 'boolean'}
+
+        ]
 });
