@@ -23,7 +23,6 @@ public class SimpleSubSpecieMapper implements RowMapper{
 		sss.setItemId(rs.getLong("sub_species_id"));
 		sss.setName(rs.getString("name"));
 		sss.setIdentified(rs.getBoolean("identified"));
-		sss.setScore(rs.getDouble("score"));
 		return sss;
 	}
 

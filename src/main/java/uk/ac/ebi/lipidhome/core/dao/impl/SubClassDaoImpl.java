@@ -114,7 +114,7 @@ public class SubClassDaoImpl extends BaseDaoImpl<SubClass> implements SubClassDa
 	public List<SimpleSpecie> getSimpleSpeciesList(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return jdbcTemplate.query(
-				"select s.species_id, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, s.score, c.formula, c.exact_mass " +
+				"select s.species_id, s.name, s.identified, s.fa_carbons, s.fa_double_bonds, c.formula, c.exact_mass " +
 				"from species as s, composition as c " +
 				"where s.l_sub_class_id = ? and s.l_composition_id = c.composition_id",
 				

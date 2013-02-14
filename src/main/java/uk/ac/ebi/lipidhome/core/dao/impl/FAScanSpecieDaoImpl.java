@@ -195,7 +195,7 @@ public class FAScanSpecieDaoImpl extends BaseDaoImpl<FAScanSpecie> implements FA
 	public List<SimpleSubSpecie> getSimpleSubSpeciesList(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return jdbcTemplate.query(
-				"SELECT ss.sub_species_id, ss.name, ss.identified, ss.score " +
+				"SELECT ss.sub_species_id, ss.name, ss.identified " +
 				"FROM sub_species as ss, FA_scan_species_has_sub_species as h " +
 				"WHERE h.l_sub_species_id = ss.sub_species_id and h.l_FA_scan_species_id = ?;",
 				new Object[] { id }, new SimpleSubSpecieMapper());

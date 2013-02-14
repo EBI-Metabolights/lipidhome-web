@@ -26,7 +26,6 @@ public class SubSpecieMapper implements RowMapper{
 		subSpecie.setMass(rs.getDouble("exact_mass"));
 		subSpecie.setFormula(rs.getString("formula"));
 		subSpecie.setIdentified(rs.getBoolean("identified"));
-		subSpecie.setScore(rs.getDouble("score"));
 		return subSpecie;
 	}
 

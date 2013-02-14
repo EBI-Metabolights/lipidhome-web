@@ -23,7 +23,6 @@ public class SimpleFAScanSpecieMapper implements RowMapper{
 		sfass.setItemId(rs.getLong("FA_scan_species_id"));
 		sfass.setName(rs.getString("name"));
 		sfass.setIdentified(rs.getBoolean("identified"));
-		sfass.setScore(rs.getDouble("score"));
 		return sfass;
 	}
 

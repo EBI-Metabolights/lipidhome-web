@@ -21,8 +21,6 @@ public class SubSpecie extends LipidObject {
 	private double mass;
 	
 	private boolean identified;
-	
-	private double score;
 
 	public String getModel() {
 		return model;
@@ -56,13 +54,7 @@ public class SubSpecie extends LipidObject {
 		this.identified = identified;
 	}
 
-	public double getScore() {
-		return score;
-	}
 
-	public void setScore(double score) {
-		this.score = score;
-	}
 
     /*
     * Convert String to InputStream using ByteArrayInputStream

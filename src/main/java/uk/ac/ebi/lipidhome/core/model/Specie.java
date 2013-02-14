@@ -17,8 +17,6 @@ public class Specie extends LipidObject {
 	private double mass;
 	
 	private boolean identified;
-	
-	private double score;
 
 	public String getModel() {
 		return model;
@@ -52,12 +50,5 @@ public class Specie extends LipidObject {
 		this.identified = identified;
 	}
 
-	public double getScore() {
-		return score;
-	}
-
-	public void setScore(double score) {
-		this.score = score;
-	}
 
 }
