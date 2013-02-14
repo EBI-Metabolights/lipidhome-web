@@ -39,7 +39,6 @@ Ext.define('lph.browser.content.subclass.SpeciesList', {
         {header: 'Identified', dataIndex: 'identified', filter: {type: 'boolean'}, tooltip: 'Identified in a paper/external resource', renderer: function(value){return value?"Yes":"No"}},
         {header: 'FA Carbons', dataIndex: 'carbons', filter: {type: 'numeric'}, tooltip: 'Total number of carbons in combined fatty acids'},
         {header: 'FA Double bonds', dataIndex: 'doubleBonds', filter: {type: 'numeric'}, tooltip: 'Total number of double bonds in combined fatty acids'},
-        {header: 'Score', dataIndex: 'score', filter: {type: 'numeric'}, tooltip: 'Score based upon identified parents and components'},
         {header: 'Formula', dataIndex: 'formula', flex:1, filter: {type: 'string'}, tooltip: 'Chemical formula'},
         {header: 'Mass', dataIndex: 'mass', filter: {type: 'numeric'}, tooltip: 'Exact Mass'},
         {

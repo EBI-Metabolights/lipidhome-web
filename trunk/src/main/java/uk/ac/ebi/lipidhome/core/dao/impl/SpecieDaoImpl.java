@@ -185,7 +185,7 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
 	public List<SimpleFAScanSpecie> getSimpleFAScanSpeciesList(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return jdbcTemplate.query(
-				"SELECT f.FA_scan_species_id, f.name, f.identified, f.score " +
+				"SELECT f.FA_scan_species_id, f.name, f.identified " +
 				"FROM FA_scan_species as f " +
 				"WHERE f.l_species_id = ? ORDER BY f.name ASC;",
 				new Object[] { id }, new SimpleFAScanSpecieMapper());

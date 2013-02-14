@@ -25,7 +25,6 @@ public class SimpleSpecieMapper implements RowMapper{
 		ss.setIdentified(rs.getBoolean("identified"));
 		ss.setCarbons(rs.getInt("fa_carbons"));
 		ss.setDoubleBonds(rs.getInt("fa_double_bonds"));
-		ss.setScore(rs.getFloat("score"));
 		ss.setFormula(rs.getString("formula"));
 		ss.setMass(rs.getFloat("exact_mass"));
 		return ss;

@@ -26,7 +26,6 @@ public class SpecieMapper implements RowMapper{
 		specie.setMass(rs.getDouble("exact_mass"));
 		specie.setFormula(rs.getString("formula"));
 		specie.setIdentified(rs.getBoolean("identified"));
-		specie.setScore(rs.getDouble("score"));
 		return specie;
 	}
 

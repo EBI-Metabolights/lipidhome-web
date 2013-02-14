@@ -90,7 +90,6 @@ Ext.define('SimpleSpecie', {
         { name: 'identified', type: 'boolean' },
         { name: 'carbons', type: 'int' },
         { name: 'doubleBonds', type: 'int' },
-        { name: 'score', type: 'float' },
         { name: 'formula', type: 'string' },
         { name: 'mass', type: 'float' }
     ]

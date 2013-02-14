@@ -106,7 +106,6 @@ Ext.define('SimpleSubSpecie', {
         { name: 'itemId', type: 'int' },
         { name: 'type',  type : 'string', defaultValue: 'subSpecie'},
         { name: 'name', type: 'string' },
-        { name: 'identified', type: 'boolean' },
-        { name: 'score', type: 'float' }
+        { name: 'identified', type: 'boolean' }
     ]
 });

@@ -17,8 +17,6 @@ public class SimpleSpecie extends ResultObject{
 	
 	private int doubleBonds;
 	
-	private float score;
-	
 	private String formula;
 	
 	private float mass;
@@ -49,14 +47,6 @@ public class SimpleSpecie extends ResultObject{
 
 	public void setDoubleBonds(int doubleBonds) {
 		this.doubleBonds = doubleBonds;
-	}
-
-	public float getScore() {
-		return score;
-	}
-
-	public void setScore(float score) {
-		this.score = score;
 	}
 
 	public String getFormula() {
