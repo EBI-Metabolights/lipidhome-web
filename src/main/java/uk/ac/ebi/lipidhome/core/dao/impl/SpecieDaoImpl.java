@@ -1,18 +1,21 @@
 package uk.ac.ebi.lipidhome.core.dao.impl;
 
+import org.openscience.cdk.formula.IsotopeContainer;
+import org.openscience.cdk.formula.IsotopePattern;
+import org.openscience.cdk.formula.IsotopePatternGenerator;
+import org.openscience.cdk.formula.MolecularFormula;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import uk.ac.ebi.lipidhome.core.dao.SpecieDao;
-import uk.ac.ebi.lipidhome.core.model.AdductIons;
-import uk.ac.ebi.lipidhome.core.model.CrossReference;
-import uk.ac.ebi.lipidhome.core.model.Paper;
-import uk.ac.ebi.lipidhome.core.model.Specie;
+import uk.ac.ebi.lipidhome.core.model.*;
 import uk.ac.ebi.lipidhome.service.mapper.*;
 import uk.ac.ebi.lipidhome.service.result.model.BaseSearchItem;
 import uk.ac.ebi.lipidhome.service.result.model.MS1SearchRowResult;
 import uk.ac.ebi.lipidhome.service.result.model.SimpleFAScanSpecie;
 
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -215,5 +218,39 @@ public class SpecieDaoImpl extends BaseDaoImpl<Specie> implements SpecieDao<Spec
                     "AND c.exact_mass <= ? + ? " +
                     "AND c.exact_mass >= ? - ?;",
                     new Object[] { mass, adductIon.getMass(), adductIon.getName(), inferredMass, tolerance, inferredMass, tolerance }, new MS1SearchRowResultMapper());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Isotope> getIsotopeDistribution(Long id){
+        List<Isotope> isotopeDistribution = new ArrayList<Isotope>();
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
+        String composition = (String) jdbcTemplate.queryForObject("SELECT c.formula " +
+                "FROM composition as c, species as s " +
+                "WHERE c.composition_id = s.l_composition_id " +
+                "AND s.species_id = ?", new Object[]{id}, String.class);
+
+        IMolecularFormula mf = MolecularFormulaManipulator.getMolecularFormula(composition, new MolecularFormula());
+        IsotopePatternGenerator ipg = new IsotopePatternGenerator(0.0);
+        IsotopePattern ip = ipg.getIsotopes(mf);
+
+        for (IsotopeContainer ic : ip.getIsotopes()) {
+            isotopeDistribution.add(new Isotope(roundToSignificantFigures(ic.getMass(),8),roundToSignificantFigures(ic.getIntensity(),6)));
+        }
+        Collections.sort(isotopeDistribution);
+        return  isotopeDistribution;
+    }
+
+    private double roundToSignificantFigures(double num, int n) {
+        if(num == 0) {
+            return 0;
+        }
+
+        final double d = Math.ceil(Math.log10(num < 0 ? -num: num));
+        final int power = n - (int) d;
+
+        final double magnitude = Math.pow(10, power);
+        final long shifted = Math.round(num*magnitude);
+        return shifted/magnitude;
     }
 }

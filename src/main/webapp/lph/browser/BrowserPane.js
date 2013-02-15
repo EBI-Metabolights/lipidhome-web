@@ -105,3 +105,12 @@ Ext.define('Paper', {
         { name: 'summary', type: 'string' }
     ]
 });
+
+Ext.define('Isotope', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'mass', type: 'float'},
+        {name: 'intensity',    type: 'float'}
+    ]
+});
+

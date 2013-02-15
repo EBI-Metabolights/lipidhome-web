@@ -208,6 +208,11 @@
     height: 16px;
 }
 
+.isotopes-16 {
+    background-image: url("../icons/flask_empty.png") !important;
+    height: 16px;
+}
+
 .tools-16 {
     background-image: url("../icons/tools.png") !important;
 
