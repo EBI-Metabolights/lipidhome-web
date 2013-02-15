@@ -1,11 +1,13 @@
 package uk.ac.ebi.lipidhome.service.result.model;
 
 import uk.ac.ebi.lipidhome.core.model.CrossReference;
+import uk.ac.ebi.lipidhome.core.model.Isotope;
 import uk.ac.ebi.lipidhome.core.model.Paper;
 import uk.ac.ebi.lipidhome.core.model.Specie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  *
@@ -34,6 +36,8 @@ public class SpecieSummary extends ResultObject {
 	List<CrossReference> xrefs = new ArrayList<CrossReference>();
 	
 	List<Paper> papers = new ArrayList<Paper>();
+
+    List<Isotope> isotopes = new ArrayList<Isotope>();
 	
 	public SpecieSummary(Specie specie){
 		super(specie);
@@ -114,4 +118,12 @@ public class SpecieSummary extends ResultObject {
 	public void setPapers(List<Paper> papers) {
 		this.papers = papers;
 	}
+
+    public List<Isotope> getIsotopes() {
+        return isotopes;
+    }
+
+    public void setIsotopes(List<Isotope> isotopes) {
+        this.isotopes = isotopes;
+    }
 }

@@ -41,6 +41,7 @@ public class SpecieServiceImpl extends LipidService implements SpecieService{
 			specieSummary.setAnnotatedIsomers(specieDao.getIsomerCountById(id));						
 			specieSummary.setXrefs(specieDao.getCrossReferencesList(id));
 			specieSummary.setPapers(specieDao.getPapersList(id));
+            specieSummary.setIsotopes(specieDao.getIsotopeDistribution(id));
 						
 			result = new Result(specieSummary);
 			

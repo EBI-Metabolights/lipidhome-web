@@ -38,12 +38,19 @@ Ext.define('lph.browser.content.specie.SpeciePane', {
             },
         	store : Ext.create('Ext.data.ArrayStore', {model: 'Paper'})
         });
+        this.isotopePanel = Ext.create('lph.browser.content.specie.IsotopePanel',{
+            tabConfig : {
+                tooltip  : 'Isotope distribution of ' + text
+            },
+            store : Ext.create('Ext.data.ArrayStore', {model: 'Isotope'})
+        });
         
         config.model = 'SpecieModel';
 		this.details = Ext.create('lph.browser.content.generic.DetailsPane', config);
         this.details.addTab(this.infoPanel);
         this.details.addTab(this.xrefPanel);
         this.details.addTab(this.papersPanel);
+        this.details.addTab(this.isotopePanel);
         this.details.setActiveTab(this.infoPanel);
         this.add(this.details);
 
@@ -86,7 +93,8 @@ Ext.define('SpecieModel', {
     ],
     hasMany : [
     	{model: 'CrossReference', name: 'xrefs'},
-    	{model: 'Paper', name: 'papers'}
+    	{model: 'Paper', name: 'papers'},
+        {model: 'Isotope', name: 'isotopes'}
     ],
     proxy: {
         type: 'ajax',
@@ -109,5 +117,6 @@ Ext.define('SimpleFASSpecie', {
         { name: 'type',  type : 'string', defaultValue: 'faScanSpecie'},
         { name: 'name', type: 'string' },
         { name: 'identified', type: 'boolean' }
+
     ]
 });
