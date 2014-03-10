@@ -35,7 +35,7 @@ public class SubSpecieDaoImpl extends BaseDaoImpl<SubSpecie> implements SubSpeci
 	public SubSpecie getSubSpecie(Long id) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
 		return (SubSpecie) jdbcTemplate.queryForObject(
-				"SELECT DISTINCT ss.sub_species_id, ss.name, sc.model, c.exact_mass, c.formula, ss.identified" +
+				"SELECT DISTINCT ss.sub_species_id, ss.name, sc.model, c.exact_mass, c.formula, ss.identified " +
 				"FROM sub_species as ss, species as s, composition as c, FA_scan_species as f , FA_scan_species_has_sub_species as h, sub_class as sc " +
 				"WHERE sc.sub_class_id = s.l_sub_class_id and s.l_composition_id = c.composition_id and f.l_species_id = s.species_id and h.l_FA_scan_species_id = f.FA_scan_species_id and h.l_sub_species_id = ss.sub_species_id and ss.sub_species_id = ?;",
 				new Object[] { id }, new SubSpecieMapper());
