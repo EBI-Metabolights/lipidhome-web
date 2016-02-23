@@ -1,0 +1,1 @@
+A database of theoretical lipid structures designed to provide a stable name space for researchers in the field of lipidomics, particularly those involved in the high throughput identification of lipids by mass spectrometry.
