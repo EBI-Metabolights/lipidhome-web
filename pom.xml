@@ -24,12 +24,6 @@
         </repository>
 
         <repository>
-            <id>jni-inchi</id>
-            <name>JNI-InChI Maven Repository</name>
-            <url>http://jni-inchi.sourceforge.net/m2repo</url>
-        </repository>
-
-        <repository>
             <id>ebi-snapshot-repo</id>
             <name>The EBI internal snapshot repository</name>
             <url>http://www.ebi.ac.uk/~maven/m2repo_snapshots</url>
@@ -163,7 +157,7 @@
         <dependency>
             <groupId>net.sf.jni-inchi</groupId>
             <artifactId>jni-inchi</artifactId>
-            <version>0.7</version>
+            <version>0.8</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
