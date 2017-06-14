@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
     <groupId>uk.ac.ebi.lipidhome</groupId>
     <artifactId>LipidHome</artifactId>
     <version>1.0.7-SNAPSHOT</version>
@@ -12,7 +12,7 @@
 
     <!-- NOTE: You need to use a profile for set the properties of the database (go to beans.spring.xml to see more) -->
 
-	<repositories>
+    <repositories>
         <repository>
             <id>ebi-repo-snapshots</id>
             <name>EBI maven snapshots repository</name>
@@ -23,11 +23,11 @@
             </snapshots>
         </repository>
 
-	    <repository>
-	        <id>jni-inchi</id>
-	        <name>JNI-InChI Maven Repository</name>
-	        <url>http://jni-inchi.sourceforge.net/m2repo</url>
-	    </repository>
+        <repository>
+            <id>jni-inchi</id>
+            <name>JNI-InChI Maven Repository</name>
+            <url>http://jni-inchi.sourceforge.net/m2repo</url>
+        </repository>
 
         <repository>
             <id>ebi-snapshot-repo</id>
@@ -42,23 +42,27 @@
         </repository>
     </repositories>
 
-	<properties>
-		<jetty.port>9090</jetty.port>
-		<!-- <jetty.contextPath>cxf-demo</jetty.contextPath> -->
-		<jetty.contextPath></jetty.contextPath>
+    <properties>
+        <jetty.port>9090</jetty.port>
+        <!-- <jetty.contextPath>cxf-demo</jetty.contextPath> -->
+        <jetty.contextPath></jetty.contextPath>
 
-		<cxf.version>2.4.1</cxf.version>
-	</properties>
+        <cxf.version>2.4.1</cxf.version>
+        <!-- these should be overriden by a custom profile in settings.xml -->
+        <database.url>jdbc:mysql://localhost:3306/lipidhome</database.url>
+        <database.user>lipidhome</database.user>
+        <database.password>lipidhome</database.password>
+    </properties>
 
-	<build>
-		<finalName>${project.artifactId}-${project.version}</finalName>
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
 
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
         <plugins>
             <!--compiler-->
@@ -88,64 +92,64 @@
                 </configuration>
             </plugin>
         </plugins>
-	</build>
+    </build>
 
-	<dependencies>
-		<!-- JAX-RS -->
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-bundle-jaxrs</artifactId>
-			<version>${cxf.version}</version>
-			<!-- Exclude Jetty if running in an other servlet container -->
-			<!--<exclusions>-->
-			<!--<exclusion>-->
-			<!--<groupId>org.eclipse.jetty</groupId>-->
-			<!--<artifactId>jetty-server</artifactId>-->
-			<!--</exclusion>-->
-			<!--</exclusions>-->
-		</dependency>
+    <dependencies>
+        <!-- JAX-RS -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-bundle-jaxrs</artifactId>
+            <version>${cxf.version}</version>
+            <!-- Exclude Jetty if running in an other servlet container -->
+            <!--<exclusions>-->
+            <!--<exclusion>-->
+            <!--<groupId>org.eclipse.jetty</groupId>-->
+            <!--<artifactId>jetty-server</artifactId>-->
+            <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
 
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>1.7.1</version>
-		</dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>1.7.1</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>2.0.6</version>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>2.0.6</version>
+        </dependency>
 
-		<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+        </dependency>
 
 
-		<!-- LIPIDHOME Server-side based stuff -->
+        <!-- LIPIDHOME Server-side based stuff -->
         <dependency>
             <groupId>uk.ac.ebi.lipidhome</groupId>
             <artifactId>fast-lipid</artifactId>
@@ -157,10 +161,10 @@
             <version>5.1.18</version>
         </dependency>
         <dependency>
-	        <groupId>net.sf.jni-inchi</groupId>
-	        <artifactId>jni-inchi</artifactId>
-	        <version>0.7</version>
-    	</dependency>
+            <groupId>net.sf.jni-inchi</groupId>
+            <artifactId>jni-inchi</artifactId>
+            <version>0.7</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -168,5 +172,5 @@
         </dependency>
     </dependencies>
 
-	<description>Lipid data repository accession</description>
+    <description>Lipid data repository accession</description>
 </project>
