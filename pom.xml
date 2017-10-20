@@ -16,7 +16,7 @@
         <repository>
             <id>ebi-repo-snapshots</id>
             <name>EBI maven snapshots repository</name>
-            <url>http://www.ebi.ac.uk/~maven/m2repo_snapshots</url>
+            <url>https://www.ebi.ac.uk/~maven/m2repo_snapshots</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>interval:10080</updatePolicy> <!-- weekly -->
@@ -26,7 +26,7 @@
         <repository>
             <id>ebi-snapshot-repo</id>
             <name>The EBI internal snapshot repository</name>
-            <url>http://www.ebi.ac.uk/~maven/m2repo_snapshots</url>
+            <url>https://www.ebi.ac.uk/~maven/m2repo_snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>

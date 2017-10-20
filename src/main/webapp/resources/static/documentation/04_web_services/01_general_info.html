@@ -1,13 +1,13 @@
 <div class="documentation">
 <h1>Web Services General Info</h1>
 
-<p>The Webserice of the `LipidHome'  web application are a simple way to computationally retrieve data from the underlying database in a standardised manner. There are several different request URLs with different parameters and return values. However, they all share in common the data interchange format JSON as the return type. It is worth noting that the web services will become more advanced and evolve over time, as such it is worth keeping an eye on the help documentation in the main application hosted at <a = href = "http://www.ebi.ac.uk/apweiler-srv/lipidhome/">http://www.ebi.ac.uk/apweiler-srv/lipidhome/</a>. All web services are available under the root path <a href = "http://www.ebi.ac.uk/apweiler-srv/lipidhome/service">http://www.ebi.ac.uk/apweiler-srv/lipidhome/service</a> and the following section's location should be appended to this root to access them.</p>
+<p>The Webserice of the `LipidHome'  web application are a simple way to computationally retrieve data from the underlying database in a standardised manner. There are several different request URLs with different parameters and return values. However, they all share in common the data interchange format JSON as the return type. It is worth noting that the web services will become more advanced and evolve over time, as such it is worth keeping an eye on the help documentation in the main application hosted at <a = href = "https://www.ebi.ac.uk/metabolights/lipidhome/">https://www.ebi.ac.uk/metabolights/lipidhome/</a>. All web services are available under the root path <a href = "https://www.ebi.ac.uk/metabolights/lipidhome/service">https://www.ebi.ac.uk/metabolights/lipidhome/service</a> and the following section's location should be appended to this root to access them.</p>
 
 <h2>Category services</h2>
 Category services all relate to the retrieval of information about category level lipids and their direct children; main classes. Available under /category there are three methods accessible;
 
-<h3>/summary</h3> 
-Takes a Long named `id' as parameter, this is the database id of the category of interest. The method returns information about the specific category such as the number of main classes, sub classes and species that are its members. Example: <a href = "http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/category/summary?id=1">http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/category/summary?id=1</a>.
+<h3>/summary</h3>
+Takes a Long named `id' as parameter, this is the database id of the category of interest. The method returns information about the specific category such as the number of main classes, sub classes and species that are its members. Example: <a href = "https://www.ebi.ac.uk/metabolights/lipidhome/service/category/summary?id=1">https://www.ebi.ac.uk/metabolights/lipidhome/service/category/summary?id=1</a>.
 
 <table border="1">
 	<tr>
@@ -20,13 +20,13 @@ Takes a Long named `id' as parameter, this is the database id of the category of
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h3>/list</h3>
 This method takes no parameters and returns list of categories; names and ids. The method returns a list of all main classes that are members of the selected category.
 
 <h3>/mainclasses</h3>
-Takes a Long named `id' as parameter, this is the database id of the category of interest. 
+Takes a Long named `id' as parameter, this is the database id of the category of interest.
 
 <table border="1">
 	<tr>
@@ -39,13 +39,13 @@ Takes a Long named `id' as parameter, this is the database id of the category of
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h2>Main class services</h2>
 Main class services all relate to the retrieval of information about main class level lipids and their direct children; sub classes. Available under /mainclass there are two methods accessible;
 
 <h3>/summary</h3>
-Takes a Long named `id' as parameter, this is the database id of the main class of interest. The method returns information about the specific main class such as the number of sub classes, species and sub species that are its members. Example: <a href ="http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/mainclass/summary?id=1">http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/mainclass/summary?id=1</a>}.
+Takes a Long named `id' as parameter, this is the database id of the main class of interest. The method returns information about the specific main class such as the number of sub classes, species and sub species that are its members. Example: <a href ="https://www.ebi.ac.uk/metabolights/lipidhome/service/mainclass/summary?id=1">https://www.ebi.ac.uk/metabolights/lipidhome/service/mainclass/summary?id=1</a>}.
 
 <table border="1">
 	<tr>
@@ -58,7 +58,7 @@ Takes a Long named `id' as parameter, this is the database id of the main class 
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h3>/subclasses</h3>
 Takes a Long named `id' as parameter, this is the database id of the main class of interest. The method returns a list of all sub classes that are members of the selected category.
@@ -74,14 +74,14 @@ Takes a Long named `id' as parameter, this is the database id of the main class 
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 
 <h2>Sub class services</h2>
 Sub class services all relate to the retrieval of information about sub class level lipids and their direct children; species. Available under /subclass there are two methods accessible;
 
-<h3>/summary</h3> 
-Takes a Long named `id' as parameter, this is the database id of the sub class of interest. The method returns information about the specific sub class such as the number of species, sub species and annotated isomers that are its members. Example: <a href = "http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/subclass/summary?id=1">http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/subclass/summary?id=1</a>.
+<h3>/summary</h3>
+Takes a Long named `id' as parameter, this is the database id of the sub class of interest. The method returns information about the specific sub class such as the number of species, sub species and annotated isomers that are its members. Example: <a href = "https://www.ebi.ac.uk/metabolights/lipidhome/service/subclass/summary?id=1">https://www.ebi.ac.uk/metabolights/lipidhome/service/subclass/summary?id=1</a>.
 
 <table border="1">
 	<tr>
@@ -94,7 +94,7 @@ Takes a Long named `id' as parameter, this is the database id of the sub class o
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h3>/species</h3>
 Takes a Long named `id' as parameter, this is the database id of the sub class of interest. The method returns a list of all species that are members of the selected sub class.
@@ -110,13 +110,13 @@ Takes a Long named `id' as parameter, this is the database id of the sub class o
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h2>Species services</h2>
 Species services all relate to the retrieval of information about species level lipids and their direct children; fatty acid scan species. Available under /specie there are two methods accessible;
 
 <h3>/summary</h3>
-Takes a Long named `id' as parameter, this is the database id of the species of interest. The method returns information about the specific species such as the number of sub species, annotated isomers that are its members and papers that mention it. Example: <a href = "http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/specie/summary?id=1">http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/specie/summary?id=1</a>.
+Takes a Long named `id' as parameter, this is the database id of the species of interest. The method returns information about the specific species such as the number of sub species, annotated isomers that are its members and papers that mention it. Example: <a href = "https://www.ebi.ac.uk/metabolights/lipidhome/service/specie/summary?id=1">https://www.ebi.ac.uk/metabolights/lipidhome/service/specie/summary?id=1</a>.
 
 <table border="1">
 	<tr>
@@ -129,7 +129,7 @@ Takes a Long named `id' as parameter, this is the database id of the species of 
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h3>/fascanspecies</h3>
 Takes a Long named `id' as parameter, this is the database id of the species of interest. The method returns a list of all fatty acid scan species that are members of the selected species.
@@ -145,13 +145,13 @@ Takes a Long named `id' as parameter, this is the database id of the species of 
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h2>Fatty acid scan species services</h2>
 Fatty acid scan species services all relate to the retrieval of information about fatty acid scan species level lipids and their direct children; sub species. Available under /fasscanspecie there are two methods accessible;
 
 <h3>/summary</h3>
-Takes a Long named `id' as parameter, this is the database id of the fatty acid scan species of interest. The method returns information about the specific fatty acid scan species such as the number of sub species, annotated isomers that are its members and papers that mention it. Example: <a href = "http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/fascanspecie/summary?id=1">http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/fascanspecie/summary?id=1</a>.
+Takes a Long named `id' as parameter, this is the database id of the fatty acid scan species of interest. The method returns information about the specific fatty acid scan species such as the number of sub species, annotated isomers that are its members and papers that mention it. Example: <a href = "https://www.ebi.ac.uk/metabolights/lipidhome/service/fascanspecie/summary?id=1">https://www.ebi.ac.uk/metabolights/lipidhome/service/fascanspecie/summary?id=1</a>.
 
 <table border="1">
 	<tr>
@@ -164,7 +164,7 @@ Takes a Long named `id' as parameter, this is the database id of the fatty acid 
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h3>/subspecies</h3>
 Takes a Long named `id' as parameter, this is the database id of the fatty acid scan species of interest. The method returns a list of all sub species that are members of the selected fatty acid scan species.
@@ -180,14 +180,14 @@ Takes a Long named `id' as parameter, this is the database id of the fatty acid 
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 
 <h2>Sub species services</h2>
 Sub species services all relate to the retrieval of information about sub species level lipids and their direct children; isomers. Available under /subspecie there are two methods accessible;
 
 <h3>/summary</h3>
-Takes a Long named `id' as parameter, this is the database id of the sub species of interest. The method returns information about the specific sub species such as the number of annotated isomers that are its members and papers that mention it. Example: <a href = "http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/subspecie/summary?id=1">http://www.ebi.ac.uk/apweiler-srv/lipidhome/service/subspecie/summary?id=1</a>.
+Takes a Long named `id' as parameter, this is the database id of the sub species of interest. The method returns information about the specific sub species such as the number of annotated isomers that are its members and papers that mention it. Example: <a href = "https://www.ebi.ac.uk/metabolights/lipidhome/service/subspecie/summary?id=1">https://www.ebi.ac.uk/metabolights/lipidhome/service/subspecie/summary?id=1</a>.
 
 <table border="1">
 	<tr>
@@ -200,7 +200,7 @@ Takes a Long named `id' as parameter, this is the database id of the sub species
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h3>/isomers</h3>
 Takes a Long named `id' as parameter, this is the database id of the sub species of interest. The method returns a list of all isomers that are members of the selected sub species. These isomers are both retrieved from the database (the identified ones harvested from other resources) and theoretically generated on the fly using the Chemical Development Kit.
@@ -216,7 +216,7 @@ Takes a Long named `id' as parameter, this is the database id of the sub species
 		<td>Any integer</td>
 		<td>Database record ID</td>
 	</tr>
-</table> 
+</table>
 
 <h2>Tools services</h2>
 Tools services relate to the tools panel of the web application where currently the only application hosted is an MS1 search engine. There are two methods available under /tools:
@@ -249,7 +249,7 @@ Takes several parameters and the result is a simple JSON object, each element of
 		<td>adductions</td>
 		<td>String of comma separated integers.</td>
 	</tr>
-</table> 
+</table>
 
 
 <h3>/isomers</h3>
@@ -267,14 +267,14 @@ Takes a Long named `id' as parameter, this is the database id of the sub species
 		<tr>
 		<td>format</td>
 		<td>any one of "CSV", "TSV", "Excel" and "XML"</td>
-	</tr>	
-</table> 
+	</tr>
+</table>
 
 <h2>Utility services</h2>
 Utility services is a catch all group of services necessary for varying aspect of the web application to run, most of them are application specific and uninteresting to interested data consumers. However the search functionality of the `LipidHome' database is provided as a web service under /utils. The result is a list of items in the database that match the search text at the level specified and some basic information about them such as whether they are identified or not.
 
-<h3>/search</h3>  
-Takes several parameters; 
+<h3>/search</h3>
+Takes several parameters;
 
 <table border="1">
 	<tr>
@@ -297,5 +297,5 @@ Takes several parameters;
 		<td>page</td>
 		<td>Any positive integer</td>
 	</tr>
-</table> 
+</table>
 </div>
